@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -24,3 +24,31 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+
+ion-content {
+  --background: black;
+}
+
+@font-face {
+  font-family: "TransRobotics";
+  src: url("./app/assets/fonts/SFTransRobotics.ttf");
+}
+
+.outer {
+  padding: 2%;
+}
+.dash {
+  font-size: large;
+  color: white;
+
+  border-bottom: 2px dashed #2a2e35;
+  background-color: black;
+  margin-bottom: 10px;
+}
+
+.contact-popover .popover-content {
+  width: 500px;
+  padding: 10px;
+}

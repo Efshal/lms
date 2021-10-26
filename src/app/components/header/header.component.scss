@@ -1,0 +1,57 @@
+@media (min-width: 768px) {
+  .mobile-header {
+    display: none;
+  }
+
+  .header {
+    display: flex;
+    background: #171d23;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-header {
+    display: block;
+    color: #171d23;
+  }
+
+  .header {
+    display: none;
+    color: #171d23;
+  }
+}
+
+.active-item {
+  border-bottom: 2px solid var(--ion-color-primary);
+}
+
+.dropdown {
+  width: 136px;
+  height: 150px;
+  background: blue;
+  position: absolute;
+  top: 40px;
+  left: 87px;
+  z-index: 1;
+  ion-item:hover {
+    --ion-item-color: var(--ion-color-primary);
+  }
+}
+.fontt {
+  font-family: "TransRobotics";
+}
+
+.backk {
+  background-color: #171d23;
+}
+.new-background-color {
+  --background: #171d23;
+}
+.textt {
+  --color: blue;
+}
+.iconPad {
+  padding-left: 10px;
+}

@@ -1,0 +1,111 @@
+<ion-header class="mobile-header">
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="myMenu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="fontt ion-text-center textt">ScoolX</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-row class="header ion-align-items-center new-background-color">
+  <ion-col size="2" class="backk">
+    <img src="../../../assets/images/fire.png" width="50px" />
+  </ion-col>
+  <ion-col size="8" class="ion-text-center new-background-color">
+    <ion-button
+      fill="clear"
+      color="blue"
+      routerLink="/"
+      routerDirection="root"
+      routerLinkActive="active-item"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="fontt"
+    >
+      Home
+    </ion-button>
+
+    <ion-button
+      #productbtn
+      (mouseenter)="dropdown = true"
+      (mouseleave)="hideDropdown($event)"
+      fill="clear"
+      color="blue"
+      class="dropdown-btn"
+      routerLink="/products"
+      routerDirection="root"
+      routerLinkActive="active-item"
+      class="fontt"
+    >
+      Products
+      <ion-icon
+        slot="end"
+        [name]="dropdown ? 'chevron-down' : 'chevron-up'"
+      ></ion-icon>
+    </ion-button>
+
+    <div
+      *ngIf="dropdown"
+      class="dropdown"
+      (mouseleave)="dropdown = false"
+      #dropdownbox
+    >
+      <ion-item
+        button
+        (click)="dropdown = false"
+        routerLink="/products"
+        routerDirection="root"
+        [queryParams]="{ category: 'popular' }"
+        lines="none"
+        class="fontt"
+      >
+        Popular
+      </ion-item>
+      <ion-item
+        button
+        (click)="dropdown = false"
+        routerLink="/products"
+        [queryParams]="{ category: 'cloth' }"
+        lines="none"
+        routerDirection="root"
+        class="fontt"
+      >
+        Cloth
+      </ion-item>
+      <ion-item
+        button
+        (click)="dropdown = false"
+        routerLink="/products"
+        [queryParams]="{ category: 'gadgets' }"
+        lines="none"
+        routerDirection="root"
+        class="fontt"
+      >
+        Gadgets
+      </ion-item>
+    </div>
+
+    <ion-button
+      fill="clear"
+      color="blue"
+      routerLink="/about"
+      routerDirection="root"
+      routerLinkActive="active-item"
+      class="fontt"
+    >
+      About
+    </ion-button>
+  </ion-col>
+
+  <ion-col size="2" class="ion-text-right">
+    <img
+      src="https://img.icons8.com/dusk/64/000000/login-rounded-right.png"
+      style="width: 15%; height: 15%"
+      (click)="settingsPopover()"
+    />
+  </ion-col>
+</ion-row>
