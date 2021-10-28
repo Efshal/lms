@@ -7,11 +7,15 @@ body {
   margin: 0;
   background-color: #17141d;
   color: white;
-  font-family: "DM Mono", monospace;
+  font-family: "DM_MONO";
 }
 
 a {
   text-decoration: none;
+}
+
+.fontt{
+  font-family: "DM_MONO";
 }
 
 .card-list {

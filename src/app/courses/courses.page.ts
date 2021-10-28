@@ -35,7 +35,7 @@ export class CoursesPage implements OnInit {
   redirect(url) {
     console.log(url);
     this.videoService.setUrlFunc(url);
-    this.router.navigate(['/courses/course-overview']);
+    this.router.navigate(['/courses/course-overview'], { queryParams: { link: url } });
     console.log('heree');
   }
 }

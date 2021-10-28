@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FirebaseVideoService } from '../../services/firebase-video.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -17,16 +17,25 @@ export class CourseOverviewPage implements OnInit {
   creator: string;
   url: SafeResourceUrl;
   inputUrl: string;
+  link:string;
 
   constructor(
     private http: HttpClient,
     public router: Router,
     private videoServie: FirebaseVideoService,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    private route: ActivatedRoute
   ) {}
 
   async ngOnInit() {
-    this.inputUrl = this.videoServie.setUrl;
+    this.route.queryParams
+      .subscribe(params => {
+        console.log(params); // { order: "popular" }
+
+        this.inputUrl = params.link;
+        console.log(this.inputUrl); // popular
+      }
+    );
     console.log('hello', this.inputUrl);
     this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.inputUrl);
     console.log(this.url);
