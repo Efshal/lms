@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ionic Forms</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="ionicForm" novalidate>
+    <ion-item lines="full">
+      <ion-label position="floating">Lesson Thumbnail</ion-label>
+      <ion-input
+        formControlName="thumbnail"
+        type="file"
+        (change)="uploadImage($event)"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Title</ion-label>
+      <ion-input formControlName="title" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Creator</ion-label>
+      <ion-input formControlName="creator" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Description</ion-label>
+      <ion-input formControlName="description" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Video Link</ion-label>
+      <ion-input formControlName="link" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Enter tags to add</ion-label>
+      <ion-input
+        formControlName="tags"
+        [(ngModel)]="addtag"
+        type="text"
+      ></ion-input>
+      <ion-button type="submit" color="danger" expand="block" (click)="addTag()"
+        >Add Tags</ion-button
+      >
+    </ion-item>
+
+    <ul class="collection">
+      <li *ngFor="let tag of allTags">
+        <span class="col s11"> {{ tag }} </span>
+        <!-- <a class="col s1" (click)="removeTag(tag)">x</a> -->
+        <ion-icon name="close-outline" (click)="removeTag(tag)">X</ion-icon>
+      </li>
+    </ul>
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block" (click)="submitForm()"
+          >Submit</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

@@ -7,7 +7,12 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [HeaderComponent],
-  imports: [CommonModule, IonicModule, RouterModule, SharedModule],
+  imports: [
+    // CommonModule,
+    IonicModule,
+    RouterModule,
+    SharedModule,
+  ],
   exports: [HeaderComponent],
 })
 export class ComponentsModule {}

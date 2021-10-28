@@ -1,22 +1,8 @@
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-login',
-//   templateUrl: './login.component.html',
-//   styleUrls: ['./login.component.scss'],
-// })
-// export class LoginComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {}
-
-// }
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
-import { FirebaseVideoService } from '../services/firebase-video.service';
+import { FirebaseVideoService } from '../../services/firebase-video.service';
 import { ModalController, NavParams } from '@ionic/angular';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { RegistrationComponent } from '../registration/registration.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 

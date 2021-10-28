@@ -1,0 +1,39 @@
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.wrapper:before {
+  padding-top: 56.25%;
+  display: block;
+  content: "";
+}
+
+.wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0%;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fontt {
+  font-family: "TransRobotics";
+  font-size: 25px;
+}
+.card2 {
+  width: 30%;
+}
+.coll {
+  --ion-grid-column-padding: 100px;
+}
+.padd {
+  padding-top: 5px;
+}
+.creator {
+  font-family: "TransRobotics";
+  font-size: 25px;
+  color: blue;
+}

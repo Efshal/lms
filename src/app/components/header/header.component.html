@@ -30,74 +30,25 @@
     </ion-button>
 
     <ion-button
-      #productbtn
-      (mouseenter)="dropdown = true"
-      (mouseleave)="hideDropdown($event)"
       fill="clear"
       color="blue"
-      class="dropdown-btn"
-      routerLink="/products"
+      routerLink="/courses"
       routerDirection="root"
       routerLinkActive="active-item"
       class="fontt"
     >
-      Products
-      <ion-icon
-        slot="end"
-        [name]="dropdown ? 'chevron-down' : 'chevron-up'"
-      ></ion-icon>
+      Courses
     </ion-button>
-
-    <div
-      *ngIf="dropdown"
-      class="dropdown"
-      (mouseleave)="dropdown = false"
-      #dropdownbox
-    >
-      <ion-item
-        button
-        (click)="dropdown = false"
-        routerLink="/products"
-        routerDirection="root"
-        [queryParams]="{ category: 'popular' }"
-        lines="none"
-        class="fontt"
-      >
-        Popular
-      </ion-item>
-      <ion-item
-        button
-        (click)="dropdown = false"
-        routerLink="/products"
-        [queryParams]="{ category: 'cloth' }"
-        lines="none"
-        routerDirection="root"
-        class="fontt"
-      >
-        Cloth
-      </ion-item>
-      <ion-item
-        button
-        (click)="dropdown = false"
-        routerLink="/products"
-        [queryParams]="{ category: 'gadgets' }"
-        lines="none"
-        routerDirection="root"
-        class="fontt"
-      >
-        Gadgets
-      </ion-item>
-    </div>
 
     <ion-button
       fill="clear"
       color="blue"
-      routerLink="/about"
+      routerLink="/admin-portal"
       routerDirection="root"
       routerLinkActive="active-item"
       class="fontt"
     >
-      About
+      Admin Panel
     </ion-button>
   </ion-col>
 
