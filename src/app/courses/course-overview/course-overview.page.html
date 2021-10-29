@@ -1,42 +1,42 @@
-<ion-content>
-  <app-header></app-header>
-  <div class="outer">
-    <h3 class="ion-text-center fontt">Lessons</h3>
-    <ion-item-divider class="dash"> </ion-item-divider>
+<!-- <ion-content>
+  <app-header></app-header> -->
+<div class="outer">
+  <h3 class="ion-text-center fontt">Lessons</h3>
+  <ion-item-divider class="dash"> </ion-item-divider>
 
-    <ion-grid>
-      <ion-row class="ion-justify-content-center">
-        <ion-col size="12" size-md="10" size-lg="8" size-xl="6">
-          <ion-card>
-            <ion-grid>
-              <ion-card-content class="wrapper">
-                <ion-row>
-                  <iframe
-                    [src]="url"
-                    width="1080"
-                    height="720"
-                    frameborder=""
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    allowfullscreen
-                  ></iframe>
-                </ion-row>
-              </ion-card-content>
-              <ion-card-content>
-                <ion-row>
-                  <ion-card-subtitle class="fontt">{{desc}}</ion-card-subtitle>
-                </ion-row>
-                <ion-row>
-                  <ion-card-subtitle class="fontt padd">By: </ion-card-subtitle>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="10" size-lg="8" size-xl="6">
+        <ion-card>
+          <ion-grid>
+            <ion-card-content class="wrapper">
+              <ion-row>
+                <iframe
+                  [src]="url"
+                  width="1080"
+                  height="720"
+                  frameborder=""
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </ion-row>
+            </ion-card-content>
+            <ion-card-content>
+              <ion-row>
+                <ion-card-subtitle class="fontt">{{desc}}</ion-card-subtitle>
+              </ion-row>
+              <ion-row>
+                <ion-card-subtitle class="fontt padd">By: </ion-card-subtitle>
 
-                  <ion-card-subtitle class="creator padd"
-                    >{{creator}}
-                  </ion-card-subtitle>
-                </ion-row>
-              </ion-card-content>
-            </ion-grid>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
-</ion-content>
+                <ion-card-subtitle class="creator padd"
+                  >{{creator}}
+                </ion-card-subtitle>
+              </ion-row>
+            </ion-card-content>
+          </ion-grid>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+<!-- </ion-content> -->

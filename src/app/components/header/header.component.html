@@ -12,51 +12,63 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-row class="header ion-align-items-center new-background-color">
-  <ion-col size="2" class="backk">
-    <img src="../../../assets/images/fire.png" width="50px" />
-  </ion-col>
-  <ion-col size="8" class="ion-text-center new-background-color">
-    <ion-button
-      fill="clear"
-      color="blue"
-      routerLink="/"
-      routerDirection="root"
-      routerLinkActive="active-item"
-      [routerLinkActiveOptions]="{ exact: true }"
-      class="fontt"
-    >
-      Home
-    </ion-button>
+<ion-header class="laptop-header">
+  <ion-row class="header ion-align-items-center new-background-color">
+    <ion-col size="2" class="backk">
+      <img src="../../../assets/images/fire.png" width="50px" />
+    </ion-col>
+    <ion-col size="8" class="ion-text-center new-background-color">
+      <ion-button
+        fill="clear"
+        color="blue"
+        routerLink="/"
+        routerDirection="root"
+        routerLinkActive="active-item"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="fontt"
+      >
+        Home
+      </ion-button>
 
-    <ion-button
-      fill="clear"
-      color="blue"
-      routerLink="/courses"
-      routerDirection="root"
-      routerLinkActive="active-item"
-      class="fontt"
-    >
-      Courses
-    </ion-button>
+      <ion-button
+        fill="clear"
+        color="blue"
+        routerLink="/courses"
+        routerDirection="root"
+        routerLinkActive="active-item"
+        class="fontt"
+      >
+        Courses
+      </ion-button>
 
-    <ion-button
-      fill="clear"
-      color="blue"
-      routerLink="/admin-portal"
-      routerDirection="root"
-      routerLinkActive="active-item"
-      class="fontt"
-    >
-      Admin Panel
-    </ion-button>
-  </ion-col>
+      <ion-button
+        fill="clear"
+        color="blue"
+        routerLink="/admin-portal"
+        routerDirection="root"
+        routerLinkActive="active-item"
+        class="fontt"
+      >
+        Admin Panel
+      </ion-button>
+    </ion-col>
 
-  <ion-col size="2" class="ion-text-right">
-    <img
-      src="https://img.icons8.com/dusk/64/000000/login-rounded-right.png"
-      style="width: 15%; height: 15%"
-      (click)="settingsPopover()"
-    />
-  </ion-col>
-</ion-row>
+    <ion-col size="2" class="ion-text-right">
+      <img
+        src="https://img.icons8.com/dusk/64/000000/login-rounded-right.png"
+        style="width: 15%; height: 15%"
+        (click)="settingsPopover()"
+      />
+    </ion-col>
+  </ion-row>
+</ion-header>
+
+<ion-content>
+  <!-- <p>Common to all pages</p> -->
+  <ng-content></ng-content>
+</ion-content>
+
+<!-- Rouuuuter -->
+<!-- <home>
+  <courses></courses>
+</home> -->
