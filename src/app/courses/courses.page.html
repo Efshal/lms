@@ -1,76 +1,78 @@
-<!-- <ion-content> -->
-<!-- <app-header></app-header> -->
-<h1 class="fontt ion-text-center">Watch Latest Lessons</h1>
-<ion-item-divider class="dash"> </ion-item-divider>
+<ion-content>
+  <app-header></app-header>
+  <h1 class="fontt ion-text-center">Watch Latest Lessons</h1>
+  <ion-item-divider class="dash"> </ion-item-divider>
 
-<ion-grid>
-  <ion-row class="ion-justify-content-center">
-    <ng-container *ngFor="let course of courses">
-      <ion-col size="12" size-md="6" size-lg="6" size-sm="12">
-        <ion-card class="cardd">
-          <img
-            src="{{course.payload.doc.data().thumbnail}}"
-            (click)="redirect(course.payload.doc.data().link)"
-          />
-          <ion-card-content>
-            <ion-col class="ion-grid-column-padding">
-              <ion-row class="rowPadding">
-                <ion-card-title class="fonttCard"
-                  >{{course.payload.doc.data().title}}</ion-card-title
-                >
-              </ion-row>
-              <ion-row class="rowPadding">
-                <ion-card-subtitle class="fonttCard"
-                  >{{course.payload.doc.data().description}}</ion-card-subtitle
-                >
-              </ion-row>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ng-container *ngFor="let course of courses">
+        <ion-col size="12" size-md="6" size-lg="6" size-sm="12">
+          <ion-card class="cardd">
+            <img
+              src="{{course.payload.doc.data().thumbnail}}"
+              (click)="redirect(course.payload.doc.data().link)"
+            />
+            <ion-card-content>
+              <ion-col class="ion-grid-column-padding">
+                <ion-row class="rowPadding">
+                  <ion-card-title class="fonttCard"
+                    >{{course.payload.doc.data().title}}</ion-card-title
+                  >
+                </ion-row>
+                <ion-row class="rowPadding">
+                  <ion-card-subtitle class="fonttCard"
+                    >{{course.payload.doc.data().description}}</ion-card-subtitle
+                  >
+                </ion-row>
 
-              <ion-row class="rowPadding">
-                <ng-container
-                  *ngFor="let tag of course.payload.doc.data().tags"
-                >
-                  <ng-container *ngIf="tag==='pro';else second">
-                    <ion-button class="fonttBtn small btnpad" color="success"
-                      >#pro</ion-button
-                    >
+                <ion-row class="rowPadding">
+                  <ng-container
+                    *ngFor="let tag of course.payload.doc.data().tags"
+                  >
+                    <ng-container *ngIf="tag==='pro';else second">
+                      <ion-button class="fonttBtn small btnpad" color="success"
+                        >#pro</ion-button
+                      >
+                    </ng-container>
+
+                    <ng-template #second>
+                      <ng-container *ngIf="tag==='d3';else third">
+                        <ion-button class="de fonttBtn small btnpad"
+                          >#d3</ion-button
+                        >
+                      </ng-container>
+                    </ng-template>
+
+                    <ng-template #third>
+                      <ng-container *ngIf="tag==='firebase' ;else fourth">
+                        <ion-button
+                          class="fonttBtn small btnpad"
+                          color="warning"
+                          >#firebase</ion-button
+                        >
+                      </ng-container>
+                    </ng-template>
+
+                    <ng-template #fourth>
+                      <ng-container *ngIf="tag==='javascript';else fifth">
+                        <ion-button class="javascrip fonttBtn small btnpad"
+                          >#javascript</ion-button
+                        >
+                      </ng-container>
+                    </ng-template>
+
+                    <ng-template #fifth>
+                      <ion-button class="fonttBtn small btnpad" color="primary"
+                        >{{tag}}</ion-button
+                      >
+                    </ng-template>
                   </ng-container>
-
-                  <ng-template #second>
-                    <ng-container *ngIf="tag==='d3';else third">
-                      <ion-button class="de fonttBtn small btnpad"
-                        >#d3</ion-button
-                      >
-                    </ng-container>
-                  </ng-template>
-
-                  <ng-template #third>
-                    <ng-container *ngIf="tag==='firebase' ;else fourth">
-                      <ion-button class="fonttBtn small btnpad" color="warning"
-                        >#firebase</ion-button
-                      >
-                    </ng-container>
-                  </ng-template>
-
-                  <ng-template #fourth>
-                    <ng-container *ngIf="tag==='javascript';else fifth">
-                      <ion-button class="javascrip fonttBtn small btnpad"
-                        >#javascript</ion-button
-                      >
-                    </ng-container>
-                  </ng-template>
-
-                  <ng-template #fifth>
-                    <ion-button class="fonttBtn small btnpad" color="primary"
-                      >{{tag}}</ion-button
-                    >
-                  </ng-template>
-                </ng-container>
-              </ion-row>
-            </ion-col>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ng-container>
-  </ion-row>
-</ion-grid>
-<!-- </ion-content> -->
+                </ion-row>
+              </ion-col>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ng-container>
+    </ion-row>
+  </ion-grid>
+</ion-content>

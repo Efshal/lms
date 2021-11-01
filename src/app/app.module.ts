@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ContentfulService } from './services/contentful.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,6 +42,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     FirebaseVideoService,
     AuthService,
+    ContentfulService,
   ],
   bootstrap: [AppComponent],
 })

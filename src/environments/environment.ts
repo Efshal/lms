@@ -13,6 +13,10 @@ export const environment = {
     appId: '1:260377741009:web:5f20bcbe0d0a6d113567f0',
     measurementId: 'G-S49E9F6821',
   },
+  contentful: {
+    spaceId: 'u7opxkb285ma',
+    token: '71qHFK6AYpVp6yxT6hKAqcuDuqp1yTw741VXDi1-AKo',
+  },
 };
 
 /*
