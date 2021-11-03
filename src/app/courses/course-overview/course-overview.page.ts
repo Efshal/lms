@@ -36,12 +36,27 @@ export class CourseOverviewPage implements OnInit {
     this.lessonInfo = await this.videoServie.getLesson(this.inputUrl);
     this.desc = this.lessonInfo.description;
     this.creator = this.lessonInfo.creator;
-    this.products = this.http.get('https://fakestoreapi.com/products');
 
     // this.contentful.logContent('5rM25EoOrHx8erMumciV7X');
-    // this.contentful.getContent2();
+    const contentRaw = await this.contentful.getContent();
+    contentRaw.forEach((content) => {
+      console.log(content.fields);
+      // // Fact
+      // if (content.type === 'fact') {
+      //   this.facts.cards.push(content.fields as SectionCard);
+      // } else if (content.type === 'testimonial') {
+      //   this.testimonials.push(content.fields as Testimonial);
+      // } else if (content.type === 'blog') {
+      //   this.blogs.push(content.fields as Blog);
+      // } else if (content.type === 'project') {
+      //   this.projects.push(content.fields as Project);
+      // } else if (content.type === 'question') {
+      //   this.questions.push(content.fields as Question);
+      // }
+    });
+    // this.contentful.getSpace();
     // this.lesson$ = this.contentful.getContent('5rM25EoOrHx8erMumciV7X');
-    this.contentful.getContentByTag('lesson1');
+    // this.contentful.getContentByTag('lesson1');
   }
 
   redirect() {
