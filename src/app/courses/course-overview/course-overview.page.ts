@@ -22,7 +22,7 @@ export class CourseOverviewPage implements OnInit {
   inputUrl: string;
   lesson$: Observable<any>;
   data: any;
-  link:string;
+  link: string;
 
   constructor(
     private http: HttpClient,
@@ -30,19 +30,17 @@ export class CourseOverviewPage implements OnInit {
     private videoServie: FirebaseVideoService,
     public sanitizer: DomSanitizer,
     private contentful: ContentfulService,
-    private dataService: DataService
+    private dataService: DataService,
     private route: ActivatedRoute
   ) {}
 
   async ngOnInit() {
-    this.route.queryParams
-      .subscribe(params => {
-        console.log(params); // { order: "popular" }
+    this.route.queryParams.subscribe((params) => {
+      console.log(params); // { order: "popular" }
 
-        this.inputUrl = params.link;
-        console.log(this.inputUrl); // popular
-      }
-    );
+      this.inputUrl = params.link;
+      console.log(this.inputUrl); // popular
+    });
     console.log('hello', this.inputUrl);
     this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.inputUrl);
     console.log(this.url);
