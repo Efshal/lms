@@ -37,6 +37,34 @@
           </ion-card>
         </ion-col>
       </ion-row>
+
+      <div *ngIf="data as content">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{content.mainHeading}}</ion-card-title>
+            <ion-card-subtitle>{{content.subHeading}}</ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content> {{content.description}} </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-item>
+            <ion-icon name="code-working-outline"> </ion-icon>
+            <ion-label> Code</ion-label>
+            <ion-button fill="outline" slot="end">Copy</ion-button>
+          </ion-item>
+
+          <ion-card-content> {{content.code}} </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-item>
+            <ion-label>Image Label</ion-label>
+          </ion-item>
+          <img src="../../../assets/images/nmps.png" />
+        </ion-card>
+      </div>
     </ion-grid>
   </div>
 </ion-content>

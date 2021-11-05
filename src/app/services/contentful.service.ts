@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { createClient } from 'contentful';
 import { from } from 'rxjs';
+import { ContentfulContent, Fields } from '../shared/contentful';
 @Injectable({
   providedIn: 'root',
 })
@@ -27,6 +28,29 @@ export class ContentfulService {
         ...(entry.fields as object),
       },
     }));
+  }
+
+  async loadContent(mainHeading: string) {
+    let check;
+    const contentRaw = await this.getContent();
+    contentRaw.forEach((content: ContentfulContent) => {
+      // Fact
+      if (content.fields.mainHeading === mainHeading) {
+        console.log(content.fields);
+        check = content.fields;
+      }
+      // else if (content.type === 'testimonial') {
+      //   this.testimonials.push(content.fields as Testimonial);
+      // } else if (content.type === 'blog') {
+      //   this.blogs.push(content.fields as Blog);
+      // } else if (content.type === 'project') {
+      //   this.projects.push(content.fields as Project);
+      // } else if (content.type === 'question') {
+      //   this.questions.push(content.fields as Question);
+      // }
+    });
+    console.log('check', check.id);
+    return check;
   }
 
   async getContentByTag(tag) {

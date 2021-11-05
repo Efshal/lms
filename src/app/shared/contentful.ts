@@ -1,7 +1,15 @@
-interface ContentfulEntry {
-  id?: string;
+export interface ContentfulContent {
+  type: string;
+  fields: {
+    id: string;
+    description: string;
+    mainHeading: string;
+    subHeading: string;
+    code: string;
+  };
 }
-export interface Contentful extends ContentfulEntry {
+
+export interface Fields {
   id: string;
   description: string;
   mainHeading: string;

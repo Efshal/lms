@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { FirebaseVideoService } from '../../services/firebase-video.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ContentfulService } from 'src/app/services/contentful.service';
+import { DataService } from 'src/app/services/data.service';
+import { ContentfulContent, Fields } from 'src/app/shared/contentful';
 
 @Component({
   selector: 'app-course-overview',
@@ -19,13 +21,14 @@ export class CourseOverviewPage implements OnInit {
   url: SafeResourceUrl;
   inputUrl: string;
   lesson$: Observable<any>;
-
+  data: any;
   constructor(
     private http: HttpClient,
     public router: Router,
     private videoServie: FirebaseVideoService,
     public sanitizer: DomSanitizer,
-    private contentful: ContentfulService
+    private contentful: ContentfulService,
+    private dataService: DataService
   ) {}
 
   async ngOnInit() {
@@ -37,23 +40,10 @@ export class CourseOverviewPage implements OnInit {
     this.desc = this.lessonInfo.description;
     this.creator = this.lessonInfo.creator;
 
-    // this.contentful.logContent('5rM25EoOrHx8erMumciV7X');
-    const contentRaw = await this.contentful.getContent();
-    contentRaw.forEach((content) => {
-      console.log(content.fields);
-      // // Fact
-      // if (content.type === 'fact') {
-      //   this.facts.cards.push(content.fields as SectionCard);
-      // } else if (content.type === 'testimonial') {
-      //   this.testimonials.push(content.fields as Testimonial);
-      // } else if (content.type === 'blog') {
-      //   this.blogs.push(content.fields as Blog);
-      // } else if (content.type === 'project') {
-      //   this.projects.push(content.fields as Project);
-      // } else if (content.type === 'question') {
-      //   this.questions.push(content.fields as Question);
-      // }
-    });
+    this.data = await this.contentful.loadContent('Flutter');
+    console.log(this.data);
+    // console.log(await this.contentful.loadContent('Flutter'));
+    // console.lo
     // this.contentful.getSpace();
     // this.lesson$ = this.contentful.getContent('5rM25EoOrHx8erMumciV7X');
     // this.contentful.getContentByTag('lesson1');
