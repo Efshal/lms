@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { TagsComponent } from '../components/tags/tags.component';
 import { CoursesPage } from './courses.page';
 
 const routes: Routes = [
@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'course-overview',
     loadChildren: () => import('./course-overview/course-overview.module').then( m => m.CourseOverviewPageModule)
+  },
+  {
+    path: 'tags',
+    component:TagsComponent
   }
 ];
 

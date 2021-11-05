@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { database } from 'firebase';
+import { stringify } from 'querystring';
 
 @Injectable({
   providedIn: 'root',
@@ -17,10 +19,15 @@ export class FirebaseVideoService {
     console.log(courseCreator);
     return 'success';
   }
+
   getCourse() {
     console.log('here');
+    var lessons
     return this.firestore.collection('CourseX').snapshotChanges();
+    
   }
+
+
   setUrlFunc(url) {
     this.setUrl = url;
     console.log(this.setUrl);
@@ -42,4 +49,22 @@ export class FirebaseVideoService {
     console.log(data);
     return data;
   }
+  async getTagLesson(tag:string){
+
+    const data= [];
+    const lesson = await this.firestore
+      .collection('CourseX')
+      .ref.where('tags', 'array-contains',tag)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log(doc.id, ' => ', doc.data());
+            data.push(doc.data())
+        });
+    });
+    console.log(data)
+    return data
+  }
+ 
+
 }

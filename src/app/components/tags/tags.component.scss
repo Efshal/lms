@@ -1,5 +1,56 @@
 /*animated css cards font*/
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap");
+
+ion-grid {
+  --ion-grid-padding-sm: 20px;
+  --ion-grid-padding-md: 30px;
+  --ion-grid-padding-lg: 40px;
+  --ion-grid-padding-xl: 100px;
+}
+
+.cardd {
+  border-radius: 20px !important;
+  margin-bottom: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
+  width: 80%;
+  height: 600px;
+}
+.fontt {
+  font-family: "TransRobotics";
+  font-size: 50px;
+  padding-top: 10px;
+}
+
+.fonttCard {
+  font-family: "TransRobotics";
+  font-size: 25px;
+}
+.rowPadding {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.fonttBtn {
+  font-family: "TransRobotics";
+  font-size: 15px;
+}
+
+.javascrip {
+  --background: #fcf75e;
+  --color: black;
+}
+
+.pro {
+  background: #00fa9a;
+}
+.de {
+  --background: #536878;
+  --color: black;
+}
+.btnpad {
+  padding-right: 4px;
+}
+
 /*animated css cards*/
 
 body {
@@ -7,15 +58,11 @@ body {
   margin: 0;
   background-color: #17141d;
   color: white;
-  font-family: "DM_MONO";
+  font-family: "DM Mono", monospace;
 }
 
 a {
   text-decoration: none;
-}
-
-.fontt{
-  font-family: "DM_MONO";
 }
 
 .card-list {

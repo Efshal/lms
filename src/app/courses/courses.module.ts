@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { CoursesPageRoutingModule } from './courses-routing.module';
-
+import { TagsComponent } from '../components/tags/tags.component';
 import { CoursesPage } from './courses.page';
 import { ComponentsModule } from '../components/components.module';
 
@@ -17,6 +17,6 @@ import { ComponentsModule } from '../components/components.module';
     CoursesPageRoutingModule,
     ComponentsModule,
   ],
-  declarations: [CoursesPage],
+  declarations: [CoursesPage,TagsComponent],
 })
 export class CoursesPageModule {}
