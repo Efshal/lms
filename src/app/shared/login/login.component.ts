@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
       console.log('Please provide all the required values!');
       return false;
     } else {
+      this.login()
       console.log(this.ionicForm.value);
     }
   }
@@ -119,14 +120,19 @@ export class LoginComponent implements OnInit {
 
   async loginGoogle() {
     await this.authService.googleLogin();
-    const respone = await this.authService.getInfo();
-    console.log(respone.uid);
   }
 
-  // modal.onDidDismiss().then((dataReturned) => {
-  //   if (dataReturned !== null) {
-  //     this.dataReturned = dataReturned.data;
-  //     //alert('Modal Sent Data :'+ dataReturned);
-  //   }
-  // });
+  async login() {
+      let response=await this.authService.login(
+        this.ionicForm.value.email,
+        this.ionicForm.value.password
+      );
+    console.log(response)
+
+    if(response['message']){
+      window.alert(response['message'])
+    }
+
+  }
+ 
 }
