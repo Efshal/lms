@@ -9,44 +9,46 @@
         <ion-col size="12" size-md="6" size-lg="6" size-sm="12">
           <ion-card class="cardd">
             <img
-              src="{{course.thumbnail}}"
+              class="thumb"
+              src="{{ course.thumbnail }}"
               (click)="redirect(course.link)"
             />
             <ion-card-content>
               <ion-col class="ion-grid-column-padding">
                 <ion-row class="rowPadding">
-                  <ion-card-title class="fonttCard"
-                    >{{course.title}}</ion-card-title
-                  >
+                  <ion-card-title class="fonttCard">{{
+                    course.title
+                  }}</ion-card-title>
                 </ion-row>
                 <ion-row class="rowPadding">
-                  <ion-card-subtitle class="fonttCard"
-                    >{{course.description}}</ion-card-subtitle
-                  >
+                  <ion-card-subtitle class="fonttCard">{{
+                    course.description
+                  }}</ion-card-subtitle>
                 </ion-row>
 
                 <ion-row class="rowPadding">
-                  <ng-container
-                    *ngFor="let tag of course.tags"
-                  >
-                    <ng-container *ngIf="tag==='pro';else second">
-                      <ion-button class="fonttBtn small btnpad" color="success"
-                      (click)="tags(tag)"
+                  <ng-container *ngFor="let tag of course.tags">
+                    <ng-container *ngIf="tag === 'pro'; else second">
+                      <ion-button
+                        class="fonttBtn small btnpad"
+                        color="success"
+                        (click)="tags(tag)"
                         >#pro</ion-button
                       >
                     </ng-container>
 
                     <ng-template #second>
-                      <ng-container *ngIf="tag==='d3';else third">
-                        <ion-button class="de fonttBtn small btnpad"
-                        (click)="tags(tag)"
+                      <ng-container *ngIf="tag === 'd3'; else third">
+                        <ion-button
+                          class="de fonttBtn small btnpad"
+                          (click)="tags(tag)"
                           >#d3</ion-button
                         >
                       </ng-container>
                     </ng-template>
 
                     <ng-template #third>
-                      <ng-container *ngIf="tag==='firebase' ;else fourth">
+                      <ng-container *ngIf="tag === 'firebase'; else fourth">
                         <ion-button
                           class="fonttBtn small btnpad"
                           color="warning"
@@ -57,18 +59,21 @@
                     </ng-template>
 
                     <ng-template #fourth>
-                      <ng-container *ngIf="tag==='javascript';else fifth">
-                        <ion-button class="javascrip fonttBtn small btnpad"
-                        (click)="tags(tag)"
+                      <ng-container *ngIf="tag === 'javascript'; else fifth">
+                        <ion-button
+                          class="javascrip fonttBtn small btnpad"
+                          (click)="tags(tag)"
                           >#javascript</ion-button
                         >
                       </ng-container>
                     </ng-template>
 
                     <ng-template #fifth>
-                      <ion-button class="fonttBtn small btnpad" color="primary"
-                      (click)="tags(tag)"
-                        >{{tag}}</ion-button
+                      <ion-button
+                        class="fonttBtn small btnpad"
+                        color="primary"
+                        (click)="tags(tag)"
+                        >{{ tag }}</ion-button
                       >
                     </ng-template>
                   </ng-container>
