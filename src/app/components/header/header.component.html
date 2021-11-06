@@ -14,7 +14,12 @@
 
 <ion-row class="header ion-align-items-center new-background-color">
   <ion-col size="2" class="backk">
-    <img src="../../../assets/images/fire.png" width="50px" />
+    <img
+      class="image"
+      routerLink="/home"
+      src="../../../assets/images/Telic.png"
+      width="50px"
+    />
   </ion-col>
   <ion-col size="8" class="ion-text-center new-background-color">
     <ion-button
@@ -55,9 +60,20 @@
   <ion-col size="2" class="ion-text-right">
     <img
       src="https://img.icons8.com/dusk/64/000000/login-rounded-right.png"
-      style="width: 15%; height: 15%"
+      style="width: 15%; height: 15%; cursor: pointer"
       (click)="settingsPopover()"
     />
+    <br />
+    <span
+      style="
+        width: 15%;
+        height: 15%;
+        cursor: pointer;
+        margin-left: 10px;
+        color: #3880ff;
+      "
+      >Login</span
+    >
   </ion-col>
 </ion-row>
 
