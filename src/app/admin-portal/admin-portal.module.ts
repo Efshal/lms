@@ -12,7 +12,7 @@ import { FormatFileSizePipe } from './format-file-size.pipe';
 
 @NgModule({
   imports: [
-    // CommonModule,
+    CommonModule,
     FormsModule,
     IonicModule,
     ReactiveFormsModule,

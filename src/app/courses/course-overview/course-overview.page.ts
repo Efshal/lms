@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FirebaseVideoService } from '../../services/firebase-video.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ContentfulService } from 'src/app/services/contentful.service';
 
 @Component({
   selector: 'app-course-overview',
@@ -17,14 +18,22 @@ export class CourseOverviewPage implements OnInit {
   creator: string;
   url: SafeResourceUrl;
   inputUrl: string;
+<<<<<<< HEAD
   link:string;
+=======
+  lesson$: Observable<any>;
+>>>>>>> mubashir
 
   constructor(
     private http: HttpClient,
     public router: Router,
     private videoServie: FirebaseVideoService,
     public sanitizer: DomSanitizer,
+<<<<<<< HEAD
     private route: ActivatedRoute
+=======
+    private contentful: ContentfulService
+>>>>>>> mubashir
   ) {}
 
   async ngOnInit() {
@@ -43,6 +52,11 @@ export class CourseOverviewPage implements OnInit {
     this.desc = this.lessonInfo.description;
     this.creator = this.lessonInfo.creator;
     this.products = this.http.get('https://fakestoreapi.com/products');
+
+    // this.contentful.logContent('5rM25EoOrHx8erMumciV7X');
+    // this.contentful.getContent2();
+    // this.lesson$ = this.contentful.getContent('5rM25EoOrHx8erMumciV7X');
+    this.contentful.getContentByTag('lesson1');
   }
 
   redirect() {
