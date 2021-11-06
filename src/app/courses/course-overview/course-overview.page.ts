@@ -21,7 +21,7 @@ export class CourseOverviewPage implements OnInit {
   url: SafeResourceUrl;
   inputUrl: string;
   lesson$: Observable<any>;
-  data: any;
+  alldata: any;
   link: string;
 
   constructor(
@@ -48,8 +48,8 @@ export class CourseOverviewPage implements OnInit {
     this.desc = this.lessonInfo.description;
     this.creator = this.lessonInfo.creator;
 
-    this.data = await this.contentful.loadContent('Flutter');
-    console.log(this.data);
+    this.alldata = await this.contentful.loadContent('Flutter');
+    console.log(this.alldata);
     // console.log(await this.contentful.loadContent('Flutter'));
     // console.lo
     // this.contentful.getSpace();

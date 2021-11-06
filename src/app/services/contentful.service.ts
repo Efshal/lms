@@ -31,14 +31,14 @@ export class ContentfulService {
   }
 
   async loadContent(mainHeading: string) {
-    let check;
+    const check: Fields[] = [];
     const contentRaw = await this.getContent();
     contentRaw.forEach((content: ContentfulContent) => {
       // Fact
-      if (content.fields.mainHeading === mainHeading) {
-        console.log(content.fields);
-        check = content.fields;
-      }
+      // if (content.fields.mainHeading === mainHeading) {
+      console.log(content.fields);
+      check.push(content.fields);
+      // }
       // else if (content.type === 'testimonial') {
       //   this.testimonials.push(content.fields as Testimonial);
       // } else if (content.type === 'blog') {
@@ -49,7 +49,7 @@ export class ContentfulService {
       //   this.questions.push(content.fields as Question);
       // }
     });
-    console.log('check', check.id);
+    // console.log('check', check.id);
     return check;
   }
 
