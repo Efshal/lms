@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FirebaseVideoService } from '../../services/firebase-video.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ContentfulService } from 'src/app/services/contentful.service';
+import { DataService } from 'src/app/services/data.service';
+import { ContentfulContent, Fields } from 'src/app/shared/contentful';
 
 @Component({
   selector: 'app-course-overview',
@@ -17,6 +20,8 @@ export class CourseOverviewPage implements OnInit {
   creator: string;
   url: SafeResourceUrl;
   inputUrl: string;
+  lesson$: Observable<any>;
+  alldata: any;
   link: string;
 
   constructor(
@@ -24,6 +29,8 @@ export class CourseOverviewPage implements OnInit {
     public router: Router,
     private videoServie: FirebaseVideoService,
     public sanitizer: DomSanitizer,
+    private contentful: ContentfulService,
+    private dataService: DataService,
     private route: ActivatedRoute
   ) {}
 
@@ -40,7 +47,14 @@ export class CourseOverviewPage implements OnInit {
     this.lessonInfo = await this.videoServie.getLesson(this.inputUrl);
     this.desc = this.lessonInfo.description;
     this.creator = this.lessonInfo.creator;
-    this.products = this.http.get('https://fakestoreapi.com/products');
+
+    this.alldata = await this.contentful.loadContent('Flutter');
+    console.log(this.alldata);
+    // console.log(await this.contentful.loadContent('Flutter'));
+    // console.lo
+    // this.contentful.getSpace();
+    // this.lesson$ = this.contentful.getContent('5rM25EoOrHx8erMumciV7X');
+    // this.contentful.getContentByTag('lesson1');
   }
 
   redirect() {
