@@ -6,16 +6,19 @@ import { CoursesPage } from './courses.page';
 const routes: Routes = [
   {
     path: '',
-    component: CoursesPage
+    component: CoursesPage,
   },
   {
     path: 'course-overview',
-    loadChildren: () => import('./course-overview/course-overview.module').then( m => m.CourseOverviewPageModule)
+    loadChildren: () =>
+      import('./course-overview/course-overview.module').then(
+        (m) => m.CourseOverviewPageModule
+      ),
   },
   {
     path: 'tags',
-    component:TagsComponent
-  }
+    component: TagsComponent,
+  },
 ];
 
 @NgModule({

@@ -37,6 +37,10 @@
           </ion-card>
         </ion-col>
       </ion-row>
+
+      <div *ngFor="let data of alldata">
+        <app-lesson-description [data]="data"></app-lesson-description>
+      </div>
     </ion-grid>
   </div>
 </ion-content>

@@ -4,15 +4,11 @@ import { HeaderComponent } from './header/header.component';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { LessonDescriptionComponent } from './lesson-description/lesson-description.component';
 
 @NgModule({
-  declarations: [HeaderComponent],
-  imports: [
-    // CommonModule,
-    IonicModule,
-    RouterModule,
-    SharedModule,
-  ],
-  exports: [HeaderComponent],
+  declarations: [HeaderComponent, LessonDescriptionComponent],
+  imports: [CommonModule, IonicModule, RouterModule, SharedModule],
+  exports: [HeaderComponent, LessonDescriptionComponent],
 })
 export class ComponentsModule {}
