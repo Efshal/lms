@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
+import { PaymentComponent } from 'src/app/shared/payment/payment.component';
 import { RegistrationComponent } from 'src/app/shared/registration/registration.component';
 
 @Component({
@@ -41,6 +42,21 @@ export class HeaderComponent implements OnInit {
     const siteInfo = { id: 1, name: 'edupala' };
     const popover = await this.popoverController.create({
       component: RegistrationComponent,
+      cssClass: 'contact-popover',
+      // componentProps: {
+      //   site: siteInfo,
+      // },
+      // translucent: true,
+    });
+    // popover.onDidDismiss().then((result) => {
+    //   console.log(result.data);
+    // });
+    return await popover.present();
+    /** Sync event from popover component */
+  }
+  async paymentPopover() {
+    const popover = await this.popoverController.create({
+      component: PaymentComponent,
       cssClass: 'contact-popover',
       // componentProps: {
       //   site: siteInfo,
