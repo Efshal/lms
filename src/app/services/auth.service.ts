@@ -3,6 +3,8 @@ import firebase from 'firebase/app';
 import 'rxjs/add/operator/switchMap';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { retry } from 'rxjs-compat/operator/retry';
+
 
 // import ms from 'ms';
 @Injectable({
@@ -37,13 +39,31 @@ export class AuthService {
       });
   }
 
-  async getInfo(): Promise<any> {
+  async getInfo() {
     console.log('here at authh');
-    const user = await firebase.auth().currentUser;
-    console.log(user.uid);
+    const user = firebase.auth().currentUser;
+    if(user){
+    console.log(user);
     return user;
+    }else{
+      console.log("null")
+      return null
+    }
   }
 
+  async loginInfo(){
+    console.log('loginn'); 
+    firebase.auth().onAuthStateChanged((user)=> {
+      if (user) {
+
+        console.log(user)
+        return user
+      } else {
+        console.log("none")
+        return null
+      }
+    });
+  }
 
   async checkUser(uid){
     console.log("check user")
@@ -103,6 +123,7 @@ export class AuthService {
     .then(value => {
       console.log('Nice, it worked!');
       result=value
+      this.getInfo()
     })
     .catch(err => {
       console.log('Something went wrong: ', err.message);
