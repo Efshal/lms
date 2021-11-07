@@ -95,14 +95,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CourseOverviewPage": () => (/* binding */ CourseOverviewPage)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 64762);
 /* harmony import */ var _raw_loader_course_overview_page_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./course-overview.page.html */ 52133);
 /* harmony import */ var _course_overview_page_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./course-overview.page.css */ 46416);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ 91841);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 37716);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 39895);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ 91841);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 39895);
 /* harmony import */ var _services_firebase_video_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/firebase-video.service */ 28615);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser */ 39075);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser */ 39075);
+/* harmony import */ var src_app_services_contentful_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/contentful.service */ 59254);
+/* harmony import */ var src_app_services_data_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/data.service */ 52468);
+
+
 
 
 
@@ -112,15 +116,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let CourseOverviewPage = class CourseOverviewPage {
-    constructor(http, router, videoServie, sanitizer, route) {
+    constructor(http, router, videoServie, sanitizer, contentful, dataService, route) {
         this.http = http;
         this.router = router;
         this.videoServie = videoServie;
         this.sanitizer = sanitizer;
+        this.contentful = contentful;
+        this.dataService = dataService;
         this.route = route;
     }
     ngOnInit() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__awaiter)(this, void 0, void 0, function* () {
             this.route.queryParams.subscribe((params) => {
                 console.log(params); // { order: "popular" }
                 this.inputUrl = params.link;
@@ -132,7 +138,13 @@ let CourseOverviewPage = class CourseOverviewPage {
             this.lessonInfo = yield this.videoServie.getLesson(this.inputUrl);
             this.desc = this.lessonInfo.description;
             this.creator = this.lessonInfo.creator;
-            this.products = this.http.get('https://fakestoreapi.com/products');
+            this.alldata = yield this.contentful.loadContent('Flutter');
+            console.log(this.alldata);
+            // console.log(await this.contentful.loadContent('Flutter'));
+            // console.lo
+            // this.contentful.getSpace();
+            // this.lesson$ = this.contentful.getContent('5rM25EoOrHx8erMumciV7X');
+            // this.contentful.getContentByTag('lesson1');
         });
     }
     redirect() {
@@ -140,19 +152,77 @@ let CourseOverviewPage = class CourseOverviewPage {
     }
 };
 CourseOverviewPage.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpClient },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router },
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpClient },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.Router },
     { type: _services_firebase_video_service__WEBPACK_IMPORTED_MODULE_2__.FirebaseVideoService },
-    { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__.DomSanitizer },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.ActivatedRoute }
+    { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__.DomSanitizer },
+    { type: src_app_services_contentful_service__WEBPACK_IMPORTED_MODULE_3__.ContentfulService },
+    { type: src_app_services_data_service__WEBPACK_IMPORTED_MODULE_4__.DataService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.ActivatedRoute }
 ];
-CourseOverviewPage = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+CourseOverviewPage = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
         selector: 'app-course-overview',
         template: _raw_loader_course_overview_page_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_course_overview_page_css__WEBPACK_IMPORTED_MODULE_1__.default]
     })
 ], CourseOverviewPage);
+
+
+
+/***/ }),
+
+/***/ 52468:
+/*!******************************************!*\
+  !*** ./src/app/services/data.service.ts ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DataService": () => (/* binding */ DataService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _contentful_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./contentful.service */ 59254);
+
+
+
+let DataService = class DataService {
+    constructor(contentful) {
+        this.contentful = contentful;
+    }
+    loadContent(mainHeading) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__awaiter)(this, void 0, void 0, function* () {
+            const contentRaw = yield this.contentful.getContent();
+            contentRaw.forEach((content) => {
+                // Fact
+                if (content.fields.mainHeading === mainHeading) {
+                    console.log(content.fields);
+                    return content.fields;
+                }
+                // else if (content.type === 'testimonial') {
+                //   this.testimonials.push(content.fields as Testimonial);
+                // } else if (content.type === 'blog') {
+                //   this.blogs.push(content.fields as Blog);
+                // } else if (content.type === 'project') {
+                //   this.projects.push(content.fields as Project);
+                // } else if (content.type === 'question') {
+                //   this.questions.push(content.fields as Question);
+                // }
+            });
+        });
+    }
+};
+DataService.ctorParameters = () => [
+    { type: _contentful_service__WEBPACK_IMPORTED_MODULE_0__.ContentfulService }
+];
+DataService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+        providedIn: 'root',
+    })
+], DataService);
 
 
 
@@ -184,7 +254,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <app-header></app-header>\r\n  <div class=\"outer\">\r\n    <h3 class=\"ion-text-center fontt\">Lessons</h3>\r\n    <ion-item-divider class=\"dash\"> </ion-item-divider>\r\n\r\n    <ion-grid>\r\n      <ion-row class=\"ion-justify-content-center\">\r\n        <ion-col size=\"12\" size-md=\"10\" size-lg=\"8\" size-xl=\"6\">\r\n          <ion-card>\r\n            <ion-grid>\r\n              <ion-card-content class=\"wrapper\">\r\n                <ion-row>\r\n                  <iframe\r\n                    [src]=\"url\"\r\n                    width=\"1080\"\r\n                    height=\"720\"\r\n                    frameborder=\"\"\r\n                    allow=\"autoplay; fullscreen; picture-in-picture\"\r\n                    allowfullscreen\r\n                  ></iframe>\r\n                </ion-row>\r\n              </ion-card-content>\r\n              <ion-card-content>\r\n                <ion-row>\r\n                  <ion-card-subtitle class=\"fontt\">{{desc}}</ion-card-subtitle>\r\n                </ion-row>\r\n                <ion-row>\r\n                  <ion-card-subtitle class=\"fontt padd\">By: </ion-card-subtitle>\r\n\r\n                  <ion-card-subtitle class=\"creator padd\"\r\n                    >{{creator}}\r\n                  </ion-card-subtitle>\r\n                </ion-row>\r\n              </ion-card-content>\r\n            </ion-grid>\r\n          </ion-card>\r\n        </ion-col>\r\n      </ion-row>\r\n    </ion-grid>\r\n  </div>\r\n</ion-content>\r\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <app-header></app-header>\r\n  <div class=\"outer\">\r\n    <h3 class=\"ion-text-center fontt\">Lessons</h3>\r\n    <ion-item-divider class=\"dash\"> </ion-item-divider>\r\n\r\n    <ion-grid>\r\n      <ion-row class=\"ion-justify-content-center\">\r\n        <ion-col size=\"12\" size-md=\"10\" size-lg=\"8\" size-xl=\"6\">\r\n          <ion-card>\r\n            <ion-grid>\r\n              <ion-card-content class=\"wrapper\">\r\n                <ion-row>\r\n                  <iframe\r\n                    [src]=\"url\"\r\n                    width=\"1080\"\r\n                    height=\"720\"\r\n                    frameborder=\"\"\r\n                    allow=\"autoplay; fullscreen; picture-in-picture\"\r\n                    allowfullscreen\r\n                  ></iframe>\r\n                </ion-row>\r\n              </ion-card-content>\r\n              <ion-card-content>\r\n                <ion-row>\r\n                  <ion-card-subtitle class=\"fontt\">{{desc}}</ion-card-subtitle>\r\n                </ion-row>\r\n                <ion-row>\r\n                  <ion-card-subtitle class=\"fontt padd\">By: </ion-card-subtitle>\r\n\r\n                  <ion-card-subtitle class=\"creator padd\"\r\n                    >{{creator}}\r\n                  </ion-card-subtitle>\r\n                </ion-row>\r\n              </ion-card-content>\r\n            </ion-grid>\r\n          </ion-card>\r\n        </ion-col>\r\n      </ion-row>\r\n\r\n      <div *ngFor=\"let data of alldata\">\r\n        <app-lesson-description [data]=\"data\"></app-lesson-description>\r\n      </div>\r\n    </ion-grid>\r\n  </div>\r\n</ion-content>\r\n");
 
 /***/ })
 

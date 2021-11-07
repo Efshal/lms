@@ -24,16 +24,16 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: '',
-        component: _courses_page__WEBPACK_IMPORTED_MODULE_1__.CoursesPage
+        component: _courses_page__WEBPACK_IMPORTED_MODULE_1__.CoursesPage,
     },
     {
         path: 'course-overview',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_courses_course-overview_course-overview_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./course-overview/course-overview.module */ 44318)).then(m => m.CourseOverviewPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_courses_course-overview_course-overview_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./course-overview/course-overview.module */ 44318)).then((m) => m.CourseOverviewPageModule),
     },
     {
         path: 'tags',
-        component: _components_tags_tags_component__WEBPACK_IMPORTED_MODULE_0__.TagsComponent
-    }
+        component: _components_tags_tags_component__WEBPACK_IMPORTED_MODULE_0__.TagsComponent,
+    },
 ];
 let CoursesPageRoutingModule = class CoursesPageRoutingModule {
 };

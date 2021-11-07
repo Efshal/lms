@@ -225,13 +225,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "ComponentsModule": () => (/* binding */ ComponentsModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 64762);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37716);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 38583);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 38583);
 /* harmony import */ var _header_header_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header/header.component */ 43646);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 80476);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ 39895);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 80476);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 39895);
 /* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/shared.module */ 44466);
+/* harmony import */ var _lesson_description_lesson_description_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lesson-description/lesson-description.component */ 41008);
+
 
 
 
@@ -241,11 +243,11 @@ __webpack_require__.r(__webpack_exports__);
 
 let ComponentsModule = class ComponentsModule {
 };
-ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.NgModule)({
-        declarations: [_header_header_component__WEBPACK_IMPORTED_MODULE_0__.HeaderComponent],
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonicModule, _angular_router__WEBPACK_IMPORTED_MODULE_6__.RouterModule, _shared_shared_module__WEBPACK_IMPORTED_MODULE_1__.SharedModule],
-        exports: [_header_header_component__WEBPACK_IMPORTED_MODULE_0__.HeaderComponent],
+ComponentsModule = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.NgModule)({
+        declarations: [_header_header_component__WEBPACK_IMPORTED_MODULE_0__.HeaderComponent, _lesson_description_lesson_description_component__WEBPACK_IMPORTED_MODULE_2__.LessonDescriptionComponent],
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_5__.CommonModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonicModule, _angular_router__WEBPACK_IMPORTED_MODULE_7__.RouterModule, _shared_shared_module__WEBPACK_IMPORTED_MODULE_1__.SharedModule],
+        exports: [_header_header_component__WEBPACK_IMPORTED_MODULE_0__.HeaderComponent, _lesson_description_lesson_description_component__WEBPACK_IMPORTED_MODULE_2__.LessonDescriptionComponent],
     })
 ], ComponentsModule);
 
@@ -264,12 +266,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "HeaderComponent": () => (/* binding */ HeaderComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 64762);
 /* harmony import */ var _raw_loader_header_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./header.component.html */ 97911);
 /* harmony import */ var _header_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header.component.scss */ 64993);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 37716);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 80476);
-/* harmony import */ var src_app_shared_registration_registration_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/registration/registration.component */ 11388);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 80476);
+/* harmony import */ var src_app_shared_payment_payment_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/payment/payment.component */ 92208);
+/* harmony import */ var src_app_shared_registration_registration_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/shared/registration/registration.component */ 11388);
+
 
 
 
@@ -298,10 +302,27 @@ let HeaderComponent = class HeaderComponent {
         }
     }
     settingsPopover() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             const siteInfo = { id: 1, name: 'edupala' };
             const popover = yield this.popoverController.create({
-                component: src_app_shared_registration_registration_component__WEBPACK_IMPORTED_MODULE_2__.RegistrationComponent,
+                component: src_app_shared_registration_registration_component__WEBPACK_IMPORTED_MODULE_3__.RegistrationComponent,
+                cssClass: 'contact-popover',
+                // componentProps: {
+                //   site: siteInfo,
+                // },
+                // translucent: true,
+            });
+            // popover.onDidDismiss().then((result) => {
+            //   console.log(result.data);
+            // });
+            return yield popover.present();
+            /** Sync event from popover component */
+        });
+    }
+    paymentPopover() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            const popover = yield this.popoverController.create({
+                component: src_app_shared_payment_payment_component__WEBPACK_IMPORTED_MODULE_2__.PaymentComponent,
                 cssClass: 'contact-popover',
                 // componentProps: {
                 //   site: siteInfo,
@@ -317,19 +338,58 @@ let HeaderComponent = class HeaderComponent {
     }
 };
 HeaderComponent.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.PopoverController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.ModalController }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.PopoverController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ModalController }
 ];
 HeaderComponent.propDecorators = {
-    productbtn: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.ViewChild, args: ['productbtn', { read: _angular_core__WEBPACK_IMPORTED_MODULE_5__.ElementRef },] }]
+    productbtn: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.ViewChild, args: ['productbtn', { read: _angular_core__WEBPACK_IMPORTED_MODULE_6__.ElementRef },] }]
 };
-HeaderComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
+HeaderComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
         selector: 'app-header',
         template: _raw_loader_header_component_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_header_component_scss__WEBPACK_IMPORTED_MODULE_1__.default]
     })
 ], HeaderComponent);
+
+
+
+/***/ }),
+
+/***/ 41008:
+/*!*******************************************************************************!*\
+  !*** ./src/app/components/lesson-description/lesson-description.component.ts ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "LessonDescriptionComponent": () => (/* binding */ LessonDescriptionComponent)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _raw_loader_lesson_description_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./lesson-description.component.html */ 34214);
+/* harmony import */ var _lesson_description_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lesson-description.component.scss */ 99675);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 37716);
+
+
+
+
+let LessonDescriptionComponent = class LessonDescriptionComponent {
+    constructor() { }
+    ngOnInit() { }
+};
+LessonDescriptionComponent.ctorParameters = () => [];
+LessonDescriptionComponent.propDecorators = {
+    data: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__.Input }]
+};
+LessonDescriptionComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Component)({
+        selector: 'app-lesson-description',
+        template: _raw_loader_lesson_description_component_html__WEBPACK_IMPORTED_MODULE_0__.default,
+        styles: [_lesson_description_component_scss__WEBPACK_IMPORTED_MODULE_1__.default]
+    })
+], LessonDescriptionComponent);
 
 
 
@@ -367,8 +427,7 @@ let TagsComponent = class TagsComponent {
     ngOnInit() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
             // this.router.routeReuseStrategy.shouldReuseRoute = () => false
-            this.route.queryParams
-                .subscribe(params => {
+            this.route.queryParams.subscribe((params) => {
                 console.log(params); // { order: "popular" }
                 this.tag = params.tag;
             });
@@ -380,6 +439,7 @@ let TagsComponent = class TagsComponent {
             console.log(tag);
             // this.router.navigateByUrl('/', {skipLocationChange: true}).then(
             // ()=>
+            // eslint-disable-next-line object-shorthand
             this.router.navigate(['/courses/tags'], { queryParams: { tag: tag } });
             //ask wajeeh how to reload a same url or navigate to same url with different parameter
             this.courses = yield this.videoService.getTagLesson(tag);
@@ -389,7 +449,9 @@ let TagsComponent = class TagsComponent {
     redirect(url) {
         console.log(url);
         this.videoService.setUrlFunc(url);
-        this.router.navigate(['/courses/course-overview'], { queryParams: { link: url } });
+        this.router.navigate(['/courses/course-overview'], {
+            queryParams: { link: url },
+        });
         console.log('heree');
     }
 };
@@ -566,74 +628,74 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 64762);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 37716);
-/* harmony import */ var contentful__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! contentful */ 35889);
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../environments/environment */ 92340);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../environments/environment */ 92340);
+/* harmony import */ var contentful__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! contentful */ 35889);
 
 
 
 
 let ContentfulService = class ContentfulService {
     constructor() {
-        // private client = contentful.createClient({
-        //   space: environment.contentful.spaceId,
-        //   accessToken: environment.contentful.token,
-        // });
-        // eslint-disable-next-line @typescript-eslint/member-ordering
-        // client2 = createClient({
-        //   space: environment.contentful.spaceId,
-        //   accessToken: environment.contentful.token,
-        // });
-        this.client = contentful__WEBPACK_IMPORTED_MODULE_0__.createClient({
-            space: _environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.contentful.spaceId,
-            environment: 'master',
-            accessToken: _environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.contentful.token,
+        //eslint-disable-next-line @typescript-eslint/member-ordering
+        this.client = (0,contentful__WEBPACK_IMPORTED_MODULE_1__.createClient)({
+            space: _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.contentful.spaceId,
+            accessToken: _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.contentful.token,
         });
     }
-    //console logs a response for debugging
-    // logContent(contentId) {
-    //   this.client.getEntry(contentId).then((entry) => console.log(entry));
-    // }
-    //retrives content mapped to its data fields
-    // getContent(contentId) {
-    //   const promise = this.client.getEntry(contentId);
-    //   // return Observable.fromPromise(promise).map((entry) => entry.fields);
-    // }
-    // async getContent2() {
-    //   const entries = await this.client2.getEntries();
-    //   console.log(entries);
-    //   console.log(
-    //     entries.items.map((entry) => ({
-    //       type: entry.sys.contentType.sys.id,
-    //       fields: {
-    //         id: entry.sys.id,
-    //         // eslint-disable-next-line @typescript-eslint/ban-types
-    //         ...(entry.fields as object),
-    //       },
-    //     }))
-    //   );
-    //   return entries.items.map((entry) => ({
-    //     type: entry.sys.contentType.sys.id,
-    //     fields: {
-    //       id: entry.sys.id,
-    //       // eslint-disable-next-line @typescript-eslint/ban-types
-    //       ...(entry.fields as object),
-    //     },
-    //   }));
-    // }
+    getContent() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+            const entries = yield this.client.getEntries();
+            return entries.items.map((entry) => ({
+                type: entry.sys.contentType.sys.id,
+                fields: Object.assign({ id: entry.sys.id }, entry.fields),
+            }));
+        });
+    }
+    loadContent(mainHeading) {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+            const check = [];
+            const contentRaw = yield this.getContent();
+            contentRaw.forEach((content) => {
+                // Fact
+                // if (content.fields.mainHeading === mainHeading) {
+                console.log(content.fields);
+                check.push(content.fields);
+                // }
+                // else if (content.type === 'testimonial') {
+                //   this.testimonials.push(content.fields as Testimonial);
+                // } else if (content.type === 'blog') {
+                //   this.blogs.push(content.fields as Blog);
+                // } else if (content.type === 'project') {
+                //   this.projects.push(content.fields as Project);
+                // } else if (content.type === 'question') {
+                //   this.questions.push(content.fields as Question);
+                // }
+            });
+            // console.log('check', check.id);
+            return check;
+        });
+    }
     getContentByTag(tag) {
-        this.client
-            .getSpace()
-            .then((space) => console.log(space))
-            .catch(console.error);
-        // this.client
-        //   .getSpace()
-        //   .then((space) => space.getEnvironment())
-        //   .then((env) => env.getEntries({ 'metadata.tags.sys.id[in]': tag }))
-        //   .then((entries) => {
-        //     console.log(entries);
-        //     return entries;
-        //   })
-        //   .catch(console.error);
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+            // const myspace = await this.client.getSpace();
+            // this.client
+            // this.client
+            //   .getSpace()
+            //   .then((space) => space.getEnvironment())
+            //   .then((env) => env.getEntries({ 'metadata.tags.sys.id[in]': tag }))
+            //   .then((entries) => {
+            //     console.log(entries);
+            //     return entries;
+            //   })
+            //   .catch(console.error);
+        });
+    }
+    getSpace() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+            // console.log(this.client.getSpace());
+            const space = yield this.client.getSpace();
+            console.log(space);
+        });
     }
 };
 ContentfulService.ctorParameters = () => [];
@@ -920,6 +982,148 @@ const mustMatch = (controlName, matchingControlName) => (formGroup) => {
         matchingControl.setErrors(null);
     }
 };
+
+
+/***/ }),
+
+/***/ 92208:
+/*!*****************************************************!*\
+  !*** ./src/app/shared/payment/payment.component.ts ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PaymentComponent": () => (/* binding */ PaymentComponent)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 64762);
+/* harmony import */ var _raw_loader_payment_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./payment.component.html */ 67311);
+/* harmony import */ var _payment_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./payment.component.scss */ 4777);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 39895);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 80476);
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/auth.service */ 37556);
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../login/login.component */ 32282);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 3679);
+/* harmony import */ var _must_match_validator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../must-match.validator */ 54518);
+
+
+
+
+
+
+
+
+
+
+let PaymentComponent = class PaymentComponent {
+    constructor(authService, router, popoverController, modalController, formBuilder) {
+        this.authService = authService;
+        this.router = router;
+        this.popoverController = popoverController;
+        this.modalController = modalController;
+        this.formBuilder = formBuilder;
+        this.dropdown = false;
+    }
+    ngOnInit() {
+        this.ionicForm = this.formBuilder.group({
+            email: [
+                '',
+                [
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required,
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
+                ],
+            ],
+            password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.minLength(6)]],
+            confirmPassword: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required]],
+        }, {
+            validator: (0,_must_match_validator__WEBPACK_IMPORTED_MODULE_4__.mustMatch)('password', 'confirmPassword'),
+        });
+    }
+    get errorControl() {
+        return this.ionicForm.controls;
+    }
+    submitForm() {
+        this.isSubmitted = true;
+        if (!this.ionicForm.valid) {
+            console.log('Please provide all the required values!');
+            return false;
+        }
+        else {
+            console.log(this.ionicForm.value);
+            this.registerUser();
+        }
+    }
+    hideDropdown(event) {
+        const xTouch = event.clientX;
+        const yTouch = event.clientY;
+        const rect = this.productbtn.nativeElement.getBoundingClientRect();
+        const topBoundary = rect.top + 2;
+        const leftBoundary = rect.left + 2;
+        const rightBoundary = rect.right - 2;
+        if (xTouch < leftBoundary ||
+            xTouch > rightBoundary ||
+            yTouch < topBoundary) {
+            this.dropdown = false;
+        }
+    }
+    settingsPopover() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+            this.dismissClick();
+            const popover = yield this.popoverController.create({
+                component: _login_login_component__WEBPACK_IMPORTED_MODULE_3__.LoginComponent,
+                cssClass: 'contact-popover',
+                // componentProps: {
+                //   site: siteInfo,
+                // },
+                // translucent: true,
+            });
+            // popover.onDidDismiss().then((result) => {
+            //   console.log(result.data);
+            // });
+            return yield popover.present();
+            /** Sync event from popover component */
+        });
+    }
+    dismissClick() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+            yield this.popoverController.dismiss();
+        });
+    }
+    loginGoogle() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+            yield this.authService.googleLogin();
+        });
+    }
+    registerUser() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
+            const register = yield this.authService.emailSignup(this.ionicForm.value.email, this.ionicForm.value.password);
+            console.log(register);
+            if (register['message']) {
+                window.alert(register['message']);
+            }
+        });
+    }
+};
+PaymentComponent.ctorParameters = () => [
+    { type: _services_auth_service__WEBPACK_IMPORTED_MODULE_2__.AuthService },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.Router },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.PopoverController },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.ModalController },
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormBuilder }
+];
+PaymentComponent.propDecorators = {
+    productbtn: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_9__.ViewChild, args: ['productbtn', { read: _angular_core__WEBPACK_IMPORTED_MODULE_9__.ElementRef },] }]
+};
+PaymentComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
+        selector: 'app-payment',
+        template: _raw_loader_payment_component_html__WEBPACK_IMPORTED_MODULE_0__.default,
+        styles: [_payment_component_scss__WEBPACK_IMPORTED_MODULE_1__.default]
+    })
+], PaymentComponent);
+
 
 
 /***/ }),
@@ -1444,6 +1648,21 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ 99675:
+/*!*********************************************************************************!*\
+  !*** ./src/app/components/lesson-description/lesson-description.component.scss ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJsZXNzb24tZGVzY3JpcHRpb24uY29tcG9uZW50LnNjc3MifQ== */");
+
+/***/ }),
+
 /***/ 23893:
 /*!*****************************************************!*\
   !*** ./src/app/components/tags/tags.component.scss ***!
@@ -1455,7 +1674,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("\n@import url(\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap\");\n/*animated css cards font*/\nion-grid {\n  --ion-grid-padding-sm: 20px;\n  --ion-grid-padding-md: 30px;\n  --ion-grid-padding-lg: 40px;\n  --ion-grid-padding-xl: 50px;\n}\n.cardd {\n  display: flex;\n  height: 100%;\n  width: 100%;\n  border-radius: 10px !important;\n  margin-left: 30px;\n  margin-right: 30px;\n}\n.cardd > .thumb {\n  display: inline-flex;\n  cursor: pointer;\n  width: 50%;\n  height: 100%;\n}\n.fontt {\n  font-family: \"TransRobotics\";\n  font-size: 50px;\n  padding-top: 10px;\n}\n.fonttCard {\n  display: flex;\n  justify-content: center;\n  font-family: \"TransRobotics\";\n  font-size: 25px;\n}\n.rowPadding {\n  padding-top: 10px;\n  padding-bottom: 10px;\n}\n.fonttBtn {\n  font-family: \"TransRobotics\";\n  font-size: 15px;\n}\n.javascrip {\n  --background: #fcf75e;\n  --color: black;\n}\n.pro {\n  background: #00fa9a;\n}\n.de {\n  --background: #536878;\n  --color: black;\n}\n.btnpad {\n  padding-right: 4px;\n}\n/*animated css cards*/\nbody {\n  padding: 0;\n  margin: 0;\n  background-color: #17141d;\n  color: white;\n  font-family: \"DM Mono\", monospace;\n}\na {\n  text-decoration: none;\n}\n.card-list {\n  display: flex;\n  padding: 3rem;\n  overflow-x: scroll;\n}\n.card-list::-webkit-scrollbar {\n  width: 10px;\n  height: 10px;\n}\n.card-list::-webkit-scrollbar-thumb {\n  background: #201c29;\n  border-radius: 10px;\n  box-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.25), inset -2px -2px 2px rgba(0, 0, 0, 0.25);\n}\n.card-list::-webkit-scrollbar-track {\n  background: linear-gradient(90deg, #201c29, #201c29 1px, #17141d 0, #17141d);\n}\n.card {\n  height: 350px;\n  width: 400px;\n  min-width: 250px;\n  padding: 1.5rem;\n  border-radius: 16px;\n  background: #17141d;\n  box-shadow: -1rem 0 3rem #000;\n  display: flex;\n  flex-direction: column;\n  transition: 0.2s;\n  margin: 0;\n  scroll-snap-align: start;\n  clear: both;\n  position: relative;\n}\n.card:focus-within ~ .card,\n.card:hover ~ .card {\n  transform: translateX(130px);\n}\n.card:hover {\n  transform: translateY(-1rem);\n}\n.card:not(:first-child) {\n  margin-left: -130px;\n}\n.card-header {\n  margin-bottom: auto;\n}\n.card-header p {\n  font-size: 14px;\n  margin: 0 0 1rem;\n  color: #7a7a8c;\n}\n.card-header h2 {\n  font-size: 20px;\n  margin: 0.25rem 0 auto;\n  text-decoration: none;\n  color: inherit;\n  border: 0;\n  display: inline-block;\n  cursor: pointer;\n}\n.card-header h2:hover {\n  background: linear-gradient(90deg, #ff8a00, #e52e71);\n  text-shadow: none;\n  -webkit-text-fill-color: transparent;\n  -webkit-background-clip: text;\n  background-clip: text;\n}\n.card-author {\n  margin: 3rem 0 0;\n  display: grid;\n  grid-template-columns: 75px 1fr;\n  align-items: center;\n  position: relative;\n}\n.author-avatar {\n  grid-area: auto;\n  align-self: start;\n  position: relative;\n  box-sizing: border-box;\n}\n.author-avatar img {\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  filter: grayscale(100%);\n  display: block;\n  overflow: hidden;\n  margin: 16px 10px;\n}\n.author-name {\n  grid-area: auto;\n  box-sizing: border-box;\n}\n.author-name-prefix {\n  font-style: normal;\n  font-weight: 700;\n  color: #7a7a8c;\n}\n.half-circle {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 60px;\n  height: 48px;\n  fill: none;\n  stroke: #ff8a00;\n  stroke-width: 8;\n  stroke-linecap: round;\n  pointer-events: none;\n}\n.tags {\n  margin: 1rem 0 2rem;\n  padding: 0.5rem 0 1rem;\n  line-height: 2;\n  margin-bottom: 0;\n}\n.tags a {\n  font-style: normal;\n  font-weight: 700;\n  font-size: 0.5rem;\n  color: #7a7a8c;\n  text-transform: uppercase;\n  font-size: 0.66rem;\n  border: 3px solid #28242f;\n  border-radius: 2rem;\n  padding: 0.2rem 0.85rem 0.25rem;\n  position: relative;\n}\n.tags a:hover {\n  background: linear-gradient(90deg, #ff8a00, #e52e71);\n  text-shadow: none;\n  -webkit-text-fill-color: transparent;\n  -webkit-background-clip: text;\n  -webkit-box-decoration-break: clone;\n  background-clip: text;\n  border-color: white;\n}\n/*# sourceMappingURL=data:application/json;base64,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O0VBQ0EsbUNBQUE7RUFDQSxxQkFBQTtFQUNBLG1CQUFBO0FBS0YiLCJmaWxlIjoidGFncy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qYW5pbWF0ZWQgY3NzIGNhcmRzIGZvbnQqL1xyXG5AaW1wb3J0IHVybChcImh0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzMj9mYW1pbHk9RE0rTW9ubzp3Z2h0QDMwMDs0MDA7NTAwJmRpc3BsYXk9c3dhcFwiKTtcclxuXHJcbmlvbi1ncmlkIHtcclxuICAtLWlvbi1ncmlkLXBhZGRpbmctc206IDIwcHg7XHJcbiAgLS1pb24tZ3JpZC1wYWRkaW5nLW1kOiAzMHB4O1xyXG4gIC0taW9uLWdyaWQtcGFkZGluZy1sZzogNDBweDtcclxuICAtLWlvbi1ncmlkLXBhZGRpbmcteGw6IDUwcHg7XHJcbn1cclxuLmNhcmRkIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGhlaWdodDogMTAwJTtcclxuICB3aWR0aDogMTAwJTtcclxuICBib3JkZXItcmFkaXVzOiAxMHB4ICFpbXBvcnRhbnQ7XHJcbiAgLy9tYXJnaW4tYm90dG9tOiAxMDBweDtcclxuICBtYXJnaW4tbGVmdDogMzBweDtcclxuICBtYXJnaW4tcmlnaHQ6IDMwcHg7XHJcbn1cclxuLmNhcmRkID4gLnRodW1iIHtcclxuICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgd2lkdGg6IDUwJTtcclxuICBoZWlnaHQ6IDEwMCU7XHJcbn1cclxuLmZvbnR0IHtcclxuICBmb250LWZhbWlseTogXCJUcmFuc1JvYm90aWNzXCI7XHJcbiAgZm9udC1zaXplOiA1MHB4O1xyXG4gIHBhZGRpbmctdG9wOiAxMHB4O1xyXG59XHJcblxyXG4uZm9udHRDYXJkIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGZvbnQtZmFtaWx5OiBcIlRyYW5zUm9ib3RpY3NcIjtcclxuICBmb250LXNpemU6IDI1cHg7XHJcbn1cclxuLnJvd1BhZGRpbmcge1xyXG4gIHBhZGRpbmctdG9wOiAxMHB4O1xyXG4gIHBhZGRpbmctYm90dG9tOiAxMHB4O1xyXG59XHJcbi5mb250dEJ0biB7XHJcbiAgZm9udC1mYW1pbHk6IFwiVHJhbnNSb2JvdGljc1wiO1xyXG4gIGZvbnQtc2l6ZTogMTVweDtcclxufVxyXG5cclxuLmphdmFzY3JpcCB7XHJcbiAgLS1iYWNrZ3JvdW5kOiAjZmNmNzVlO1xyXG4gIC0tY29sb3I6IGJsYWNrO1xyXG59XHJcblxyXG4ucHJvIHtcclxuICBiYWNrZ3JvdW5kOiAjMDBmYTlhO1xyXG59XHJcbi5kZSB7XHJcbiAgLS1iYWNrZ3JvdW5kOiAjNTM2ODc4O1xyXG4gIC0tY29sb3I6IGJsYWNrO1xyXG59XHJcbi5idG5wYWQge1xyXG4gIHBhZGRpbmctcmlnaHQ6IDRweDtcclxufVxyXG5cclxuLyphbmltYXRlZCBjc3MgY2FyZHMqL1xyXG5cclxuYm9keSB7XHJcbiAgcGFkZGluZzogMDtcclxuICBtYXJnaW46IDA7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogIzE3MTQxZDtcclxuICBjb2xvcjogd2hpdGU7XHJcbiAgZm9udC1mYW1pbHk6IFwiRE0gTW9ub1wiLCBtb25vc3BhY2U7XHJcbn1cclxuXHJcbmEge1xyXG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxufVxyXG5cclxuLmNhcmQtbGlzdCB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBwYWRkaW5nOiAzcmVtO1xyXG4gIG92ZXJmbG93LXg6IHNjcm9sbDtcclxufVxyXG5cclxuLmNhcmQtbGlzdDo6LXdlYmtpdC1zY3JvbGxiYXIge1xyXG4gIHdpZHRoOiAxMHB4O1xyXG4gIGhlaWdodDogMTBweDtcclxufVxyXG4uY2FyZC1saXN0Ojotd2Via2l0LXNjcm9sbGJhci10aHVtYiB7XHJcbiAgYmFja2dyb3VuZDogIzIwMWMyOTtcclxuICBib3JkZXItcmFkaXVzOiAxMHB4O1xyXG4gIGJveC1zaGFkb3c6IGluc2V0IDJweCAycHggMnB4IGhzbGEoMCwgMCUsIDEwMCUsIDAuMjUpLFxyXG4gICAgaW5zZXQgLTJweCAtMnB4IDJweCByZ2JhKDAsIDAsIDAsIDAuMjUpO1xyXG59XHJcblxyXG4uY2FyZC1saXN0Ojotd2Via2l0LXNjcm9sbGJhci10cmFjayB7XHJcbiAgYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KDkwZGVnLCAjMjAxYzI5LCAjMjAxYzI5IDFweCwgIzE3MTQxZCAwLCAjMTcxNDFkKTtcclxufVxyXG5cclxuLmNhcmQge1xyXG4gIGhlaWdodDogMzUwcHg7XHJcbiAgd2lkdGg6IDQwMHB4O1xyXG4gIG1pbi13aWR0aDogMjUwcHg7XHJcbiAgcGFkZGluZzogMS41cmVtO1xyXG4gIGJvcmRlci1yYWRpdXM6IDE2cHg7XHJcbiAgYmFja2dyb3VuZDogIzE3MTQxZDtcclxuICBib3gtc2hhZG93OiAtMXJlbSAwIDNyZW0gIzAwMDtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgdHJhbnNpdGlvbjogMC4ycztcclxuICBtYXJnaW46IDA7XHJcbiAgc2Nyb2xsLXNuYXAtYWxpZ246IHN0YXJ0O1xyXG4gIGNsZWFyOiBib3RoO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG5cclxuLmNhcmQ6Zm9jdXMtd2l0aGluIH4gLmNhcmQsXHJcbi5jYXJkOmhvdmVyIH4gLmNhcmQge1xyXG4gIHRyYW5zZm9ybTogdHJhbnNsYXRlWCgxMzBweCk7XHJcbn1cclxuXHJcbi5jYXJkOmhvdmVyIHtcclxuICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoLTFyZW0pO1xyXG59XHJcblxyXG4uY2FyZDpub3QoOmZpcnN0LWNoaWxkKSB7XHJcbiAgbWFyZ2luLWxlZnQ6IC0xMzBweDtcclxufVxyXG5cclxuLmNhcmQtaGVhZGVyIHtcclxuICBtYXJnaW4tYm90dG9tOiBhdXRvO1xyXG59XHJcblxyXG4uY2FyZC1oZWFkZXIgcCB7XHJcbiAgZm9udC1zaXplOiAxNHB4O1xyXG4gIG1hcmdpbjogMCAwIDFyZW07XHJcbiAgY29sb3I6ICM3YTdhOGM7XHJcbn1cclxuXHJcbi5jYXJkLWhlYWRlciBoMiB7XHJcbiAgZm9udC1zaXplOiAyMHB4O1xyXG4gIG1hcmdpbjogMC4yNXJlbSAwIGF1dG87XHJcbiAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xyXG4gIGNvbG9yOiBpbmhlcml0O1xyXG4gIGJvcmRlcjogMDtcclxuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcblxyXG4uY2FyZC1oZWFkZXIgaDI6aG92ZXIge1xyXG4gIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCg5MGRlZywgI2ZmOGEwMCwgI2U1MmU3MSk7XHJcbiAgdGV4dC1zaGFkb3c6IG5vbmU7XHJcbiAgLXdlYmtpdC10ZXh0LWZpbGwtY29sb3I6IHRyYW5zcGFyZW50O1xyXG4gIC13ZWJraXQtYmFja2dyb3VuZC1jbGlwOiB0ZXh0O1xyXG4gIGJhY2tncm91bmQtY2xpcDogdGV4dDtcclxufVxyXG5cclxuLmNhcmQtYXV0aG9yIHtcclxuICBtYXJnaW46IDNyZW0gMCAwO1xyXG4gIGRpc3BsYXk6IGdyaWQ7XHJcbiAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiA3NXB4IDFmcjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG5cclxuLmF1dGhvci1hdmF0YXIge1xyXG4gIGdyaWQtYXJlYTogYXV0bztcclxuICBhbGlnbi1zZWxmOiBzdGFydDtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxufVxyXG5cclxuLmF1dGhvci1hdmF0YXIgaW1nIHtcclxuICB3aWR0aDogNDBweDtcclxuICBoZWlnaHQ6IDQwcHg7XHJcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gIGZpbHRlcjogZ3JheXNjYWxlKDEwMCUpO1xyXG4gIGRpc3BsYXk6IGJsb2NrO1xyXG4gIG92ZXJmbG93OiBoaWRkZW47XHJcbiAgbWFyZ2luOiAxNnB4IDEwcHg7XHJcbn1cclxuXHJcbi5hdXRob3ItbmFtZSB7XHJcbiAgZ3JpZC1hcmVhOiBhdXRvO1xyXG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbn1cclxuXHJcbi5hdXRob3ItbmFtZS1wcmVmaXgge1xyXG4gIGZvbnQtc3R5bGU6IG5vcm1hbDtcclxuICBmb250LXdlaWdodDogNzAwO1xyXG4gIGNvbG9yOiAjN2E3YThjO1xyXG59XHJcblxyXG4uaGFsZi1jaXJjbGUge1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICBib3R0b206IDA7XHJcbiAgbGVmdDogMDtcclxuICB3aWR0aDogNjBweDtcclxuICBoZWlnaHQ6IDQ4cHg7XHJcbiAgZmlsbDogbm9uZTtcclxuICBzdHJva2U6ICNmZjhhMDA7XHJcbiAgc3Ryb2tlLXdpZHRoOiA4O1xyXG4gIHN0cm9rZS1saW5lY2FwOiByb3VuZDtcclxuICBwb2ludGVyLWV2ZW50czogbm9uZTtcclxufVxyXG5cclxuLnRhZ3Mge1xyXG4gIG1hcmdpbjogMXJlbSAwIDJyZW07XHJcbiAgcGFkZGluZzogMC41cmVtIDAgMXJlbTtcclxuICBsaW5lLWhlaWdodDogMjtcclxuICBtYXJnaW4tYm90dG9tOiAwO1xyXG59XHJcblxyXG4udGFncyBhIHtcclxuICBmb250LXN0eWxlOiBub3JtYWw7XHJcbiAgZm9udC13ZWlnaHQ6IDcwMDtcclxuICBmb250LXNpemU6IDAuNXJlbTtcclxuICBjb2xvcjogIzdhN2E4YztcclxuICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xyXG4gIGZvbnQtc2l6ZTogMC42NnJlbTtcclxuICBib3JkZXI6IDNweCBzb2xpZCAjMjgyNDJmO1xyXG4gIGJvcmRlci1yYWRpdXM6IDJyZW07XHJcbiAgcGFkZGluZzogMC4ycmVtIDAuODVyZW0gMC4yNXJlbTtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbn1cclxuXHJcbi50YWdzIGE6aG92ZXIge1xyXG4gIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCg5MGRlZywgI2ZmOGEwMCwgI2U1MmU3MSk7XHJcbiAgdGV4dC1zaGFkb3c6IG5vbmU7XHJcbiAgLXdlYmtpdC10ZXh0LWZpbGwtY29sb3I6IHRyYW5zcGFyZW50O1xyXG4gIC13ZWJraXQtYmFja2dyb3VuZC1jbGlwOiB0ZXh0O1xyXG4gIC13ZWJraXQtYm94LWRlY29yYXRpb24tYnJlYWs6IGNsb25lO1xyXG4gIGJhY2tncm91bmQtY2xpcDogdGV4dDtcclxuICBib3JkZXItY29sb3I6IHdoaXRlO1xyXG59XHJcbiJdfQ== */");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("\n@import url(\"https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap\");\n/*animated css cards font*/\nion-grid {\n  --ion-grid-padding-sm: 20px;\n  --ion-grid-padding-md: 30px;\n  --ion-grid-padding-lg: 40px;\n  --ion-grid-padding-xl: 50px;\n}\n.cardd {\n  height: 500px;\n  width: 500px;\n  border-radius: 10px !important;\n  margin-bottom: 100px;\n  margin-left: 30px;\n  margin-right: 30px;\n}\n.cardd > .thumb {\n  display: inline-flex;\n  cursor: pointer;\n  width: inherit;\n  height: inherit;\n}\n.fontt {\n  font-family: \"TransRobotics\";\n  font-size: 50px;\n}\n.fonttCard {\n  display: flex;\n  justify-content: center;\n  font-family: \"TransRobotics\";\n  font-size: 20px;\n  width: inherit;\n  height: inherit;\n  word-wrap: break-word;\n  white-space: pre-wrap;\n  word-break: break-word;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n.rowPadding {\n  padding-top: 10px;\n  padding-bottom: 10px;\n}\n.fonttBtn {\n  font-family: \"TransRobotics\";\n  font-size: 15px;\n}\n.javascrip {\n  --background: #fcf75e;\n  --color: black;\n}\n.pro {\n  background: #00fa9a;\n}\n.de {\n  --background: #536878;\n  --color: black;\n}\n.btnpad {\n  padding-right: 4px;\n}\n/*animated css cards*/\nbody {\n  padding: 0;\n  margin: 0;\n  background-color: #17141d;\n  color: white;\n  font-family: \"DM Mono\", monospace;\n}\na {\n  text-decoration: none;\n}\n.card-list {\n  display: flex;\n  padding: 3rem;\n  overflow-x: scroll;\n}\n.card-list::-webkit-scrollbar {\n  width: 10px;\n  height: 10px;\n}\n.card-list::-webkit-scrollbar-thumb {\n  background: #201c29;\n  border-radius: 10px;\n  box-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.25), inset -2px -2px 2px rgba(0, 0, 0, 0.25);\n}\n.card-list::-webkit-scrollbar-track {\n  background: linear-gradient(90deg, #201c29, #201c29 1px, #17141d 0, #17141d);\n}\n.card {\n  height: 350px;\n  width: 400px;\n  min-width: 250px;\n  padding: 1.5rem;\n  border-radius: 16px;\n  background: #17141d;\n  box-shadow: -1rem 0 3rem #000;\n  display: flex;\n  flex-direction: column;\n  transition: 0.2s;\n  margin: 0;\n  scroll-snap-align: start;\n  clear: both;\n  position: relative;\n}\n.card:focus-within ~ .card,\n.card:hover ~ .card {\n  transform: translateX(130px);\n}\n.card:hover {\n  transform: translateY(-1rem);\n}\n.card:not(:first-child) {\n  margin-left: -130px;\n}\n.card-header {\n  margin-bottom: auto;\n}\n.card-header p {\n  font-size: 14px;\n  margin: 0 0 1rem;\n  color: #7a7a8c;\n}\n.card-header h2 {\n  font-size: 20px;\n  margin: 0.25rem 0 auto;\n  text-decoration: none;\n  color: inherit;\n  border: 0;\n  display: inline-block;\n  cursor: pointer;\n}\n.card-header h2:hover {\n  background: linear-gradient(90deg, #ff8a00, #e52e71);\n  text-shadow: none;\n  -webkit-text-fill-color: transparent;\n  -webkit-background-clip: text;\n  background-clip: text;\n}\n.card-author {\n  margin: 3rem 0 0;\n  display: grid;\n  grid-template-columns: 75px 1fr;\n  align-items: center;\n  position: relative;\n}\n.author-avatar {\n  grid-area: auto;\n  align-self: start;\n  position: relative;\n  box-sizing: border-box;\n}\n.author-avatar img {\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  filter: grayscale(100%);\n  display: block;\n  overflow: hidden;\n  margin: 16px 10px;\n}\n.author-name {\n  grid-area: auto;\n  box-sizing: border-box;\n}\n.author-name-prefix {\n  font-style: normal;\n  font-weight: 700;\n  color: #7a7a8c;\n}\n.half-circle {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 60px;\n  height: 48px;\n  fill: none;\n  stroke: #ff8a00;\n  stroke-width: 8;\n  stroke-linecap: round;\n  pointer-events: none;\n}\n.tags {\n  margin: 1rem 0 2rem;\n  padding: 0.5rem 0 1rem;\n  line-height: 2;\n  margin-bottom: 0;\n}\n.tags a {\n  font-style: normal;\n  font-weight: 700;\n  font-size: 0.5rem;\n  color: #7a7a8c;\n  text-transform: uppercase;\n  font-size: 0.66rem;\n  border: 3px solid #28242f;\n  border-radius: 2rem;\n  padding: 0.2rem 0.85rem 0.25rem;\n  position: relative;\n}\n.tags a:hover {\n  background: linear-gradient(90deg, #ff8a00, #e52e71);\n  text-shadow: none;\n  -webkit-text-fill-color: transparent;\n  -webkit-background-clip: text;\n  -webkit-box-decoration-break: clone;\n  background-clip: text;\n  border-color: white;\n}\n/*# sourceMappingURL=data:application/json;base64,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O0VBQ0Esa0JBQUE7QUFHRjtBQUFBO0VBQ0Usb0RBQUE7RUFDQSxpQkFBQTtFQUNBLG9DQUFBO0VBQ0EsNkJBQUE7RUFDQSxtQ0FBQTtFQUNBLHFCQUFBO0VBQ0EsbUJBQUE7QUFHRiIsImZpbGUiOiJ0YWdzLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyphbmltYXRlZCBjc3MgY2FyZHMgZm9udCovXHJcbkBpbXBvcnQgdXJsKFwiaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1ETStNb25vOndnaHRAMzAwOzQwMDs1MDAmZGlzcGxheT1zd2FwXCIpO1xyXG5cclxuaW9uLWdyaWQge1xyXG4gIC0taW9uLWdyaWQtcGFkZGluZy1zbTogMjBweDtcclxuICAtLWlvbi1ncmlkLXBhZGRpbmctbWQ6IDMwcHg7XHJcbiAgLS1pb24tZ3JpZC1wYWRkaW5nLWxnOiA0MHB4O1xyXG4gIC0taW9uLWdyaWQtcGFkZGluZy14bDogNTBweDtcclxufVxyXG4uY2FyZGQge1xyXG4gIC8vZGlzcGxheTogaW5saW5lLWZsZXg7XHJcbiAgaGVpZ2h0OiA1MDBweDtcclxuICB3aWR0aDogNTAwcHg7XHJcbiAgYm9yZGVyLXJhZGl1czogMTBweCAhaW1wb3J0YW50O1xyXG4gIG1hcmdpbi1ib3R0b206IDEwMHB4O1xyXG4gIG1hcmdpbi1sZWZ0OiAzMHB4O1xyXG4gIG1hcmdpbi1yaWdodDogMzBweDtcclxufVxyXG4uY2FyZGQgPiAudGh1bWIge1xyXG4gIGRpc3BsYXk6IGlubGluZS1mbGV4O1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxuICB3aWR0aDogaW5oZXJpdDtcclxuICBoZWlnaHQ6IGluaGVyaXQ7XHJcbn1cclxuLmZvbnR0IHtcclxuICBmb250LWZhbWlseTogXCJUcmFuc1JvYm90aWNzXCI7XHJcbiAgZm9udC1zaXplOiA1MHB4O1xyXG4gIC8vcGFkZGluZy10b3A6IDEwcHg7XHJcbn1cclxuXHJcbi5mb250dENhcmQge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgZm9udC1mYW1pbHk6IFwiVHJhbnNSb2JvdGljc1wiO1xyXG4gIGZvbnQtc2l6ZTogMjBweDtcclxuICB3aWR0aDogaW5oZXJpdDtcclxuICBoZWlnaHQ6IGluaGVyaXQ7XHJcbiAgLy93aGl0ZS1zcGFjZTogbm93cmFwO1xyXG4gIHdvcmQtd3JhcDogYnJlYWstd29yZDtcclxuICB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7XHJcbiAgd29yZC1icmVhazogYnJlYWstd29yZDtcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG4gIHRleHQtb3ZlcmZsb3c6IGVsbGlwc2lzO1xyXG59XHJcbi5yb3dQYWRkaW5nIHtcclxuICBwYWRkaW5nLXRvcDogMTBweDtcclxuICBwYWRkaW5nLWJvdHRvbTogMTBweDtcclxufVxyXG4uZm9udHRCdG4ge1xyXG4gIGZvbnQtZmFtaWx5OiBcIlRyYW5zUm9ib3RpY3NcIjtcclxuICBmb250LXNpemU6IDE1cHg7XHJcbn1cclxuXHJcbi5qYXZhc2NyaXAge1xyXG4gIC0tYmFja2dyb3VuZDogI2ZjZjc1ZTtcclxuICAtLWNvbG9yOiBibGFjaztcclxufVxyXG5cclxuLnBybyB7XHJcbiAgYmFja2dyb3VuZDogIzAwZmE5YTtcclxufVxyXG4uZGUge1xyXG4gIC0tYmFja2dyb3VuZDogIzUzNjg3ODtcclxuICAtLWNvbG9yOiBibGFjaztcclxufVxyXG4uYnRucGFkIHtcclxuICBwYWRkaW5nLXJpZ2h0OiA0cHg7XHJcbn1cclxuXHJcbi8qYW5pbWF0ZWQgY3NzIGNhcmRzKi9cclxuXHJcbmJvZHkge1xyXG4gIHBhZGRpbmc6IDA7XHJcbiAgbWFyZ2luOiAwO1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICMxNzE0MWQ7XHJcbiAgY29sb3I6IHdoaXRlO1xyXG4gIGZvbnQtZmFtaWx5OiBcIkRNIE1vbm9cIiwgbW9ub3NwYWNlO1xyXG59XHJcblxyXG5hIHtcclxuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XHJcbn1cclxuXHJcbi5jYXJkLWxpc3Qge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgcGFkZGluZzogM3JlbTtcclxuICBvdmVyZmxvdy14OiBzY3JvbGw7XHJcbn1cclxuXHJcbi5jYXJkLWxpc3Q6Oi13ZWJraXQtc2Nyb2xsYmFyIHtcclxuICB3aWR0aDogMTBweDtcclxuICBoZWlnaHQ6IDEwcHg7XHJcbn1cclxuLmNhcmQtbGlzdDo6LXdlYmtpdC1zY3JvbGxiYXItdGh1bWIge1xyXG4gIGJhY2tncm91bmQ6ICMyMDFjMjk7XHJcbiAgYm9yZGVyLXJhZGl1czogMTBweDtcclxuICBib3gtc2hhZG93OiBpbnNldCAycHggMnB4IDJweCBoc2xhKDAsIDAlLCAxMDAlLCAwLjI1KSxcclxuICAgIGluc2V0IC0ycHggLTJweCAycHggcmdiYSgwLCAwLCAwLCAwLjI1KTtcclxufVxyXG5cclxuLmNhcmQtbGlzdDo6LXdlYmtpdC1zY3JvbGxiYXItdHJhY2sge1xyXG4gIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCg5MGRlZywgIzIwMWMyOSwgIzIwMWMyOSAxcHgsICMxNzE0MWQgMCwgIzE3MTQxZCk7XHJcbn1cclxuXHJcbi5jYXJkIHtcclxuICBoZWlnaHQ6IDM1MHB4O1xyXG4gIHdpZHRoOiA0MDBweDtcclxuICBtaW4td2lkdGg6IDI1MHB4O1xyXG4gIHBhZGRpbmc6IDEuNXJlbTtcclxuICBib3JkZXItcmFkaXVzOiAxNnB4O1xyXG4gIGJhY2tncm91bmQ6ICMxNzE0MWQ7XHJcbiAgYm94LXNoYWRvdzogLTFyZW0gMCAzcmVtICMwMDA7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIHRyYW5zaXRpb246IDAuMnM7XHJcbiAgbWFyZ2luOiAwO1xyXG4gIHNjcm9sbC1zbmFwLWFsaWduOiBzdGFydDtcclxuICBjbGVhcjogYm90aDtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbn1cclxuXHJcbi5jYXJkOmZvY3VzLXdpdGhpbiB+IC5jYXJkLFxyXG4uY2FyZDpob3ZlciB+IC5jYXJkIHtcclxuICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVgoMTMwcHgpO1xyXG59XHJcblxyXG4uY2FyZDpob3ZlciB7XHJcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC0xcmVtKTtcclxufVxyXG5cclxuLmNhcmQ6bm90KDpmaXJzdC1jaGlsZCkge1xyXG4gIG1hcmdpbi1sZWZ0OiAtMTMwcHg7XHJcbn1cclxuXHJcbi5jYXJkLWhlYWRlciB7XHJcbiAgbWFyZ2luLWJvdHRvbTogYXV0bztcclxufVxyXG5cclxuLmNhcmQtaGVhZGVyIHAge1xyXG4gIGZvbnQtc2l6ZTogMTRweDtcclxuICBtYXJnaW46IDAgMCAxcmVtO1xyXG4gIGNvbG9yOiAjN2E3YThjO1xyXG59XHJcblxyXG4uY2FyZC1oZWFkZXIgaDIge1xyXG4gIGZvbnQtc2l6ZTogMjBweDtcclxuICBtYXJnaW46IDAuMjVyZW0gMCBhdXRvO1xyXG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxuICBjb2xvcjogaW5oZXJpdDtcclxuICBib3JkZXI6IDA7XHJcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLmNhcmQtaGVhZGVyIGgyOmhvdmVyIHtcclxuICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoOTBkZWcsICNmZjhhMDAsICNlNTJlNzEpO1xyXG4gIHRleHQtc2hhZG93OiBub25lO1xyXG4gIC13ZWJraXQtdGV4dC1maWxsLWNvbG9yOiB0cmFuc3BhcmVudDtcclxuICAtd2Via2l0LWJhY2tncm91bmQtY2xpcDogdGV4dDtcclxuICBiYWNrZ3JvdW5kLWNsaXA6IHRleHQ7XHJcbn1cclxuXHJcbi5jYXJkLWF1dGhvciB7XHJcbiAgbWFyZ2luOiAzcmVtIDAgMDtcclxuICBkaXNwbGF5OiBncmlkO1xyXG4gIGdyaWQtdGVtcGxhdGUtY29sdW1uczogNzVweCAxZnI7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbn1cclxuXHJcbi5hdXRob3ItYXZhdGFyIHtcclxuICBncmlkLWFyZWE6IGF1dG87XHJcbiAgYWxpZ24tc2VsZjogc3RhcnQ7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbn1cclxuXHJcbi5hdXRob3ItYXZhdGFyIGltZyB7XHJcbiAgd2lkdGg6IDQwcHg7XHJcbiAgaGVpZ2h0OiA0MHB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcclxuICBmaWx0ZXI6IGdyYXlzY2FsZSgxMDAlKTtcclxuICBkaXNwbGF5OiBibG9jaztcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG4gIG1hcmdpbjogMTZweCAxMHB4O1xyXG59XHJcblxyXG4uYXV0aG9yLW5hbWUge1xyXG4gIGdyaWQtYXJlYTogYXV0bztcclxuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG59XHJcblxyXG4uYXV0aG9yLW5hbWUtcHJlZml4IHtcclxuICBmb250LXN0eWxlOiBub3JtYWw7XHJcbiAgZm9udC13ZWlnaHQ6IDcwMDtcclxuICBjb2xvcjogIzdhN2E4YztcclxufVxyXG5cclxuLmhhbGYtY2lyY2xlIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgYm90dG9tOiAwO1xyXG4gIGxlZnQ6IDA7XHJcbiAgd2lkdGg6IDYwcHg7XHJcbiAgaGVpZ2h0OiA0OHB4O1xyXG4gIGZpbGw6IG5vbmU7XHJcbiAgc3Ryb2tlOiAjZmY4YTAwO1xyXG4gIHN0cm9rZS13aWR0aDogODtcclxuICBzdHJva2UtbGluZWNhcDogcm91bmQ7XHJcbiAgcG9pbnRlci1ldmVudHM6IG5vbmU7XHJcbn1cclxuXHJcbi50YWdzIHtcclxuICBtYXJnaW46IDFyZW0gMCAycmVtO1xyXG4gIHBhZGRpbmc6IDAuNXJlbSAwIDFyZW07XHJcbiAgbGluZS1oZWlnaHQ6IDI7XHJcbiAgbWFyZ2luLWJvdHRvbTogMDtcclxufVxyXG5cclxuLnRhZ3MgYSB7XHJcbiAgZm9udC1zdHlsZTogbm9ybWFsO1xyXG4gIGZvbnQtd2VpZ2h0OiA3MDA7XHJcbiAgZm9udC1zaXplOiAwLjVyZW07XHJcbiAgY29sb3I6ICM3YTdhOGM7XHJcbiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcclxuICBmb250LXNpemU6IDAuNjZyZW07XHJcbiAgYm9yZGVyOiAzcHggc29saWQgIzI4MjQyZjtcclxuICBib3JkZXItcmFkaXVzOiAycmVtO1xyXG4gIHBhZGRpbmc6IDAuMnJlbSAwLjg1cmVtIDAuMjVyZW07XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG59XHJcblxyXG4udGFncyBhOmhvdmVyIHtcclxuICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoOTBkZWcsICNmZjhhMDAsICNlNTJlNzEpO1xyXG4gIHRleHQtc2hhZG93OiBub25lO1xyXG4gIC13ZWJraXQtdGV4dC1maWxsLWNvbG9yOiB0cmFuc3BhcmVudDtcclxuICAtd2Via2l0LWJhY2tncm91bmQtY2xpcDogdGV4dDtcclxuICAtd2Via2l0LWJveC1kZWNvcmF0aW9uLWJyZWFrOiBjbG9uZTtcclxuICBiYWNrZ3JvdW5kLWNsaXA6IHRleHQ7XHJcbiAgYm9yZGVyLWNvbG9yOiB3aGl0ZTtcclxufVxyXG4iXX0= */");
 
 /***/ }),
 
@@ -1471,6 +1690,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("ion-card {\n  display: flex;\n  flex-direction: column;\n  width: 100% !important;\n  margin: 0 !important;\n}\n\n/* CSS */\n\n.button-54 {\n  font-family: \"TransRobotics\";\n  font-size: 16px;\n  letter-spacing: 2px;\n  text-decoration: none;\n  text-transform: uppercase;\n  color: #000;\n  cursor: pointer;\n  border: 3px solid;\n  padding: 0.25em 0.5em;\n  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;\n  position: relative;\n  user-select: none;\n  -webkit-user-select: none;\n  touch-action: manipulation;\n  background-color: white;\n}\n\n.button-54:active {\n  box-shadow: 0px 0px 0px 0px;\n  top: 5px;\n  left: 5px;\n}\n\n@media (min-width: 768px) {\n  .button-54 {\n    padding: 0.25em 0.75em;\n  }\n}\n\nion-input {\n  padding: 0;\n  font-size: 0.9em;\n  font-family: monospace;\n  --background: #1e1e1e !important;\n  /* height: 10%; */\n  /* width: 41%; */\n  max-width: 50vw;\n  max-height: 10vh;\n}\n\nion-input:active {\n  --background: #1e1e1e !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxvZ2luLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBQTtFQUNBLHNCQUFBO0VBQ0Esc0JBQUE7RUFDQSxvQkFBQTtBQUNGOztBQUVBLFFBQUE7O0FBQ0E7RUFDRSw0QkFBQTtFQUVBLGVBQUE7RUFDQSxtQkFBQTtFQUNBLHFCQUFBO0VBQ0EseUJBQUE7RUFDQSxXQUFBO0VBQ0EsZUFBQTtFQUNBLGlCQUFBO0VBQ0EscUJBQUE7RUFDQSwrRkFBQTtFQUVBLGtCQUFBO0VBQ0EsaUJBQUE7RUFDQSx5QkFBQTtFQUNBLDBCQUFBO0VBQ0EsdUJBQUE7QUFERjs7QUFJQTtFQUNFLDJCQUFBO0VBQ0EsUUFBQTtFQUNBLFNBQUE7QUFERjs7QUFJQTtFQUNFO0lBQ0Usc0JBQUE7RUFERjtBQUNGOztBQUdBO0VBQ0UsVUFBQTtFQUNBLGdCQUFBO0VBQ0Esc0JBQUE7RUFDQSxnQ0FBQTtFQUNBLGlCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7QUFERjs7QUFJQTtFQUNFLGdDQUFBO0FBREYiLCJmaWxlIjoibG9naW4uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tY2FyZCB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIHdpZHRoOiAxMDAlICFpbXBvcnRhbnQ7XHJcbiAgbWFyZ2luOiAwICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi8qIENTUyAqL1xyXG4uYnV0dG9uLTU0IHtcclxuICBmb250LWZhbWlseTogXCJUcmFuc1JvYm90aWNzXCI7XHJcblxyXG4gIGZvbnQtc2l6ZTogMTZweDtcclxuICBsZXR0ZXItc3BhY2luZzogMnB4O1xyXG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxuICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xyXG4gIGNvbG9yOiAjMDAwO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxuICBib3JkZXI6IDNweCBzb2xpZDtcclxuICBwYWRkaW5nOiAwLjI1ZW0gMC41ZW07XHJcbiAgYm94LXNoYWRvdzogMXB4IDFweCAwcHggMHB4LCAycHggMnB4IDBweCAwcHgsIDNweCAzcHggMHB4IDBweCwgNHB4IDRweCAwcHggMHB4LFxyXG4gICAgNXB4IDVweCAwcHggMHB4O1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICB1c2VyLXNlbGVjdDogbm9uZTtcclxuICAtd2Via2l0LXVzZXItc2VsZWN0OiBub25lO1xyXG4gIHRvdWNoLWFjdGlvbjogbWFuaXB1bGF0aW9uO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xyXG59XHJcblxyXG4uYnV0dG9uLTU0OmFjdGl2ZSB7XHJcbiAgYm94LXNoYWRvdzogMHB4IDBweCAwcHggMHB4O1xyXG4gIHRvcDogNXB4O1xyXG4gIGxlZnQ6IDVweDtcclxufVxyXG5cclxuQG1lZGlhIChtaW4td2lkdGg6IDc2OHB4KSB7XHJcbiAgLmJ1dHRvbi01NCB7XHJcbiAgICBwYWRkaW5nOiAwLjI1ZW0gMC43NWVtO1xyXG4gIH1cclxufVxyXG5pb24taW5wdXQge1xyXG4gIHBhZGRpbmc6IDA7XHJcbiAgZm9udC1zaXplOiAwLjllbTtcclxuICBmb250LWZhbWlseTogbW9ub3NwYWNlO1xyXG4gIC0tYmFja2dyb3VuZDogIzFlMWUxZSAhaW1wb3J0YW50O1xyXG4gIC8qIGhlaWdodDogMTAlOyAqL1xyXG4gIC8qIHdpZHRoOiA0MSU7ICovXHJcbiAgbWF4LXdpZHRoOiA1MHZ3OyAvLyB0aGlzIGlzIGFwcGx5aW5nIHBlcmZlY3RseVxyXG4gIG1heC1oZWlnaHQ6IDEwdmg7XHJcbn1cclxuXHJcbmlvbi1pbnB1dDphY3RpdmUge1xyXG4gIC0tYmFja2dyb3VuZDogIzFlMWUxZSAhaW1wb3J0YW50O1xyXG59XHJcbiJdfQ== */");
+
+/***/ }),
+
+/***/ 4777:
+/*!*******************************************************!*\
+  !*** ./src/app/shared/payment/payment.component.scss ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("ion-card {\n  display: flex;\n  flex-direction: column;\n  width: 100% !important;\n  margin: 0 !important;\n}\n\n/* CSS */\n\n.button-54 {\n  font-family: \"TransRobotics\";\n  font-size: 16px;\n  letter-spacing: 2px;\n  text-decoration: none;\n  text-transform: uppercase;\n  color: #000;\n  cursor: pointer;\n  border: 3px solid;\n  padding: 0.25em 0.5em;\n  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;\n  position: relative;\n  user-select: none;\n  -webkit-user-select: none;\n  touch-action: manipulation;\n  background-color: white;\n}\n\n.button-54:active {\n  box-shadow: 0px 0px 0px 0px;\n  top: 5px;\n  left: 5px;\n}\n\n@media (min-width: 768px) {\n  .button-54 {\n    padding: 0.25em 0.75em;\n  }\n}\n\nion-input {\n  padding: 0;\n  font-size: 0.9em;\n  font-family: monospace;\n  --background: #1e1e1e !important;\n  /* height: 10%; */\n  /* width: 41%; */\n  max-width: 50vw;\n  max-height: 10vh;\n}\n\nion-input:active {\n  --background: #1e1e1e !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBheW1lbnQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxzQkFBQTtFQUNBLG9CQUFBO0FBQ0Y7O0FBRUEsUUFBQTs7QUFDQTtFQUNFLDRCQUFBO0VBRUEsZUFBQTtFQUNBLG1CQUFBO0VBQ0EscUJBQUE7RUFDQSx5QkFBQTtFQUNBLFdBQUE7RUFDQSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxxQkFBQTtFQUNBLCtGQUFBO0VBRUEsa0JBQUE7RUFDQSxpQkFBQTtFQUNBLHlCQUFBO0VBQ0EsMEJBQUE7RUFDQSx1QkFBQTtBQURGOztBQUlBO0VBQ0UsMkJBQUE7RUFDQSxRQUFBO0VBQ0EsU0FBQTtBQURGOztBQUlBO0VBQ0U7SUFDRSxzQkFBQTtFQURGO0FBQ0Y7O0FBR0E7RUFDRSxVQUFBO0VBQ0EsZ0JBQUE7RUFDQSxzQkFBQTtFQUNBLGdDQUFBO0VBQ0EsaUJBQUE7RUFDQSxnQkFBQTtFQUNBLGVBQUE7RUFDQSxnQkFBQTtBQURGOztBQUlBO0VBQ0UsZ0NBQUE7QUFERiIsImZpbGUiOiJwYXltZW50LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICB3aWR0aDogMTAwJSAhaW1wb3J0YW50O1xyXG4gIG1hcmdpbjogMCAhaW1wb3J0YW50O1xyXG59XHJcblxyXG4vKiBDU1MgKi9cclxuLmJ1dHRvbi01NCB7XHJcbiAgZm9udC1mYW1pbHk6IFwiVHJhbnNSb2JvdGljc1wiO1xyXG5cclxuICBmb250LXNpemU6IDE2cHg7XHJcbiAgbGV0dGVyLXNwYWNpbmc6IDJweDtcclxuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XHJcbiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcclxuICBjb2xvcjogIzAwMDtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgYm9yZGVyOiAzcHggc29saWQ7XHJcbiAgcGFkZGluZzogMC4yNWVtIDAuNWVtO1xyXG4gIGJveC1zaGFkb3c6IDFweCAxcHggMHB4IDBweCwgMnB4IDJweCAwcHggMHB4LCAzcHggM3B4IDBweCAwcHgsIDRweCA0cHggMHB4IDBweCxcclxuICAgIDVweCA1cHggMHB4IDBweDtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgdXNlci1zZWxlY3Q6IG5vbmU7XHJcbiAgLXdlYmtpdC11c2VyLXNlbGVjdDogbm9uZTtcclxuICB0b3VjaC1hY3Rpb246IG1hbmlwdWxhdGlvbjtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcclxufVxyXG5cclxuLmJ1dHRvbi01NDphY3RpdmUge1xyXG4gIGJveC1zaGFkb3c6IDBweCAwcHggMHB4IDBweDtcclxuICB0b3A6IDVweDtcclxuICBsZWZ0OiA1cHg7XHJcbn1cclxuXHJcbkBtZWRpYSAobWluLXdpZHRoOiA3NjhweCkge1xyXG4gIC5idXR0b24tNTQge1xyXG4gICAgcGFkZGluZzogMC4yNWVtIDAuNzVlbTtcclxuICB9XHJcbn1cclxuaW9uLWlucHV0IHtcclxuICBwYWRkaW5nOiAwO1xyXG4gIGZvbnQtc2l6ZTogMC45ZW07XHJcbiAgZm9udC1mYW1pbHk6IG1vbm9zcGFjZTtcclxuICAtLWJhY2tncm91bmQ6ICMxZTFlMWUgIWltcG9ydGFudDtcclxuICAvKiBoZWlnaHQ6IDEwJTsgKi9cclxuICAvKiB3aWR0aDogNDElOyAqL1xyXG4gIG1heC13aWR0aDogNTB2dzsgLy8gdGhpcyBpcyBhcHBseWluZyBwZXJmZWN0bHlcclxuICBtYXgtaGVpZ2h0OiAxMHZoO1xyXG59XHJcblxyXG5pb24taW5wdXQ6YWN0aXZlIHtcclxuICAtLWJhY2tncm91bmQ6ICMxZTFlMWUgIWltcG9ydGFudDtcclxufVxyXG4iXX0= */");
 
 /***/ }),
 
@@ -1500,7 +1734,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<<<<<<< HEAD\r\n\r\n<ion-app>\r\n=======\r\n<ion-app>\r\n  <!-- <app-header></app-header> -->\r\n>>>>>>> mubashir\r\n  <ion-router-outlet></ion-router-outlet>\r\n</ion-app>\r\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("\r\n<ion-app>\r\n  <ion-router-outlet></ion-router-outlet>\r\n</ion-app>\r\n");
 
 /***/ }),
 
@@ -1515,7 +1749,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header class=\"mobile-header\">\r\n  <ion-toolbar class=\"new-background-color\">\r\n    <ion-buttons slot=\"start\">\r\n      <ion-menu-button menu=\"myMenu\"></ion-menu-button>\r\n    </ion-buttons>\r\n    <ion-title class=\"fontt ion-text-center textt\">ScoolX</ion-title>\r\n    <ion-buttons slot=\"end\">\r\n      <ion-button>\r\n        <ion-icon slot=\"icon-only\" name=\"cart\"></ion-icon>\r\n      </ion-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-row class=\"header ion-align-items-center new-background-color\">\r\n  <ion-col size=\"2\" class=\"backk\">\r\n    <img\r\n      class=\"image\"\r\n      routerLink=\"/home\"\r\n      src=\"../../../assets/images/Telic.png\"\r\n      width=\"50px\"\r\n    />\r\n  </ion-col>\r\n  <ion-col size=\"8\" class=\"ion-text-center new-background-color\">\r\n    <ion-button\r\n      fill=\"clear\"\r\n      color=\"blue\"\r\n      routerLink=\"/\"\r\n      routerDirection=\"root\"\r\n      routerLinkActive=\"active-item\"\r\n      [routerLinkActiveOptions]=\"{ exact: true }\"\r\n      class=\"fontt\"\r\n    >\r\n      Home\r\n    </ion-button>\r\n\r\n    <ion-button\r\n      fill=\"clear\"\r\n      color=\"blue\"\r\n      routerLink=\"/courses\"\r\n      routerDirection=\"root\"\r\n      routerLinkActive=\"active-item\"\r\n      class=\"fontt\"\r\n    >\r\n      Courses\r\n    </ion-button>\r\n\r\n    <ion-button\r\n      fill=\"clear\"\r\n      color=\"blue\"\r\n      routerLink=\"/admin-portal\"\r\n      routerDirection=\"root\"\r\n      routerLinkActive=\"active-item\"\r\n      class=\"fontt\"\r\n    >\r\n      Admin Panel\r\n    </ion-button>\r\n  </ion-col>\r\n\r\n  <ion-col size=\"2\" class=\"ion-text-right\">\r\n    <img\r\n      src=\"https://img.icons8.com/dusk/64/000000/login-rounded-right.png\"\r\n      style=\"width: 15%; height: 15%; cursor: pointer\"\r\n      (click)=\"settingsPopover()\"\r\n    />\r\n    <br />\r\n    <span\r\n      style=\"\r\n        width: 15%;\r\n        height: 15%;\r\n        cursor: pointer;\r\n        margin-left: 10px;\r\n        color: #3880ff;\r\n      \"\r\n      >Login</span\r\n    >\r\n  </ion-col>\r\n</ion-row>\r\n\r\n<!-- <ion-content>\r\n  <p>Common to all pages</p>\r\n  <ng-content></ng-content>\r\n</ion-content> -->\r\n\r\n<!-- Rouuuuter -->\r\n<!-- <home>\r\n  <courses></courses>\r\n</home> -->\r\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-header class=\"mobile-header\">\r\n  <ion-toolbar class=\"new-background-color\">\r\n    <ion-buttons slot=\"start\">\r\n      <ion-menu-button menu=\"myMenu\"></ion-menu-button>\r\n    </ion-buttons>\r\n    <ion-title class=\"fontt ion-text-center textt\">ScoolX</ion-title>\r\n    <ion-buttons slot=\"end\">\r\n      <ion-button>\r\n        <ion-icon slot=\"icon-only\" name=\"cart\"></ion-icon>\r\n      </ion-button>\r\n    </ion-buttons>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-row class=\"header ion-align-items-center new-background-color\">\r\n  <ion-col size=\"2\" class=\"backk\">\r\n    <img\r\n      class=\"image\"\r\n      routerLink=\"/home\"\r\n      src=\"../../../assets/images/Telic.png\"\r\n      width=\"50px\"\r\n    />\r\n  </ion-col>\r\n  <ion-col size=\"8\" class=\"ion-text-center new-background-color\">\r\n    <ion-button\r\n      fill=\"clear\"\r\n      color=\"blue\"\r\n      routerLink=\"/\"\r\n      routerDirection=\"root\"\r\n      routerLinkActive=\"active-item\"\r\n      [routerLinkActiveOptions]=\"{ exact: true }\"\r\n      class=\"fontt\"\r\n    >\r\n      Home\r\n    </ion-button>\r\n\r\n    <ion-button\r\n      fill=\"clear\"\r\n      color=\"blue\"\r\n      routerLink=\"/courses\"\r\n      routerDirection=\"root\"\r\n      routerLinkActive=\"active-item\"\r\n      class=\"fontt\"\r\n    >\r\n      Courses\r\n    </ion-button>\r\n\r\n    <ion-button\r\n      fill=\"clear\"\r\n      color=\"blue\"\r\n      routerLink=\"/admin-portal\"\r\n      routerDirection=\"root\"\r\n      routerLinkActive=\"active-item\"\r\n      class=\"fontt\"\r\n    >\r\n      Admin Panel\r\n    </ion-button>\r\n  </ion-col>\r\n\r\n  <ion-col size=\"2\" class=\"ion-text-right\">\r\n    <img\r\n      src=\"https://img.icons8.com/dusk/64/000000/login-rounded-right.png\"\r\n      style=\"width: 15%; height: 15%; cursor: pointer; margin-right: 15px\"\r\n      (click)=\"settingsPopover()\"\r\n    />\r\n    <img\r\n      src=\"./../../assets/images/stripee.jfif\"\r\n      style=\"width: 15%; height: 15%; border-radius: 50%; cursor: pointer\"\r\n      (click)=\"paymentPopover()\"\r\n    />\r\n    <br />\r\n    <span style=\"width: 15%; height: 15%; color: #3880ff; font-size: 15px\"\r\n      >Login Stripe</span\r\n    >\r\n  </ion-col>\r\n</ion-row>\r\n\r\n<!-- <ion-content>\r\n  <p>Common to all pages</p>\r\n  <ng-content></ng-content>\r\n</ion-content> -->\r\n\r\n<!-- Rouuuuter -->\r\n<!-- <home>\r\n  <courses></courses>\r\n</home> -->\r\n");
+
+/***/ }),
+
+/***/ 34214:
+/*!***********************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/lesson-description/lesson-description.component.html ***!
+  \***********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-card>\r\n  <div *ngIf=\"data as content\">\r\n    <ion-card>\r\n      <ion-card-header>\r\n        <ion-card-title>{{ content.mainHeading }}</ion-card-title>\r\n        <ion-card-subtitle>{{ content.subHeading }}</ion-card-subtitle>\r\n      </ion-card-header>\r\n\r\n      <ion-card-content> {{ content.description }} </ion-card-content>\r\n    </ion-card>\r\n\r\n    <ion-card>\r\n      <ion-item>\r\n        <ion-icon name=\"code-working-outline\"> </ion-icon>\r\n        <ion-label> Code</ion-label>\r\n        <ion-button fill=\"outline\" slot=\"end\">Copy</ion-button>\r\n      </ion-item>\r\n\r\n      <ion-card-content> {{ content.code }} </ion-card-content>\r\n    </ion-card>\r\n\r\n    <ion-card>\r\n      <ion-item>\r\n        <ion-label>Image Label</ion-label>\r\n      </ion-item>\r\n      <img src=\"../../../assets/images/nmps.png\" />\r\n    </ion-card>\r\n  </div>\r\n</ion-card>\r\n");
 
 /***/ }),
 
@@ -1545,7 +1794,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <ion-card>\r\n    <div\r\n      style=\"\r\n        padding-top: 30px;\r\n        padding-left: 20px;\r\n        padding-right: 20px;\r\n        padding-bottom: 30px;\r\n      \"\r\n    >\r\n      <ion-grid>\r\n        <ion-row class=\"ion-justify-content-center\">\r\n          <button\r\n            class=\"button-54\"\r\n            role=\"button\"\r\n            style=\"margin-bottom: 30px; height: 45px; padding-bottom: 25px\"\r\n            (click)=\"loginGoogle()\"\r\n          >\r\n            <img\r\n              src=\"../../../assets/icon/g-logo.png\"\r\n              style=\"height: 25px; width: 25px\"\r\n            />\r\n            Sign in with Google\r\n          </button>\r\n        </ion-row>\r\n\r\n        <h1 style=\"font-family: 'Staatliches', cursive; color: azure\">LOGIN</h1>\r\n        <ion-row>\r\n          <h2 style=\"font-family: monospace; margin-bottom: 0%\">No Account?</h2>\r\n\r\n          <button\r\n            class=\"button-54\"\r\n            style=\"height: 25px\"\r\n            role=\"button\"\r\n            (click)=\"settingsPopover()\"\r\n          >\r\n            SignUp\r\n          </button>\r\n        </ion-row>\r\n\r\n        <ion-item-divider\r\n          class=\"dash\"\r\n          style=\"background-color: #1e1e1e; margin-top: 0%\"\r\n        >\r\n        </ion-item-divider>\r\n        <form [formGroup]=\"ionicForm\" (ngSubmit)=\"submitForm()\" novalidate>\r\n          <h1\r\n            style=\"\r\n              font-style: italic;\r\n              font-weight: bold;\r\n              font-family: monospace;\r\n              margin-top: 0%;\r\n            \"\r\n          >\r\n            Email\r\n          </h1>\r\n          <ion-item>\r\n            <!-- <ion-label position=\"floating\">Email</ion-label> -->\r\n            <ion-input\r\n              formControlName=\"email\"\r\n              autocomplete=\"on\"\r\n              type=\"email\"\r\n              name=\"email\"\r\n            ></ion-input>\r\n          </ion-item>\r\n          <div\r\n            *ngIf=\"isSubmitted && errorControl.email.errors\"\r\n            class=\"error ion-padding\"\r\n          >\r\n            <div *ngIf=\"errorControl.email.errors.required\">\r\n              Email is required\r\n            </div>\r\n            <div *ngIf=\"errorControl.email.errors.valid\">\r\n              Email must be a valid email address\r\n            </div>\r\n          </div>\r\n          <h1\r\n            style=\"\r\n              font-style: italic;\r\n              font-weight: bold;\r\n              font-family: monospace;\r\n              margin-top: 0%;\r\n            \"\r\n          >\r\n            Password\r\n          </h1>\r\n          <ion-item lines=\"full\">\r\n            <!-- <ion-label position=\"floating\">Password</ion-label> -->\r\n            <ion-input\r\n              autocomplete=\"on\"\r\n              type=\"password\"\r\n              name=\"password\"\r\n              style=\"margin-bottom: 0%; color: blueviolet\"\r\n              minlength=\"6\"\r\n              formControlName=\"password\"\r\n            ></ion-input>\r\n          </ion-item>\r\n          <div\r\n            *ngIf=\"isSubmitted && errorControl.password.errors\"\r\n            class=\"error ion-padding\"\r\n          >\r\n            <div *ngIf=\"errorControl.password.errors.required\">\r\n              Password is required\r\n            </div>\r\n            <div *ngIf=\"errorControl.password.errors.minlength\">\r\n              Password should be min 6 chars long.\r\n            </div>\r\n          </div>\r\n\r\n          <ion-item-divider\r\n            class=\"dash\"\r\n            style=\"background-color: #1e1e1e; margin-top: 0%\"\r\n          >\r\n          </ion-item-divider>\r\n          <ion-row>\r\n            <button\r\n              class=\"button-54\"\r\n              style=\"color: slateblue; margin-top: 25px\"\r\n              role=\"button\"\r\n            >\r\n              Login\r\n            </button>\r\n          </ion-row>\r\n        </form>\r\n      </ion-grid>\r\n    </div>\r\n  </ion-card>\r\n</ion-content>\r\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <ion-card>\r\n    <div\r\n      style=\"\r\n        padding-top: 30px;\r\n        padding-left: 20px;\r\n        padding-right: 20px;\r\n        padding-bottom: 30px;\r\n      \"\r\n    >\r\n      <ion-grid>\r\n        <ion-row class=\"ion-justify-content-center\">\r\n          <button\r\n            class=\"button-54\"\r\n            role=\"button\"\r\n            style=\"margin-bottom: 30px; height: 45px; padding-bottom: 25px\"\r\n            (click)=\"loginGoogle()\"\r\n          >\r\n            <img\r\n              src=\"../../../assets/icon/g-logo.png\"\r\n              style=\"height: 25px; width: 25px\"\r\n            />\r\n            Sign in with Google\r\n          </button>\r\n        </ion-row>\r\n\r\n        <h1\r\n          style=\"\r\n            font-family: 'Staatliches', cursive;\r\n            color: azure;\r\n            text-align: center;\r\n            margin-top: 1px;\r\n            margin-bottom: 10px;\r\n          \"\r\n        >\r\n          Log in To Continue\r\n        </h1>\r\n        <ion-row>\r\n          <h2 style=\"font-family: monospace; margin-bottom: 0%\">No Account?</h2>\r\n          <button\r\n            class=\"button-54\"\r\n            style=\"height: 25px; color: slateblue; margin: 15px 20px 10px 120px\"\r\n            role=\"button\"\r\n            (click)=\"settingsPopover()\"\r\n          >\r\n            SignUp\r\n          </button>\r\n        </ion-row>\r\n\r\n        <ion-item-divider\r\n          class=\"dash\"\r\n          style=\"background-color: #1e1e1e; margin-top: 0%\"\r\n        >\r\n        </ion-item-divider>\r\n        <form [formGroup]=\"ionicForm\" (ngSubmit)=\"submitForm()\" novalidate>\r\n          <h1\r\n            style=\"\r\n              font-style: italic;\r\n              font-weight: bold;\r\n              font-family: monospace;\r\n              margin-top: 0%;\r\n            \"\r\n          >\r\n            Email\r\n          </h1>\r\n          <ion-item>\r\n            <!-- <ion-label position=\"floating\">Email</ion-label> -->\r\n            <ion-input\r\n              formControlName=\"email\"\r\n              autocomplete=\"on\"\r\n              type=\"email\"\r\n              name=\"email\"\r\n              style=\"background-color: slateblue; opacity: 0.3\"\r\n            ></ion-input>\r\n          </ion-item>\r\n          <div\r\n            *ngIf=\"isSubmitted && errorControl.email.errors\"\r\n            class=\"error ion-padding\"\r\n          >\r\n            <div *ngIf=\"errorControl.email.errors.required\">\r\n              Email is required\r\n            </div>\r\n            <div *ngIf=\"errorControl.email.errors.valid\">\r\n              Email must be a valid email address\r\n            </div>\r\n          </div>\r\n          <h1\r\n            style=\"\r\n              font-style: italic;\r\n              font-weight: bold;\r\n              font-family: monospace;\r\n              margin-top: 0%;\r\n            \"\r\n          >\r\n            Password\r\n          </h1>\r\n          <ion-item lines=\"full\">\r\n            <!-- <ion-label position=\"floating\">Password</ion-label> -->\r\n            <ion-input\r\n              autocomplete=\"on\"\r\n              type=\"password\"\r\n              name=\"password\"\r\n              style=\"margin-bottom: 0%; color: blueviolet\"\r\n              minlength=\"6\"\r\n              formControlName=\"password\"\r\n              style=\"background-color: slateblue; opacity: 0.3\"\r\n            ></ion-input>\r\n          </ion-item>\r\n          <div\r\n            *ngIf=\"isSubmitted && errorControl.password.errors\"\r\n            class=\"error ion-padding\"\r\n          >\r\n            <div *ngIf=\"errorControl.password.errors.required\">\r\n              Password is required\r\n            </div>\r\n            <div *ngIf=\"errorControl.password.errors.minlength\">\r\n              Password should be min 6 chars long.\r\n            </div>\r\n          </div>\r\n\r\n          <ion-item-divider\r\n            class=\"dash\"\r\n            style=\"background-color: #1e1e1e; margin-top: 0%\"\r\n          >\r\n          </ion-item-divider>\r\n          <ion-row>\r\n            <button\r\n              class=\"button-54\"\r\n              style=\"\r\n                color: slateblue;\r\n                margin-top: 25px;\r\n                text-align: center;\r\n                margin-left: 300px;\r\n              \"\r\n              role=\"button\"\r\n            >\r\n              Login\r\n            </button>\r\n          </ion-row>\r\n        </form>\r\n      </ion-grid>\r\n    </div>\r\n  </ion-card>\r\n</ion-content>\r\n");
+
+/***/ }),
+
+/***/ 67311:
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/shared/payment/payment.component.html ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\n  <ion-card>\n    <div\n      style=\"\n        padding-top: 5px;\n        padding-left: 2px;\n        padding-right: 2px;\n        padding-bottom: 5px;\n      \"\n    >\n      <ion-grid>\n        <ion-row class=\"ion-justify-content-center\">\n          <img\n            src=\"../../../assets/images/stripebanner.PNG\"\n            style=\"height: 150px; width: 100%\"\n          />\n        </ion-row>\n\n        <h1\n          style=\"\n            font-family: 'Staatliches', cursive;\n            color: azure;\n            text-align: center;\n            margin-top: 20px;\n          \"\n        >\n          Enter Your Payment Details\n        </h1>\n\n        <ion-item-divider class=\"dash\" style=\"background-color: #1e1e1e\">\n        </ion-item-divider>\n        <form [formGroup]=\"ionicForm\" (ngSubmit)=\"submitForm()\" novalidate>\n          <h1\n            style=\"\n              font-style: italic;\n              font-weight: bold;\n              font-family: monospace;\n              margin: 0%;\n            \"\n          >\n            Email\n          </h1>\n          <ion-item>\n            <!-- <ion-label position=\"floating\">Email</ion-label> -->\n            <ion-input\n              formControlName=\"email\"\n              autocomplete=\"on\"\n              type=\"email\"\n              name=\"email\"\n              style=\"background-color: slateblue; opacity: 0.3\"\n            ></ion-input>\n          </ion-item>\n          <div\n            *ngIf=\"isSubmitted && errorControl.email.errors\"\n            class=\"error ion-padding\"\n          >\n            <div *ngIf=\"errorControl.email.errors.required\">\n              Email is required\n            </div>\n            <div *ngIf=\"errorControl.email.errors.valid\">\n              Email must be a valid email address\n            </div>\n          </div>\n\n          <h1\n            style=\"\n              font-style: italic;\n              font-weight: bold;\n              font-family: monospace;\n              margin: 0%;\n            \"\n          >\n            Card Information\n          </h1>\n          <ion-item lines=\"full\">\n            <!-- <ion-label position=\"floating\">Password</ion-label> -->\n            <ion-input\n              autocomplete=\"on\"\n              type=\"text\"\n              name=\"password\"\n              style=\"margin-bottom: 0%; color: blueviolet\"\n              minlength=\"6\"\n              formControlName=\"password\"\n              style=\"background-color: slateblue; opacity: 0.3\"\n            ></ion-input>\n          </ion-item>\n          <ion-item lines=\"full\">\n            <!-- <ion-label position=\"floating\">Password</ion-label> -->\n            <ion-input\n              autocomplete=\"on\"\n              type=\"text\"\n              placeholder=\"Expiry Date e.g: xx/xx\"\n              name=\"password\"\n              style=\"margin-bottom: 0%; color: blueviolet; margin-right: 10px\"\n              minlength=\"5\"\n              maxlength=\"5\"\n              formControlName=\"password\"\n              style=\"background-color: slateblue; opacity: 0.3; display: flex\"\n            ></ion-input>\n            <ion-input\n              autocomplete=\"on\"\n              type=\"password\"\n              placeholder=\"CVV e.g: xxx\"\n              name=\"password\"\n              style=\"margin-bottom: 0%; color: blueviolet\"\n              minlength=\"3\"\n              maxlength=\"3\"\n              formControlName=\"password\"\n              style=\"background-color: slateblue; opacity: 0.3; display: flex\"\n            ></ion-input>\n          </ion-item>\n          <div\n            *ngIf=\"isSubmitted && errorControl.password.errors\"\n            class=\"error ion-padding\"\n          >\n            <div *ngIf=\"errorControl.password.errors.required\">\n              Password is required\n            </div>\n            <div *ngIf=\"errorControl.password.errors.minlength\">\n              Password should be min 6 chars long.\n            </div>\n          </div>\n\n          <h1\n            style=\"\n              font-style: italic;\n              font-weight: bold;\n              font-family: monospace;\n              margin: 0%;\n            \"\n          >\n            Name on Card\n          </h1>\n          <ion-item style=\"margin-bottom: 0%\">\n            <!-- <ion-label position=\"floating\">Password</ion-label> -->\n            <ion-input\n              autocomplete=\"on\"\n              type=\"text\"\n              name=\"confirmPassword\"\n              style=\"margin-bottom: 0%; color: blueviolet\"\n              formControlName=\"confirmPassword\"\n              style=\"background-color: slateblue; opacity: 0.3\"\n            ></ion-input>\n          </ion-item>\n          <div\n            *ngIf=\"isSubmitted && errorControl.confirmPassword.errors\"\n            class=\"error ion-padding\"\n          >\n            <div *ngIf=\"errorControl.confirmPassword.errors.required\">\n              Confirm Password is required\n            </div>\n            <div *ngIf=\"errorControl.confirmPassword.errors.mustMatch\">\n              Passwords must match.\n            </div>\n          </div>\n\n          <h1\n            style=\"\n              font-style: italic;\n              font-weight: bold;\n              font-family: monospace;\n              margin: 0%;\n            \"\n          >\n            Country\n          </h1>\n          <ion-item style=\"margin-bottom: 0%\">\n            <!-- <ion-label position=\"floating\">Password</ion-label> -->\n            <ion-input\n              autocomplete=\"on\"\n              type=\"text\"\n              name=\"confirmPassword\"\n              style=\"margin-bottom: 0%; color: blueviolet\"\n              formControlName=\"confirmPassword\"\n              style=\"background-color: slateblue; opacity: 0.3\"\n            ></ion-input>\n          </ion-item>\n          <div\n            *ngIf=\"isSubmitted && errorControl.confirmPassword.errors\"\n            class=\"error ion-padding\"\n          >\n            <div *ngIf=\"errorControl.confirmPassword.errors.required\">\n              Confirm Password is required\n            </div>\n            <div *ngIf=\"errorControl.confirmPassword.errors.mustMatch\">\n              Passwords must match.\n            </div>\n          </div>\n\n          <ion-item-divider\n            class=\"dash\"\n            style=\"background-color: #1e1e1e; margin-top: 0%\"\n          >\n          </ion-item-divider>\n          <ion-row>\n            <button\n              class=\"button-54\"\n              style=\"color: slateblue; margin-top: 25px; margin-left: 300px\"\n              role=\"button\"\n            >\n              CONFIRM\n            </button>\n          </ion-row>\n        </form>\n      </ion-grid>\n    </div>\n  </ion-card>\n</ion-content>\n");
 
 /***/ }),
 
@@ -1560,7 +1824,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <ion-card>\r\n    <div\r\n      style=\"\r\n        padding-top: 25px;\r\n        padding-left: 20px;\r\n        padding-right: 20px;\r\n        padding-bottom: 25px;\r\n      \"\r\n    >\r\n      <ion-grid>\r\n        <ion-row class=\"ion-justify-content-center\">\r\n          <button\r\n            class=\"button-54\"\r\n            role=\"button\"\r\n            style=\"margin-bottom: 30px; height: 45px; padding-bottom: 25px\"\r\n            (click)=\"loginGoogle()\"\r\n          >\r\n            <!-- <ion-icon>home</ion-icon> -->\r\n            <img\r\n              src=\"../../../assets/icon/g-logo.png\"\r\n              style=\"height: 25px; width: 25px\"\r\n            />\r\n            Sign in with Google\r\n          </button>\r\n        </ion-row>\r\n\r\n        <h1 style=\"font-family: 'Staatliches', cursive; color: azure\">\r\n          CREATE ACCOUNT WITH EMAIL\r\n        </h1>\r\n        <ion-row>\r\n          <h2 style=\"font-family: monospace; margin-bottom: 0%\">\r\n            Returning user?\r\n          </h2>\r\n\r\n          <button\r\n            class=\"button-54\"\r\n            role=\"button\"\r\n            style=\"height: 25px\"\r\n            (click)=\"settingsPopover()\"\r\n          >\r\n            LOGIN\r\n          </button>\r\n        </ion-row>\r\n\r\n        <ion-item-divider\r\n          class=\"dash\"\r\n          style=\"background-color: #1e1e1e; margin-top: 0%\"\r\n        >\r\n        </ion-item-divider>\r\n        <form [formGroup]=\"ionicForm\" (ngSubmit)=\"submitForm()\" novalidate>\r\n          <h1\r\n            style=\"\r\n              font-style: italic;\r\n              font-weight: bold;\r\n              font-family: monospace;\r\n              margin: 0%;\r\n            \"\r\n          >\r\n            Email\r\n          </h1>\r\n          <ion-item>\r\n            <!-- <ion-label position=\"floating\">Email</ion-label> -->\r\n            <ion-input\r\n              formControlName=\"email\"\r\n              autocomplete=\"on\"\r\n              type=\"email\"\r\n              name=\"email\"\r\n            ></ion-input>\r\n          </ion-item>\r\n          <div\r\n            *ngIf=\"isSubmitted && errorControl.email.errors\"\r\n            class=\"error ion-padding\"\r\n          >\r\n            <div *ngIf=\"errorControl.email.errors.required\">\r\n              Email is required\r\n            </div>\r\n            <div *ngIf=\"errorControl.email.errors.valid\">\r\n              Email must be a valid email address\r\n            </div>\r\n          </div>\r\n\r\n          <h1\r\n            style=\"\r\n              font-style: italic;\r\n              font-weight: bold;\r\n              font-family: monospace;\r\n              margin: 0%;\r\n            \"\r\n          >\r\n            Password\r\n          </h1>\r\n          <ion-item lines=\"full\">\r\n            <!-- <ion-label position=\"floating\">Password</ion-label> -->\r\n            <ion-input\r\n              autocomplete=\"on\"\r\n              type=\"password\"\r\n              name=\"password\"\r\n              style=\"margin-bottom: 0%; color: blueviolet\"\r\n              minlength=\"6\"\r\n              formControlName=\"password\"\r\n            ></ion-input>\r\n          </ion-item>\r\n          <div\r\n            *ngIf=\"isSubmitted && errorControl.password.errors\"\r\n            class=\"error ion-padding\"\r\n          >\r\n            <div *ngIf=\"errorControl.password.errors.required\">\r\n              Password is required\r\n            </div>\r\n            <div *ngIf=\"errorControl.password.errors.minlength\">\r\n              Password should be min 6 chars long.\r\n            </div>\r\n          </div>\r\n\r\n          <h1\r\n            style=\"\r\n              font-style: italic;\r\n              font-weight: bold;\r\n              font-family: monospace;\r\n              margin: 0%;\r\n            \"\r\n          >\r\n            Confirm Password\r\n          </h1>\r\n          <ion-item style=\"margin-bottom: 0%\">\r\n            <!-- <ion-label position=\"floating\">Password</ion-label> -->\r\n            <ion-input\r\n              autocomplete=\"on\"\r\n              type=\"password\"\r\n              name=\"confirmPassword\"\r\n              style=\"margin-bottom: 0%; color: blueviolet\"\r\n              formControlName=\"confirmPassword\"\r\n            ></ion-input>\r\n          </ion-item>\r\n          <div\r\n            *ngIf=\"isSubmitted && errorControl.confirmPassword.errors\"\r\n            class=\"error ion-padding\"\r\n          >\r\n            <div *ngIf=\"errorControl.confirmPassword.errors.required\">\r\n              Confirm Password is required\r\n            </div>\r\n            <div *ngIf=\"errorControl.confirmPassword.errors.mustMatch\">\r\n              Passwords must match.\r\n            </div>\r\n          </div>\r\n\r\n          <ion-item-divider\r\n            class=\"dash\"\r\n            style=\"background-color: #1e1e1e; margin-top: 0%\"\r\n          >\r\n          </ion-item-divider>\r\n          <ion-row>\r\n            <button\r\n              class=\"button-54\"\r\n              style=\"color: slateblue; margin-top: 25px\"\r\n              role=\"button\"\r\n            >\r\n              SIGNUP\r\n            </button>\r\n          </ion-row>\r\n        </form>\r\n      </ion-grid>\r\n    </div>\r\n  </ion-card>\r\n</ion-content>\r\n");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <ion-card>\r\n    <div\r\n      style=\"\r\n        padding-top: 25px;\r\n        padding-left: 20px;\r\n        padding-right: 20px;\r\n        padding-bottom: 25px;\r\n      \"\r\n    >\r\n      <ion-grid>\r\n        <ion-row class=\"ion-justify-content-center\">\r\n          <button\r\n            class=\"button-54\"\r\n            role=\"button\"\r\n            style=\"margin-bottom: 30px; height: 45px; padding-bottom: 25px\"\r\n            (click)=\"loginGoogle()\"\r\n          >\r\n            <!-- <ion-icon>home</ion-icon> -->\r\n            <img\r\n              src=\"../../../assets/icon/g-logo.png\"\r\n              style=\"height: 25px; width: 25px\"\r\n            />\r\n            Sign in with Google\r\n          </button>\r\n        </ion-row>\r\n\r\n        <h1\r\n          style=\"\r\n            font-family: 'Staatliches', cursive;\r\n            color: azure;\r\n            text-align: center;\r\n            margin-top: 2px;\r\n            margin-bottom: 20px;\r\n          \"\r\n        >\r\n          CREATE ACCOUNT WITH EMAIL\r\n        </h1>\r\n        <ion-row>\r\n          <h2 style=\"font-family: monospace; margin-bottom: 0%\">\r\n            Returning user?\r\n          </h2>\r\n\r\n          <button\r\n            class=\"button-54\"\r\n            role=\"button\"\r\n            style=\"height: 25px; color: slateblue; margin: 15px 0px 10px 80px\"\r\n            (click)=\"settingsPopover()\"\r\n          >\r\n            LOGIN\r\n          </button>\r\n        </ion-row>\r\n\r\n        <ion-item-divider\r\n          class=\"dash\"\r\n          style=\"background-color: #1e1e1e; margin-top: 0%\"\r\n        >\r\n        </ion-item-divider>\r\n        <form [formGroup]=\"ionicForm\" (ngSubmit)=\"submitForm()\" novalidate>\r\n          <h1\r\n            style=\"\r\n              font-style: italic;\r\n              font-weight: bold;\r\n              font-family: monospace;\r\n              margin: 0%;\r\n            \"\r\n          >\r\n            Email\r\n          </h1>\r\n          <ion-item>\r\n            <!-- <ion-label position=\"floating\">Email</ion-label> -->\r\n            <ion-input\r\n              formControlName=\"email\"\r\n              autocomplete=\"on\"\r\n              type=\"email\"\r\n              name=\"email\"\r\n              style=\"background-color: slateblue; opacity: 0.3\"\r\n            ></ion-input>\r\n          </ion-item>\r\n          <div\r\n            *ngIf=\"isSubmitted && errorControl.email.errors\"\r\n            class=\"error ion-padding\"\r\n          >\r\n            <div *ngIf=\"errorControl.email.errors.required\">\r\n              Email is required\r\n            </div>\r\n            <div *ngIf=\"errorControl.email.errors.valid\">\r\n              Email must be a valid email address\r\n            </div>\r\n          </div>\r\n\r\n          <h1\r\n            style=\"\r\n              font-style: italic;\r\n              font-weight: bold;\r\n              font-family: monospace;\r\n              margin: 0%;\r\n            \"\r\n          >\r\n            Password\r\n          </h1>\r\n          <ion-item lines=\"full\">\r\n            <!-- <ion-label position=\"floating\">Password</ion-label> -->\r\n            <ion-input\r\n              autocomplete=\"on\"\r\n              type=\"password\"\r\n              name=\"password\"\r\n              style=\"margin-bottom: 0%; color: blueviolet\"\r\n              minlength=\"6\"\r\n              formControlName=\"password\"\r\n              style=\"background-color: slateblue; opacity: 0.3\"\r\n            ></ion-input>\r\n          </ion-item>\r\n          <div\r\n            *ngIf=\"isSubmitted && errorControl.password.errors\"\r\n            class=\"error ion-padding\"\r\n          >\r\n            <div *ngIf=\"errorControl.password.errors.required\">\r\n              Password is required\r\n            </div>\r\n            <div *ngIf=\"errorControl.password.errors.minlength\">\r\n              Password should be min 6 chars long.\r\n            </div>\r\n          </div>\r\n\r\n          <h1\r\n            style=\"\r\n              font-style: italic;\r\n              font-weight: bold;\r\n              font-family: monospace;\r\n              margin: 0%;\r\n            \"\r\n          >\r\n            Confirm Password\r\n          </h1>\r\n          <ion-item style=\"margin-bottom: 0%\">\r\n            <!-- <ion-label position=\"floating\">Password</ion-label> -->\r\n            <ion-input\r\n              autocomplete=\"on\"\r\n              type=\"password\"\r\n              name=\"confirmPassword\"\r\n              style=\"margin-bottom: 0%; color: blueviolet\"\r\n              formControlName=\"confirmPassword\"\r\n              style=\"background-color: slateblue; opacity: 0.3\"\r\n            ></ion-input>\r\n          </ion-item>\r\n          <div\r\n            *ngIf=\"isSubmitted && errorControl.confirmPassword.errors\"\r\n            class=\"error ion-padding\"\r\n          >\r\n            <div *ngIf=\"errorControl.confirmPassword.errors.required\">\r\n              Confirm Password is required\r\n            </div>\r\n            <div *ngIf=\"errorControl.confirmPassword.errors.mustMatch\">\r\n              Passwords must match.\r\n            </div>\r\n          </div>\r\n\r\n          <ion-item-divider\r\n            class=\"dash\"\r\n            style=\"background-color: #1e1e1e; margin-top: 0%\"\r\n          >\r\n          </ion-item-divider>\r\n          <ion-row>\r\n            <button\r\n              class=\"button-54\"\r\n              style=\"color: slateblue; margin-top: 25px; margin-left: 300px\"\r\n              role=\"button\"\r\n            >\r\n              SIGNUP\r\n            </button>\r\n          </ion-row>\r\n        </form>\r\n      </ion-grid>\r\n    </div>\r\n  </ion-card>\r\n</ion-content>\r\n");
 
 /***/ }),
 
