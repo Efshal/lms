@@ -24,13 +24,22 @@
           </button>
         </ion-row>
 
-        <h1 style="font-family: 'Staatliches', cursive; color: azure">LOGIN</h1>
+        <h1
+          style="
+            font-family: 'Staatliches', cursive;
+            color: azure;
+            text-align: center;
+            margin-top: 1px;
+            margin-bottom: 10px;
+          "
+        >
+          Log in To Continue
+        </h1>
         <ion-row>
           <h2 style="font-family: monospace; margin-bottom: 0%">No Account?</h2>
-
           <button
             class="button-54"
-            style="height: 25px"
+            style="height: 25px; color: slateblue; margin: 15px 20px 10px 120px"
             role="button"
             (click)="settingsPopover()"
           >
@@ -61,6 +70,7 @@
               autocomplete="on"
               type="email"
               name="email"
+              style="background-color: slateblue; opacity: 0.3"
             ></ion-input>
           </ion-item>
           <div
@@ -93,6 +103,7 @@
               style="margin-bottom: 0%; color: blueviolet"
               minlength="6"
               formControlName="password"
+              style="background-color: slateblue; opacity: 0.3"
             ></ion-input>
           </ion-item>
           <div
@@ -115,7 +126,12 @@
           <ion-row>
             <button
               class="button-54"
-              style="color: slateblue; margin-top: 25px"
+              style="
+                color: slateblue;
+                margin-top: 25px;
+                text-align: center;
+                margin-left: 300px;
+              "
               role="button"
             >
               Login
