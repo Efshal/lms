@@ -56,6 +56,7 @@ export class RegistrationComponent implements OnInit {
       return false;
     } else {
       console.log(this.ionicForm.value);
+      this.registerUser()
     }
   }
 
@@ -101,7 +102,13 @@ export class RegistrationComponent implements OnInit {
 
   async loginGoogle() {
     await this.authService.googleLogin();
-    const respone = await this.authService.getInfo();
-    console.log(respone.uid);
+  }
+
+  async registerUser(){
+   const register=await this.authService.emailSignup(this.ionicForm.value.email,this.ionicForm.value.password)
+   console.log(register)
+   if(register['message']){
+    window.alert(register['message'])
+  }
   }
 }
