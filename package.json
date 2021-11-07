@@ -29,6 +29,7 @@
     "@capacitor/keyboard": "1.1.2",
     "@capacitor/status-bar": "1.0.5",
     "@ionic/angular": "^5.5.2",
+    "@types/stripe-v3": "^3.1.26",
     "bootstrap": "^5.1.1",
     "contentful": "^9.1.4",
     "d3": "^7.1.1",
@@ -36,6 +37,8 @@
     "marked": "^3.0.8",
     "rxjs": "~6.6.0",
     "rxjs-compat": "^6.6.7",
+    "stripe": "^8.186.1",
+    "stripe-angular": "^1.7.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },
