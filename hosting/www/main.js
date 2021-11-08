@@ -143,7 +143,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 64762);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 37716);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/platform-browser */ 39075);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/router */ 39895);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/router */ 39895);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/angular */ 80476);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app.component */ 55041);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app-routing.module */ 90158);
@@ -159,6 +159,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common/http */ 91841);
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/platform-browser/animations */ 75835);
 /* harmony import */ var _services_contentful_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./services/contentful.service */ 59254);
+/* harmony import */ var stripe_angular__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! stripe-angular */ 35252);
+
 
 
 
@@ -199,9 +201,10 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([
             _angular_fire__WEBPACK_IMPORTED_MODULE_14__.AngularFireModule,
             _angular_fire_auth__WEBPACK_IMPORTED_MODULE_17__.AngularFireAuthModule,
             _components_components_module__WEBPACK_IMPORTED_MODULE_2__.ComponentsModule,
+            stripe_angular__WEBPACK_IMPORTED_MODULE_18__.StripeModule.forRoot("")
         ],
         providers: [
-            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_18__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_11__.IonicRouteStrategy },
+            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_19__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_11__.IonicRouteStrategy },
             _services_firebase_video_service__WEBPACK_IMPORTED_MODULE_3__.FirebaseVideoService,
             _services_auth_service__WEBPACK_IMPORTED_MODULE_4__.AuthService,
             _services_contentful_service__WEBPACK_IMPORTED_MODULE_6__.ContentfulService,
@@ -269,10 +272,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 64762);
 /* harmony import */ var _raw_loader_header_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./header.component.html */ 97911);
 /* harmony import */ var _header_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header.component.scss */ 64993);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 37716);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 37716);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 80476);
-/* harmony import */ var src_app_shared_payment_payment_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/payment/payment.component */ 92208);
-/* harmony import */ var src_app_shared_registration_registration_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/shared/registration/registration.component */ 11388);
+/* harmony import */ var src_app_shared_registration_registration_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/shared/registration/registration.component */ 11388);
+/* harmony import */ var src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/auth.service */ 37556);
+/* harmony import */ var _angular_fire_functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/fire/functions */ 19486);
+/* harmony import */ var stripe_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! stripe-angular */ 35252);
+
+
 
 
 
@@ -282,12 +289,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let HeaderComponent = class HeaderComponent {
-    constructor(popoverController, modalController) {
+    constructor(popoverController, modalController, authService, afFun, stripeScriptTag) {
         this.popoverController = popoverController;
         this.modalController = modalController;
+        this.authService = authService;
+        this.afFun = afFun;
+        this.stripeScriptTag = stripeScriptTag;
         this.dropdown = false;
+        if (!this.stripeScriptTag.StripeInstance) {
+            this.stripeScriptTag.setPublishableKey('pk_test_51JssCMSHoIau0eIW0F0Ojtsp4QJgEBIuFejhESLQ7nsGlAJkwLYZmkrL3fcN4weJgY5wndqvtdzDOCNmuqjZzeuZ007H2Mgvxv');
+        }
     }
-    ngOnInit() { }
+    ngOnInit() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
+            console.log("oninint");
+            const user = yield this.authService.getInfo();
+            console.log(user);
+            this.uid = user.uid;
+            console.log("hello", this.uid);
+        });
+    }
     hideDropdown(event) {
         const xTouch = event.clientX;
         const yTouch = event.clientY;
@@ -305,7 +326,7 @@ let HeaderComponent = class HeaderComponent {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
             const siteInfo = { id: 1, name: 'edupala' };
             const popover = yield this.popoverController.create({
-                component: src_app_shared_registration_registration_component__WEBPACK_IMPORTED_MODULE_3__.RegistrationComponent,
+                component: src_app_shared_registration_registration_component__WEBPACK_IMPORTED_MODULE_2__.RegistrationComponent,
                 cssClass: 'contact-popover',
                 // componentProps: {
                 //   site: siteInfo,
@@ -321,31 +342,49 @@ let HeaderComponent = class HeaderComponent {
     }
     paymentPopover() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__awaiter)(this, void 0, void 0, function* () {
-            const popover = yield this.popoverController.create({
-                component: src_app_shared_payment_payment_component__WEBPACK_IMPORTED_MODULE_2__.PaymentComponent,
-                cssClass: 'contact-popover',
-                // componentProps: {
-                //   site: siteInfo,
-                // },
-                // translucent: true,
-            });
-            // popover.onDidDismiss().then((result) => {
-            //   console.log(result.data);
+            // const popover = await this.popoverController.create({
+            //   component: PaymentComponent,
+            //   cssClass: 'contact-popover',
+            //   // componentProps: {
+            //   //   site: siteInfo,
+            //   // },
+            //   // translucent: true,
             // });
-            return yield popover.present();
-            /** Sync event from popover component */
+            // // popover.onDidDismiss().then((result) => {
+            // //   console.log(result.data);
+            // // });
+            // return await popover.present();
+            // /** Sync event from popover component */
+            const user = yield this.authService.getInfo();
+            console.log(user);
+            this.uid = user.uid;
+            console.log("hello", this.uid);
+            console.log('checking out with item id: ' + this.uid);
+            // var stripe = Stripe(environment.stripe.key);
+            this.afFun.httpsCallable("stripeCheckoutWithoutDbQueries")({ id: this.uid })
+                .subscribe(result => {
+                console.log({ result });
+                this.stripeScriptTag.StripeInstance.redirectToCheckout({
+                    sessionId: result,
+                }).then(function (result) {
+                    console.log(result.error.message);
+                });
+            });
         });
     }
 };
 HeaderComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.PopoverController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ModalController }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.ModalController },
+    { type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_3__.AuthService },
+    { type: _angular_fire_functions__WEBPACK_IMPORTED_MODULE_6__.AngularFireFunctions },
+    { type: stripe_angular__WEBPACK_IMPORTED_MODULE_7__.StripeScriptTag }
 ];
 HeaderComponent.propDecorators = {
-    productbtn: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.ViewChild, args: ['productbtn', { read: _angular_core__WEBPACK_IMPORTED_MODULE_6__.ElementRef },] }]
+    productbtn: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_8__.ViewChild, args: ['productbtn', { read: _angular_core__WEBPACK_IMPORTED_MODULE_8__.ElementRef },] }]
 };
 HeaderComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Component)({
         selector: 'app-header',
         template: _raw_loader_header_component_html__WEBPACK_IMPORTED_MODULE_0__.default,
         styles: [_header_component_scss__WEBPACK_IMPORTED_MODULE_1__.default]
@@ -529,9 +568,30 @@ let AuthService = class AuthService {
     getInfo() {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
             console.log('here at authh');
-            const user = yield firebase_app__WEBPACK_IMPORTED_MODULE_0___default().auth().currentUser;
-            console.log(user.uid);
-            return user;
+            const user = firebase_app__WEBPACK_IMPORTED_MODULE_0___default().auth().currentUser;
+            if (user) {
+                console.log(user);
+                return user;
+            }
+            else {
+                console.log("null");
+                return null;
+            }
+        });
+    }
+    loginInfo() {
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__awaiter)(this, void 0, void 0, function* () {
+            console.log('loginn');
+            firebase_app__WEBPACK_IMPORTED_MODULE_0___default().auth().onAuthStateChanged((user) => {
+                if (user) {
+                    console.log(user);
+                    return user;
+                }
+                else {
+                    console.log("none");
+                    return null;
+                }
+            });
         });
     }
     checkUser(uid) {
@@ -592,6 +652,7 @@ let AuthService = class AuthService {
                 .then(value => {
                 console.log('Nice, it worked!');
                 result = value;
+                this.getInfo();
             })
                 .catch(err => {
                 console.log('Something went wrong: ', err.message);
@@ -986,148 +1047,6 @@ const mustMatch = (controlName, matchingControlName) => (formGroup) => {
 
 /***/ }),
 
-/***/ 92208:
-/*!*****************************************************!*\
-  !*** ./src/app/shared/payment/payment.component.ts ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "PaymentComponent": () => (/* binding */ PaymentComponent)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 64762);
-/* harmony import */ var _raw_loader_payment_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !raw-loader!./payment.component.html */ 67311);
-/* harmony import */ var _payment_component_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./payment.component.scss */ 4777);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 37716);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 39895);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 80476);
-/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/auth.service */ 37556);
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../login/login.component */ 32282);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 3679);
-/* harmony import */ var _must_match_validator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../must-match.validator */ 54518);
-
-
-
-
-
-
-
-
-
-
-let PaymentComponent = class PaymentComponent {
-    constructor(authService, router, popoverController, modalController, formBuilder) {
-        this.authService = authService;
-        this.router = router;
-        this.popoverController = popoverController;
-        this.modalController = modalController;
-        this.formBuilder = formBuilder;
-        this.dropdown = false;
-    }
-    ngOnInit() {
-        this.ionicForm = this.formBuilder.group({
-            email: [
-                '',
-                [
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required,
-                    _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$'),
-                ],
-            ],
-            password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.minLength(6)]],
-            confirmPassword: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required]],
-        }, {
-            validator: (0,_must_match_validator__WEBPACK_IMPORTED_MODULE_4__.mustMatch)('password', 'confirmPassword'),
-        });
-    }
-    get errorControl() {
-        return this.ionicForm.controls;
-    }
-    submitForm() {
-        this.isSubmitted = true;
-        if (!this.ionicForm.valid) {
-            console.log('Please provide all the required values!');
-            return false;
-        }
-        else {
-            console.log(this.ionicForm.value);
-            this.registerUser();
-        }
-    }
-    hideDropdown(event) {
-        const xTouch = event.clientX;
-        const yTouch = event.clientY;
-        const rect = this.productbtn.nativeElement.getBoundingClientRect();
-        const topBoundary = rect.top + 2;
-        const leftBoundary = rect.left + 2;
-        const rightBoundary = rect.right - 2;
-        if (xTouch < leftBoundary ||
-            xTouch > rightBoundary ||
-            yTouch < topBoundary) {
-            this.dropdown = false;
-        }
-    }
-    settingsPopover() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
-            this.dismissClick();
-            const popover = yield this.popoverController.create({
-                component: _login_login_component__WEBPACK_IMPORTED_MODULE_3__.LoginComponent,
-                cssClass: 'contact-popover',
-                // componentProps: {
-                //   site: siteInfo,
-                // },
-                // translucent: true,
-            });
-            // popover.onDidDismiss().then((result) => {
-            //   console.log(result.data);
-            // });
-            return yield popover.present();
-            /** Sync event from popover component */
-        });
-    }
-    dismissClick() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
-            yield this.popoverController.dismiss();
-        });
-    }
-    loginGoogle() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
-            yield this.authService.googleLogin();
-        });
-    }
-    registerUser() {
-        return (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, function* () {
-            const register = yield this.authService.emailSignup(this.ionicForm.value.email, this.ionicForm.value.password);
-            console.log(register);
-            if (register['message']) {
-                window.alert(register['message']);
-            }
-        });
-    }
-};
-PaymentComponent.ctorParameters = () => [
-    { type: _services_auth_service__WEBPACK_IMPORTED_MODULE_2__.AuthService },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.Router },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.PopoverController },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.ModalController },
-    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormBuilder }
-];
-PaymentComponent.propDecorators = {
-    productbtn: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_9__.ViewChild, args: ['productbtn', { read: _angular_core__WEBPACK_IMPORTED_MODULE_9__.ElementRef },] }]
-};
-PaymentComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
-        selector: 'app-payment',
-        template: _raw_loader_payment_component_html__WEBPACK_IMPORTED_MODULE_0__.default,
-        styles: [_payment_component_scss__WEBPACK_IMPORTED_MODULE_1__.default]
-    })
-], PaymentComponent);
-
-
-
-/***/ }),
-
 /***/ 11388:
 /*!***************************************************************!*\
   !*** ./src/app/shared/registration/registration.component.ts ***!
@@ -1344,6 +1263,9 @@ const environment = {
     contentful: {
         spaceId: 'u7opxkb285ma',
         token: '71qHFK6AYpVp6yxT6hKAqcuDuqp1yTw741VXDi1-AKo',
+    },
+    stripe: {
+        key: 'pk_test_51JssCMSHoIau0eIW0F0Ojtsp4QJgEBIuFejhESLQ7nsGlAJkwLYZmkrL3fcN4weJgY5wndqvtdzDOCNmuqjZzeuZ007H2Mgvxv'
     },
 };
 /*
@@ -1693,21 +1615,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 4777:
-/*!*******************************************************!*\
-  !*** ./src/app/shared/payment/payment.component.scss ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("ion-card {\n  display: flex;\n  flex-direction: column;\n  width: 100% !important;\n  margin: 0 !important;\n}\n\n/* CSS */\n\n.button-54 {\n  font-family: \"TransRobotics\";\n  font-size: 16px;\n  letter-spacing: 2px;\n  text-decoration: none;\n  text-transform: uppercase;\n  color: #000;\n  cursor: pointer;\n  border: 3px solid;\n  padding: 0.25em 0.5em;\n  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;\n  position: relative;\n  user-select: none;\n  -webkit-user-select: none;\n  touch-action: manipulation;\n  background-color: white;\n}\n\n.button-54:active {\n  box-shadow: 0px 0px 0px 0px;\n  top: 5px;\n  left: 5px;\n}\n\n@media (min-width: 768px) {\n  .button-54 {\n    padding: 0.25em 0.75em;\n  }\n}\n\nion-input {\n  padding: 0;\n  font-size: 0.9em;\n  font-family: monospace;\n  --background: #1e1e1e !important;\n  /* height: 10%; */\n  /* width: 41%; */\n  max-width: 50vw;\n  max-height: 10vh;\n}\n\nion-input:active {\n  --background: #1e1e1e !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBheW1lbnQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxzQkFBQTtFQUNBLG9CQUFBO0FBQ0Y7O0FBRUEsUUFBQTs7QUFDQTtFQUNFLDRCQUFBO0VBRUEsZUFBQTtFQUNBLG1CQUFBO0VBQ0EscUJBQUE7RUFDQSx5QkFBQTtFQUNBLFdBQUE7RUFDQSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxxQkFBQTtFQUNBLCtGQUFBO0VBRUEsa0JBQUE7RUFDQSxpQkFBQTtFQUNBLHlCQUFBO0VBQ0EsMEJBQUE7RUFDQSx1QkFBQTtBQURGOztBQUlBO0VBQ0UsMkJBQUE7RUFDQSxRQUFBO0VBQ0EsU0FBQTtBQURGOztBQUlBO0VBQ0U7SUFDRSxzQkFBQTtFQURGO0FBQ0Y7O0FBR0E7RUFDRSxVQUFBO0VBQ0EsZ0JBQUE7RUFDQSxzQkFBQTtFQUNBLGdDQUFBO0VBQ0EsaUJBQUE7RUFDQSxnQkFBQTtFQUNBLGVBQUE7RUFDQSxnQkFBQTtBQURGOztBQUlBO0VBQ0UsZ0NBQUE7QUFERiIsImZpbGUiOiJwYXltZW50LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaW9uLWNhcmQge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICB3aWR0aDogMTAwJSAhaW1wb3J0YW50O1xyXG4gIG1hcmdpbjogMCAhaW1wb3J0YW50O1xyXG59XHJcblxyXG4vKiBDU1MgKi9cclxuLmJ1dHRvbi01NCB7XHJcbiAgZm9udC1mYW1pbHk6IFwiVHJhbnNSb2JvdGljc1wiO1xyXG5cclxuICBmb250LXNpemU6IDE2cHg7XHJcbiAgbGV0dGVyLXNwYWNpbmc6IDJweDtcclxuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XHJcbiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcclxuICBjb2xvcjogIzAwMDtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgYm9yZGVyOiAzcHggc29saWQ7XHJcbiAgcGFkZGluZzogMC4yNWVtIDAuNWVtO1xyXG4gIGJveC1zaGFkb3c6IDFweCAxcHggMHB4IDBweCwgMnB4IDJweCAwcHggMHB4LCAzcHggM3B4IDBweCAwcHgsIDRweCA0cHggMHB4IDBweCxcclxuICAgIDVweCA1cHggMHB4IDBweDtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgdXNlci1zZWxlY3Q6IG5vbmU7XHJcbiAgLXdlYmtpdC11c2VyLXNlbGVjdDogbm9uZTtcclxuICB0b3VjaC1hY3Rpb246IG1hbmlwdWxhdGlvbjtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcclxufVxyXG5cclxuLmJ1dHRvbi01NDphY3RpdmUge1xyXG4gIGJveC1zaGFkb3c6IDBweCAwcHggMHB4IDBweDtcclxuICB0b3A6IDVweDtcclxuICBsZWZ0OiA1cHg7XHJcbn1cclxuXHJcbkBtZWRpYSAobWluLXdpZHRoOiA3NjhweCkge1xyXG4gIC5idXR0b24tNTQge1xyXG4gICAgcGFkZGluZzogMC4yNWVtIDAuNzVlbTtcclxuICB9XHJcbn1cclxuaW9uLWlucHV0IHtcclxuICBwYWRkaW5nOiAwO1xyXG4gIGZvbnQtc2l6ZTogMC45ZW07XHJcbiAgZm9udC1mYW1pbHk6IG1vbm9zcGFjZTtcclxuICAtLWJhY2tncm91bmQ6ICMxZTFlMWUgIWltcG9ydGFudDtcclxuICAvKiBoZWlnaHQ6IDEwJTsgKi9cclxuICAvKiB3aWR0aDogNDElOyAqL1xyXG4gIG1heC13aWR0aDogNTB2dzsgLy8gdGhpcyBpcyBhcHBseWluZyBwZXJmZWN0bHlcclxuICBtYXgtaGVpZ2h0OiAxMHZoO1xyXG59XHJcblxyXG5pb24taW5wdXQ6YWN0aXZlIHtcclxuICAtLWJhY2tncm91bmQ6ICMxZTFlMWUgIWltcG9ydGFudDtcclxufVxyXG4iXX0= */");
-
-/***/ }),
-
 /***/ 1335:
 /*!*****************************************************************!*\
   !*** ./src/app/shared/registration/registration.component.scss ***!
@@ -1795,21 +1702,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\r\n  <ion-card>\r\n    <div\r\n      style=\"\r\n        padding-top: 30px;\r\n        padding-left: 20px;\r\n        padding-right: 20px;\r\n        padding-bottom: 30px;\r\n      \"\r\n    >\r\n      <ion-grid>\r\n        <ion-row class=\"ion-justify-content-center\">\r\n          <button\r\n            class=\"button-54\"\r\n            role=\"button\"\r\n            style=\"margin-bottom: 30px; height: 45px; padding-bottom: 25px\"\r\n            (click)=\"loginGoogle()\"\r\n          >\r\n            <img\r\n              src=\"../../../assets/icon/g-logo.png\"\r\n              style=\"height: 25px; width: 25px\"\r\n            />\r\n            Sign in with Google\r\n          </button>\r\n        </ion-row>\r\n\r\n        <h1\r\n          style=\"\r\n            font-family: 'Staatliches', cursive;\r\n            color: azure;\r\n            text-align: center;\r\n            margin-top: 1px;\r\n            margin-bottom: 10px;\r\n          \"\r\n        >\r\n          Log in To Continue\r\n        </h1>\r\n        <ion-row>\r\n          <h2 style=\"font-family: monospace; margin-bottom: 0%\">No Account?</h2>\r\n          <button\r\n            class=\"button-54\"\r\n            style=\"height: 25px; color: slateblue; margin: 15px 20px 10px 120px\"\r\n            role=\"button\"\r\n            (click)=\"settingsPopover()\"\r\n          >\r\n            SignUp\r\n          </button>\r\n        </ion-row>\r\n\r\n        <ion-item-divider\r\n          class=\"dash\"\r\n          style=\"background-color: #1e1e1e; margin-top: 0%\"\r\n        >\r\n        </ion-item-divider>\r\n        <form [formGroup]=\"ionicForm\" (ngSubmit)=\"submitForm()\" novalidate>\r\n          <h1\r\n            style=\"\r\n              font-style: italic;\r\n              font-weight: bold;\r\n              font-family: monospace;\r\n              margin-top: 0%;\r\n            \"\r\n          >\r\n            Email\r\n          </h1>\r\n          <ion-item>\r\n            <!-- <ion-label position=\"floating\">Email</ion-label> -->\r\n            <ion-input\r\n              formControlName=\"email\"\r\n              autocomplete=\"on\"\r\n              type=\"email\"\r\n              name=\"email\"\r\n              style=\"background-color: slateblue; opacity: 0.3\"\r\n            ></ion-input>\r\n          </ion-item>\r\n          <div\r\n            *ngIf=\"isSubmitted && errorControl.email.errors\"\r\n            class=\"error ion-padding\"\r\n          >\r\n            <div *ngIf=\"errorControl.email.errors.required\">\r\n              Email is required\r\n            </div>\r\n            <div *ngIf=\"errorControl.email.errors.valid\">\r\n              Email must be a valid email address\r\n            </div>\r\n          </div>\r\n          <h1\r\n            style=\"\r\n              font-style: italic;\r\n              font-weight: bold;\r\n              font-family: monospace;\r\n              margin-top: 0%;\r\n            \"\r\n          >\r\n            Password\r\n          </h1>\r\n          <ion-item lines=\"full\">\r\n            <!-- <ion-label position=\"floating\">Password</ion-label> -->\r\n            <ion-input\r\n              autocomplete=\"on\"\r\n              type=\"password\"\r\n              name=\"password\"\r\n              style=\"margin-bottom: 0%; color: blueviolet\"\r\n              minlength=\"6\"\r\n              formControlName=\"password\"\r\n              style=\"background-color: slateblue; opacity: 0.3\"\r\n            ></ion-input>\r\n          </ion-item>\r\n          <div\r\n            *ngIf=\"isSubmitted && errorControl.password.errors\"\r\n            class=\"error ion-padding\"\r\n          >\r\n            <div *ngIf=\"errorControl.password.errors.required\">\r\n              Password is required\r\n            </div>\r\n            <div *ngIf=\"errorControl.password.errors.minlength\">\r\n              Password should be min 6 chars long.\r\n            </div>\r\n          </div>\r\n\r\n          <ion-item-divider\r\n            class=\"dash\"\r\n            style=\"background-color: #1e1e1e; margin-top: 0%\"\r\n          >\r\n          </ion-item-divider>\r\n          <ion-row>\r\n            <button\r\n              class=\"button-54\"\r\n              style=\"\r\n                color: slateblue;\r\n                margin-top: 25px;\r\n                text-align: center;\r\n                margin-left: 300px;\r\n              \"\r\n              role=\"button\"\r\n            >\r\n              Login\r\n            </button>\r\n          </ion-row>\r\n        </form>\r\n      </ion-grid>\r\n    </div>\r\n  </ion-card>\r\n</ion-content>\r\n");
-
-/***/ }),
-
-/***/ 67311:
-/*!*********************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/shared/payment/payment.component.html ***!
-  \*********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("<ion-content>\n  <ion-card>\n    <div\n      style=\"\n        padding-top: 5px;\n        padding-left: 2px;\n        padding-right: 2px;\n        padding-bottom: 5px;\n      \"\n    >\n      <ion-grid>\n        <ion-row class=\"ion-justify-content-center\">\n          <img\n            src=\"../../../assets/images/stripebanner.PNG\"\n            style=\"height: 150px; width: 100%\"\n          />\n        </ion-row>\n\n        <h1\n          style=\"\n            font-family: 'Staatliches', cursive;\n            color: azure;\n            text-align: center;\n            margin-top: 20px;\n          \"\n        >\n          Enter Your Payment Details\n        </h1>\n\n        <ion-item-divider class=\"dash\" style=\"background-color: #1e1e1e\">\n        </ion-item-divider>\n        <form [formGroup]=\"ionicForm\" (ngSubmit)=\"submitForm()\" novalidate>\n          <h1\n            style=\"\n              font-style: italic;\n              font-weight: bold;\n              font-family: monospace;\n              margin: 0%;\n            \"\n          >\n            Email\n          </h1>\n          <ion-item>\n            <!-- <ion-label position=\"floating\">Email</ion-label> -->\n            <ion-input\n              formControlName=\"email\"\n              autocomplete=\"on\"\n              type=\"email\"\n              name=\"email\"\n              style=\"background-color: slateblue; opacity: 0.3\"\n            ></ion-input>\n          </ion-item>\n          <div\n            *ngIf=\"isSubmitted && errorControl.email.errors\"\n            class=\"error ion-padding\"\n          >\n            <div *ngIf=\"errorControl.email.errors.required\">\n              Email is required\n            </div>\n            <div *ngIf=\"errorControl.email.errors.valid\">\n              Email must be a valid email address\n            </div>\n          </div>\n\n          <h1\n            style=\"\n              font-style: italic;\n              font-weight: bold;\n              font-family: monospace;\n              margin: 0%;\n            \"\n          >\n            Card Information\n          </h1>\n          <ion-item lines=\"full\">\n            <!-- <ion-label position=\"floating\">Password</ion-label> -->\n            <ion-input\n              autocomplete=\"on\"\n              type=\"text\"\n              name=\"password\"\n              style=\"margin-bottom: 0%; color: blueviolet\"\n              minlength=\"6\"\n              formControlName=\"password\"\n              style=\"background-color: slateblue; opacity: 0.3\"\n            ></ion-input>\n          </ion-item>\n          <ion-item lines=\"full\">\n            <!-- <ion-label position=\"floating\">Password</ion-label> -->\n            <ion-input\n              autocomplete=\"on\"\n              type=\"text\"\n              placeholder=\"Expiry Date e.g: xx/xx\"\n              name=\"password\"\n              style=\"margin-bottom: 0%; color: blueviolet; margin-right: 10px\"\n              minlength=\"5\"\n              maxlength=\"5\"\n              formControlName=\"password\"\n              style=\"background-color: slateblue; opacity: 0.3; display: flex\"\n            ></ion-input>\n            <ion-input\n              autocomplete=\"on\"\n              type=\"password\"\n              placeholder=\"CVV e.g: xxx\"\n              name=\"password\"\n              style=\"margin-bottom: 0%; color: blueviolet\"\n              minlength=\"3\"\n              maxlength=\"3\"\n              formControlName=\"password\"\n              style=\"background-color: slateblue; opacity: 0.3; display: flex\"\n            ></ion-input>\n          </ion-item>\n          <div\n            *ngIf=\"isSubmitted && errorControl.password.errors\"\n            class=\"error ion-padding\"\n          >\n            <div *ngIf=\"errorControl.password.errors.required\">\n              Password is required\n            </div>\n            <div *ngIf=\"errorControl.password.errors.minlength\">\n              Password should be min 6 chars long.\n            </div>\n          </div>\n\n          <h1\n            style=\"\n              font-style: italic;\n              font-weight: bold;\n              font-family: monospace;\n              margin: 0%;\n            \"\n          >\n            Name on Card\n          </h1>\n          <ion-item style=\"margin-bottom: 0%\">\n            <!-- <ion-label position=\"floating\">Password</ion-label> -->\n            <ion-input\n              autocomplete=\"on\"\n              type=\"text\"\n              name=\"confirmPassword\"\n              style=\"margin-bottom: 0%; color: blueviolet\"\n              formControlName=\"confirmPassword\"\n              style=\"background-color: slateblue; opacity: 0.3\"\n            ></ion-input>\n          </ion-item>\n          <div\n            *ngIf=\"isSubmitted && errorControl.confirmPassword.errors\"\n            class=\"error ion-padding\"\n          >\n            <div *ngIf=\"errorControl.confirmPassword.errors.required\">\n              Confirm Password is required\n            </div>\n            <div *ngIf=\"errorControl.confirmPassword.errors.mustMatch\">\n              Passwords must match.\n            </div>\n          </div>\n\n          <h1\n            style=\"\n              font-style: italic;\n              font-weight: bold;\n              font-family: monospace;\n              margin: 0%;\n            \"\n          >\n            Country\n          </h1>\n          <ion-item style=\"margin-bottom: 0%\">\n            <!-- <ion-label position=\"floating\">Password</ion-label> -->\n            <ion-input\n              autocomplete=\"on\"\n              type=\"text\"\n              name=\"confirmPassword\"\n              style=\"margin-bottom: 0%; color: blueviolet\"\n              formControlName=\"confirmPassword\"\n              style=\"background-color: slateblue; opacity: 0.3\"\n            ></ion-input>\n          </ion-item>\n          <div\n            *ngIf=\"isSubmitted && errorControl.confirmPassword.errors\"\n            class=\"error ion-padding\"\n          >\n            <div *ngIf=\"errorControl.confirmPassword.errors.required\">\n              Confirm Password is required\n            </div>\n            <div *ngIf=\"errorControl.confirmPassword.errors.mustMatch\">\n              Passwords must match.\n            </div>\n          </div>\n\n          <ion-item-divider\n            class=\"dash\"\n            style=\"background-color: #1e1e1e; margin-top: 0%\"\n          >\n          </ion-item-divider>\n          <ion-row>\n            <button\n              class=\"button-54\"\n              style=\"color: slateblue; margin-top: 25px; margin-left: 300px\"\n              role=\"button\"\n            >\n              CONFIRM\n            </button>\n          </ion-row>\n        </form>\n      </ion-grid>\n    </div>\n  </ion-card>\n</ion-content>\n");
 
 /***/ }),
 
