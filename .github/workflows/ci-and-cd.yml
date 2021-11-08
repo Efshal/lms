@@ -17,8 +17,12 @@ jobs:
       - name: cd hosting2
         working-directory: ./hosting
         run: dir
-      - name: deleting old build
-        run: rmdir www
+#       - name: deleting old build
+#         run: rmdir www
+      - name: Remove File
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: /www
       - name: cd out
         run: cd ..
       - name: Setup npm package
