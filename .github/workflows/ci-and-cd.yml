@@ -36,7 +36,9 @@ jobs:
       - name: Setup npm package
         run: npm install
       - name: Build Using npm
-        run: node_modules/.bin/ionic build
+        run: |
+          dir
+          npm run build
         
 #       - name: Deploy to Firebase
 #         uses: w9jds/firebase-action@master
