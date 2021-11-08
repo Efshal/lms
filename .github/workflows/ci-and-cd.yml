@@ -39,7 +39,15 @@ jobs:
         run: |
           dir
           npm run build
-        
+      - name: moving www folder
+        run: git mv www hosting
+      - name: cd hosting2
+        working-directory: ./hosting
+        run: dir
+#       git mv common include
+# $ git rm -r common
+# $ git add include/common
+
 #       - name: Deploy to Firebase
 #         uses: w9jds/firebase-action@master
 #         with:
