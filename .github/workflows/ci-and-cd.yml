@@ -5,16 +5,18 @@ on:
   push:
     branches: [ mubashir ]
 jobs:
-  cypress-run:
+  CI-AND-CD:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./
+        working-directory: ./hosting
     steps:
       - name: Checkout
         uses: actions/checkout@v1
       - name: deleting old build
         run: rmdir www
+      - name: cd out
+        run: cd ..
       - name: Setup npm package
         run: npm install
       - name: Build Using npm
