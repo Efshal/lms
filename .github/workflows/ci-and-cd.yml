@@ -23,12 +23,17 @@ jobs:
         uses: JesseTG/rm@v1.0.2
         with:
           path: /www
+      - name: dir
+        run: dir
       - name: cd out
         run: cd ..
+      - name: dir
+        run: dir
       - name: Setup npm package
-        run: npm install
+     #   run: npm install
       - name: Build Using npm
-        run: node_modules/.bin/ionic build
+       
+    #    run: node_modules/.bin/ionic build
         
 #       - name: Deploy to Firebase
 #         uses: w9jds/firebase-action@master
