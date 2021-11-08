@@ -12,6 +12,8 @@ jobs:
         uses: actions/checkout@v1
       - name: cd hosting
         run: cd hosting
+      - name: dir
+        run: dir
       - name: deleting old build
         run: rmdir www
       - name: cd out
