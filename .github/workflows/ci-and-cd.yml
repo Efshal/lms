@@ -29,11 +29,11 @@ jobs:
         run: cd ..
       - name: dir
         run: dir
-      - name: Setup npm package
-     #   run: npm install
-      - name: Build Using npm
+#       - name: Setup npm package
+#         run: npm install
+#       - name: Build Using npm
        
-    #    run: node_modules/.bin/ionic build
+#         run: node_modules/.bin/ionic build
         
 #       - name: Deploy to Firebase
 #         uses: w9jds/firebase-action@master
