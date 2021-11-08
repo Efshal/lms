@@ -15,7 +15,7 @@ jobs:
       - name: dir
         run: dir
       - name: cd hosting2
-        run: cd /hosting
+        run: cd ./hosting
       - name: deleting old build
         run: rmdir www
       - name: cd out
