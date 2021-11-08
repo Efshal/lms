@@ -1,1 +1,29 @@
 
+name: CI & CD
+
+on:
+  push:
+    branches: [ mubashir ]
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: deleting old build
+        run: rmdir www
+      - name: Setup npm package
+        run: npm install
+      - name: Build Using npm
+        run: node_modules/.bin/ionic build
+        
+#       - name: Deploy to Firebase
+#         uses: w9jds/firebase-action@master
+#         with:
+#            args: deploy --only hosting
+#         env:
+#            FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+#            PROJECT_PATH: "./hosting"
