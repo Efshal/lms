@@ -23,7 +23,10 @@ jobs:
         uses: JesseTG/rm@v1.0.2
         with:
           path: /hosting/www
-      - name: dir
+      - name: delete
+        working-directory: ./hosting
+        run: git rm -r www
+      - name: cd hosting2
         working-directory: ./hosting
         run: dir
       - name: cd out
