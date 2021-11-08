@@ -22,8 +22,9 @@ jobs:
       - name: Remove File
         uses: JesseTG/rm@v1.0.2
         with:
-          path: /www
+          path: /hosting/www
       - name: dir
+        working-directory: ./hosting
         run: dir
       - name: cd out
         run: cd ..
