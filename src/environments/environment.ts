@@ -17,9 +17,11 @@ export const environment = {
     spaceId: 'u7opxkb285ma',
     token: '71qHFK6AYpVp6yxT6hKAqcuDuqp1yTw741VXDi1-AKo',
   },
-  stripe:{
-    key:'pk_test_51JssCMSHoIau0eIW0F0Ojtsp4QJgEBIuFejhESLQ7nsGlAJkwLYZmkrL3fcN4weJgY5wndqvtdzDOCNmuqjZzeuZ007H2Mgvxv'
+  stripe: {
+    key: 'pk_test_51JssCMSHoIau0eIW0F0Ojtsp4QJgEBIuFejhESLQ7nsGlAJkwLYZmkrL3fcN4weJgY5wndqvtdzDOCNmuqjZzeuZ007H2Mgvxv',
   },
+
+  emulator: true,
 };
 
 /*

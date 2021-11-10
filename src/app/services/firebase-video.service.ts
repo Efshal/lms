@@ -22,11 +22,9 @@ export class FirebaseVideoService {
 
   getCourse() {
     console.log('here');
-    var lessons
+    // var lessons;
     return this.firestore.collection('CourseX').snapshotChanges();
-    
   }
-
 
   setUrlFunc(url) {
     this.setUrl = url;
@@ -49,22 +47,19 @@ export class FirebaseVideoService {
     console.log(data);
     return data;
   }
-  async getTagLesson(tag:string){
-
-    const data= [];
+  async getTagLesson(tag: string) {
+    const data = [];
     const lesson = await this.firestore
       .collection('CourseX')
-      .ref.where('tags', 'array-contains',tag)
+      .ref.where('tags', 'array-contains', tag)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            console.log(doc.id, ' => ', doc.data());
-            data.push(doc.data())
+          console.log(doc.id, ' => ', doc.data());
+          data.push(doc.data());
         });
-    });
-    console.log(data)
-    return data
+      });
+    console.log(data);
+    return data;
   }
- 
-
 }

@@ -6,7 +6,13 @@ import { RegistrationComponent } from 'src/app/shared/registration/registration.
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { environment } from '../../../environments/environment';
-import { StripeScriptTag } from "stripe-angular"
+import { StripeScriptTag } from 'stripe-angular';
+import { USE_EMULATOR } from '@angular/fire/functions';
+import { HttpClient } from '@angular/common/http';
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+declare let Stripe: (arg0: string) => any;
+const stripe = Stripe(environment.stripe.key);
 
 @Component({
   selector: 'app-header',
@@ -17,27 +23,29 @@ export class HeaderComponent implements OnInit {
   @ViewChild('productbtn', { read: ElementRef }) productbtn: ElementRef;
 
   dropdown = false;
-  uid:any
-
-  
+  uid: any;
+  data: any;
+  stripeResult: any;
   constructor(
     public popoverController: PopoverController,
     public modalController: ModalController,
     private authService: AuthService,
     private afFun: AngularFireFunctions,
-    private stripeScriptTag: StripeScriptTag
+    private stripeScriptTag: StripeScriptTag,
+    private http: HttpClient
   ) {
-    if (!this.stripeScriptTag.StripeInstance) {
-      this.stripeScriptTag.setPublishableKey('pk_test_51JssCMSHoIau0eIW0F0Ojtsp4QJgEBIuFejhESLQ7nsGlAJkwLYZmkrL3fcN4weJgY5wndqvtdzDOCNmuqjZzeuZ007H2Mgvxv');
-    }
+    // if ( !this.stripeScriptTag.StripeInstance ) {
+    // eslint-disable-next-line max-len
+    //   this.stripeScriptTag.setPublishableKey( 'pk_test_51JssCMSHoIau0eIW0F0Ojtsp4QJgEBIuFejhESLQ7nsGlAJkwLYZmkrL3fcN4weJgY5wndqvtdzDOCNmuqjZzeuZ007H2Mgvxv' );
+    // }
   }
 
   async ngOnInit() {
-  console.log("oninint")
-   const user= await this.authService.getInfo();
-   console.log(user)
-    this.uid=user.uid
-    console.log("hello",this.uid)
+    console.log('oninint');
+    const user = await this.authService.getInfo();
+    console.log(user);
+    this.uid = user.uid;
+    console.log('hello', this.uid);
   }
 
   hideDropdown(event) {
@@ -88,25 +96,55 @@ export class HeaderComponent implements OnInit {
     // return await popover.present();
     // /** Sync event from popover component */
 
-    const user= await this.authService.getInfo();
-    console.log(user)
-     this.uid=user.uid
-     console.log("hello",this.uid)
-     
-     
-      console.log('checking out with item id: ' + this.uid);
-      // var stripe = Stripe(environment.stripe.key);
+    const user = await this.authService.getInfo();
+    console.log(user);
+    this.uid = user.uid;
+    console.log('hello', this.uid);
 
-      this.afFun.httpsCallable("stripeCheckoutWithoutDbQueries")({ id: this.uid })
-          .subscribe(result => {
-              console.log({ result });
+    console.log('checking out with item id: ' + this.uid);
+    // var stripe = Stripe(environment.stripe.key);
 
-              this.stripeScriptTag.StripeInstance.redirectToCheckout({
-                  sessionId: result,
-              }).then(function (result) {
-                  console.log(result.error.message);
-              });
+    this.data = {
+      uid: this.uid,
+    };
+    console.log(this.data);
+
+    this.http
+      .post(
+        'https://us-central1-scoolx-3cef4.cloudfunctions.net/stripeCheckoutWithoutDbQueries',
+        this.data
+      )
+      .subscribe(
+        async (result) => {
+          console.log('heeeloo');
+          console.log(result);
+
+          this.stripeResult = await stripe.redirectToCheckout({
+            // eslint-disable-next-line @typescript-eslint/dot-notation
+            sessionId: result['id'],
           });
-      
+          // .subscribe(
+          //   res=>{
+          //     console.log(res)
+          //   },
+          //   err=>{
+          //     console.log(err)
+          //   }
+          // )
+          console.log(this.stripeResult);
+          // .then(function (result) {
+          //     console.log("helllo")
+          //     console.log(result);
+          // })
+          // .catch(function(err){
+          //   console.log(err)
+          // })
+        },
+        (err) => {
+          console.log(err);
+          console.log(err.message);
+        }
+      );
+    console.log(this.stripeResult);
   }
 }

@@ -48,7 +48,7 @@ export class CourseOverviewPage implements OnInit {
     this.desc = this.lessonInfo.description;
     this.creator = this.lessonInfo.creator;
 
-    this.alldata = await this.contentful.loadContent('Flutter');
+    this.alldata = await this.contentful.loadLessonPreview();
     console.log(this.alldata);
     // console.log(await this.contentful.loadContent('Flutter'));
     // console.lo

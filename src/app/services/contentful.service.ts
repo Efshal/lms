@@ -30,46 +30,18 @@ export class ContentfulService {
     }));
   }
 
-  async loadContent(mainHeading: string) {
+  async loadLessonPreview() {
     const check: Fields[] = [];
     const contentRaw = await this.getContent();
+    console.log(contentRaw);
     contentRaw.forEach((content: ContentfulContent) => {
-      // Fact
-      // if (content.fields.mainHeading === mainHeading) {
-      console.log(content.fields);
-      check.push(content.fields);
-      // }
-      // else if (content.type === 'testimonial') {
-      //   this.testimonials.push(content.fields as Testimonial);
-      // } else if (content.type === 'blog') {
-      //   this.blogs.push(content.fields as Blog);
-      // } else if (content.type === 'project') {
-      //   this.projects.push(content.fields as Project);
-      // } else if (content.type === 'question') {
-      //   this.questions.push(content.fields as Question);
-      // }
+      // lessonPreview
+      if (content.type === 'lessonOverview') {
+        console.log(content.fields);
+        check.push(content.fields);
+      }
     });
     // console.log('check', check.id);
     return check;
-  }
-
-  async getContentByTag(tag) {
-    // const myspace = await this.client.getSpace();
-    // this.client
-    // this.client
-    //   .getSpace()
-    //   .then((space) => space.getEnvironment())
-    //   .then((env) => env.getEntries({ 'metadata.tags.sys.id[in]': tag }))
-    //   .then((entries) => {
-    //     console.log(entries);
-    //     return entries;
-    //   })
-    //   .catch(console.error);
-  }
-
-  async getSpace() {
-    // console.log(this.client.getSpace());
-    const space = await this.client.getSpace();
-    console.log(space);
   }
 }
