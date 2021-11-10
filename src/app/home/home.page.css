@@ -14,8 +14,16 @@ a {
   text-decoration: none;
 }
 
-.fontt{
+.fontt {
   font-family: "DM_MONO";
+}
+.container {
+  opacity: 0.9;
+  position: absolute;
+  top: 23%;
+  left: 31%;
+  display: block;
+  width: 40%;
 }
 
 .card-list {
