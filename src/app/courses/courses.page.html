@@ -26,11 +26,15 @@
                   >
                 </ion-row>
 
-                <!-- <ion-row class="rowPadding">
-                  <ng-container
-                    *ngFor="let tag of course.payload.doc.data().tags"
+                <ion-row class="rowPadding">
+                  <ion-card-subtitle class="fonttCard"
+                    >{{course.tags}}</ion-card-subtitle
                   >
-                    <ng-container *ngIf="tag==='pro';else second">
+                </ion-row>
+
+                <ion-row class="rowPadding">
+                  <ng-container *ngFor="let tag of course.tags">
+                    <ng-container *ngIf="tag==='#Pro';else second">
                       <ion-button
                         class="fonttBtn small btnpad"
                         color="success"
@@ -40,7 +44,7 @@
                     </ng-container>
 
                     <ng-template #second>
-                      <ng-container *ngIf="tag==='d3';else third">
+                      <ng-container *ngIf="tag==='#D3';else third">
                         <ion-button
                           class="de fonttBtn small btnpad"
                           (click)="tags(tag)"
@@ -50,7 +54,7 @@
                     </ng-template>
 
                     <ng-template #third>
-                      <ng-container *ngIf="tag==='firebase' ;else fourth">
+                      <ng-container *ngIf="tag==='#firebase' ;else fourth">
                         <ion-button
                           class="fonttBtn small btnpad"
                           color="warning"
@@ -61,7 +65,7 @@
                     </ng-template>
 
                     <ng-template #fourth>
-                      <ng-container *ngIf="tag==='javascript';else fifth">
+                      <ng-container *ngIf="tag==='#javascript';else fifth">
                         <ion-button
                           class="javascrip fonttBtn small btnpad"
                           (click)="tags(tag)"
@@ -75,11 +79,11 @@
                         class="fonttBtn small btnpad"
                         color="primary"
                         (click)="tags(tag)"
-                        >{{tag}}</ion-button
+                        >{{course.tags}}</ion-button
                       >
                     </ng-template>
                   </ng-container>
-                </ion-row>-->
+                </ion-row>
               </ion-col>
             </ion-card-content>
           </ion-card>

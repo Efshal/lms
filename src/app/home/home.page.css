@@ -18,10 +18,10 @@ a {
   font-family: "DM_MONO";
 }
 .container {
-  opacity: 0.9;
+  opacity: 1;
   position: absolute;
   top: 23%;
-  left: 31%;
+  left: 30%;
   display: block;
   width: 40%;
 }
