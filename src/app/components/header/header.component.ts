@@ -9,6 +9,7 @@ import { environment } from '../../../environments/environment';
 import { StripeScriptTag } from 'stripe-angular';
 import { USE_EMULATOR } from '@angular/fire/functions';
 import { HttpClient } from '@angular/common/http';
+import { LoadingController } from '@ionic/angular';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 declare let Stripe: (arg0: string) => any;
@@ -26,13 +27,15 @@ export class HeaderComponent implements OnInit {
   uid: any;
   data: any;
   stripeResult: any;
+  private loading: any;
   constructor(
     public popoverController: PopoverController,
     public modalController: ModalController,
     private authService: AuthService,
     private afFun: AngularFireFunctions,
     private stripeScriptTag: StripeScriptTag,
-    private http: HttpClient
+    private http: HttpClient,
+    private loadingController: LoadingController
   ) {
     // if ( !this.stripeScriptTag.StripeInstance ) {
     // eslint-disable-next-line max-len
@@ -81,7 +84,23 @@ export class HeaderComponent implements OnInit {
     return await popover.present();
     /** Sync event from popover component */
   }
+  public async loaderPresent(): Promise<any> {
+    const loading = await this.loadingController.create({
+      // cssClass: 'my-custom-loader-class',
+      message: 'Connecting to Stripe',
+      backdropDismiss: true,
+    });
+    await loading.present();
+    return loading;
+  }
   async paymentPopover() {
+    this.loading = await this.loaderPresent();
+    // this.http.get('url here').subscribe((res) => {
+    //   if (this.loading) {
+    //     this.loading.dismiss();
+    //   }
+    // });
+
     // const popover = await this.popoverController.create({
     //   component: PaymentComponent,
     //   cssClass: 'contact-popover',
@@ -123,6 +142,9 @@ export class HeaderComponent implements OnInit {
             // eslint-disable-next-line @typescript-eslint/dot-notation
             sessionId: result['id'],
           });
+          if (this.loading) {
+            this.loading.dismiss();
+          }
           // .subscribe(
           //   res=>{
           //     console.log(res)

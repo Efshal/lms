@@ -29,6 +29,8 @@ export class CoursesPage implements OnInit {
 
   getCourse = async () => {
     this.courses = await this.contentful.loadLessonPreview();
+    console.log(this.courses[0].lessonName);
+    console.log(this.courses[0].tags);
 
     this.courses.forEach((element) => {
       this.routes.push(element.lessonName.replace(/\s+/g, '-'));

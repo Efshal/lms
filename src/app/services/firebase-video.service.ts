@@ -38,8 +38,8 @@ export class FirebaseVideoService {
   async getLesson(url: string) {
     console.log('here at get lesson');
     const lesson = await this.firestore
-      .collection('CourseX')
-      .ref.where('link', '==', url)
+      .collection('LessonX')
+      .ref.where('videoUrl', '==', url)
       .get();
     console.log('hello');
     const snapshot = lesson.docs[0];

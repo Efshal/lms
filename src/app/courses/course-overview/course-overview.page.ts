@@ -42,11 +42,12 @@ export class CourseOverviewPage implements OnInit {
       console.log(this.inputUrl); // popular
     });
     console.log('hello', this.inputUrl);
-    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.inputUrl);
-    console.log(this.url);
-    this.lessonInfo = await this.videoServie.getLesson(this.inputUrl);
-    this.desc = this.lessonInfo.description;
-    this.creator = this.lessonInfo.creator;
+    // this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.inputUrl);
+    // console.log(this.url);
+    // this.lessonInfo = await this.videoServie.getLesson(this.inputUrl);
+    // console.log(this.lessonInfo);
+    // this.desc = this.lessonInfo.description;
+    // this.creator = this.lessonInfo.creator;
 
     this.alldata = await this.contentful.loadLessonPreview();
     console.log(this.alldata);
