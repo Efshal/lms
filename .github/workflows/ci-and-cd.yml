@@ -3,7 +3,7 @@ name: CI & CD
 
 on:
   push:
-    branches: [ master ]
+    branches: [ mubashir ]
 jobs:
   CI-AND-CD:
     runs-on: ubuntu-latest
