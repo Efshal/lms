@@ -9,10 +9,14 @@
         <ion-col size="12" size-md="6" size-lg="6" size-sm="12">
           <ion-card class="cardd">
             <img
+              (click)="courseid(course)"
               src="{{course.thumbnail.fields.file.url}}"
               [routerLink]="['/courses/course-overview', routes[i]]"
             />
-
+            <!-- <app-course-overview [courselesson]="course"></app-course-overview> -->
+            <!-- <app-course-overview [courselesson]="lessoncourses"
+              >okaaay</app-course-overview
+            > -->
             <ion-card-content>
               <ion-col class="ion-grid-column-padding">
                 <ion-row class="rowPadding">
@@ -32,7 +36,7 @@
                   >
                 </ion-row>
 
-                <ion-row class="rowPadding">
+                <!-- <ion-row class="rowPadding">
                   <ng-container *ngFor="let tag of course.tags">
                     <ng-container *ngIf="tag==='#Pro';else second">
                       <ion-button
@@ -83,7 +87,7 @@
                       >
                     </ng-template>
                   </ng-container>
-                </ion-row>
+                </ion-row> -->
               </ion-col>
             </ion-card-content>
           </ion-card>
@@ -91,4 +95,7 @@
       </ng-container>
     </ion-row>
   </ion-grid>
+  <!-- <div>
+    <app-course-overview [lessonPreview]="lessonPREVIEW"></app-course-overview>
+  </div> -->
 </ion-content>

@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContentfulService } from './services/contentful.service';
-import { StripeModule } from "stripe-angular"
+import { StripeModule } from 'stripe-angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,7 +38,7 @@ import { StripeModule } from "stripe-angular"
     AngularFireModule,
     AngularFireAuthModule,
     ComponentsModule,
-    StripeModule.forRoot("")
+    StripeModule.forRoot(''),
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

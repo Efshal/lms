@@ -36,7 +36,7 @@ export class FirebaseVideoService {
   }
 
   async getLesson(url: string) {
-    console.log('here at get lesson');
+    console.log('here at get lesson', url);
     const lesson = await this.firestore
       .collection('LessonX')
       .ref.where('videoUrl', '==', url)
