@@ -44,11 +44,13 @@ export class HeaderComponent implements OnInit {
   }
 
   async ngOnInit() {
-    console.log('oninint');
+    console.log( "oninint" )
     const user = await this.authService.getInfo();
-    console.log(user);
-    this.uid = user.uid;
-    console.log('hello', this.uid);
+    console.log( user )
+    if(user){
+    this.uid = user.uid
+    console.log( "hello", this.uid )
+    };
   }
 
   hideDropdown(event) {

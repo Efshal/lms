@@ -3,7 +3,6 @@ import firebase from 'firebase/app';
 import 'rxjs/add/operator/switchMap';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { retry } from 'rxjs-compat/operator/retry';
 
 
 // import ms from 'ms';
@@ -12,7 +11,8 @@ import { retry } from 'rxjs-compat/operator/retry';
 })
 export class AuthService {
 
-  constructor(private afAuth: AngularFireAuth,
+  constructor(
+    private afAuth: AngularFireAuth,
     private firestore: AngularFirestore
     ) {}
 
@@ -24,12 +24,11 @@ export class AuthService {
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         const user=await this.getInfo();
         let data={
-          uid:user.uid,
           pro:false
         }
         console.log(data)
         if(value.additionalUserInfo.isNewUser===true){
-          this.addUsers(data)
+          this.addUsers(data,user.uid)
         }
         console.log('Sucess', value.additionalUserInfo.isNewUser), (response = value);
       })
@@ -41,19 +40,21 @@ export class AuthService {
 
   async getInfo() {
     console.log('here at authh');
-    const user = firebase.auth().currentUser;
+    const user = await this.afAuth.currentUser;
     if(user){
     console.log(user);
     return user;
-    }else{
+    }
+    else{
       console.log("null")
       return null
     }
+    
   }
 
   async loginInfo(){
     console.log('loginn'); 
-    firebase.auth().onAuthStateChanged((user)=> {
+    this.afAuth.onAuthStateChanged((user)=> {
       if (user) {
 
         console.log(user)
@@ -80,10 +81,11 @@ export class AuthService {
     console.log(data)
   }
 
-  async addUsers(data:any){
-    console.log("add user")
+  async addUsers(data:any,uid:any){
+    console.log("add user",data,"id",uid)
     // this.checkUser(data.uid)
-    const user=await this.firestore.collection('Users').add(data);
+    const user=await this.firestore.collection('Users').doc(uid).set(data);
+    console.log(user)
   }
 
   private oAuthLogin(provider) {
@@ -97,12 +99,11 @@ export class AuthService {
     console.log(value)
     const user=await this.getInfo();
         let data={
-          uid:user.uid,
           pro:false
         }
         console.log(data)
         if(value.additionalUserInfo.isNewUser===true){
-          this.addUsers(data)
+          this.addUsers(data,user.uid)
         }
     result=value
     })
@@ -130,6 +131,14 @@ export class AuthService {
       result=err
     });
     return result
+  }
+
+  async logout(){
+    firebase.auth().signOut().then(function() {
+      console.log('Signed Out');
+    }, function(error) {
+      console.error('Sign Out Error', error);
+    });
   }
 
 

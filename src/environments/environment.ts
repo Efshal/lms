@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   firebaseConfig: {
+    databaseURL:'https://scoolx-3cef4.firebaseio.com',
     apiKey: 'AIzaSyAryxlrVUeev6zrCx7vGMfY9yR7bN9aS4Q',
     authDomain: 'scoolx-3cef4.firebaseapp.com',
     projectId: 'scoolx-3cef4',
