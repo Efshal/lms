@@ -37,3 +37,17 @@
   font-size: 25px;
   color: blue;
 }
+#rich-text-body {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 25px;
+  font-weight: lighter;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  margin: 20px 20px;
+  padding: 2%;
+}
+#video {
+  height: auto;
+  max-width: 140%;
+}
