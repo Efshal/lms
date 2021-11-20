@@ -33,7 +33,7 @@ export class TagsComponent implements OnInit {
     // eslint-disable-next-line object-shorthand
     this.router.navigate(['/courses/tags'], { queryParams: { tag: tag } });
     //ask wajeeh how to reload a same url or navigate to same url with different parameter
-    // this.courses = await this.videoService.getTagLesson(tag);
+    this.courses = await this.videoService.getTagLesson(tag);
   }
 
   //ask wajeeh about this routing

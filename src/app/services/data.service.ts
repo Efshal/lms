@@ -6,7 +6,6 @@ import { ContentfulService } from './contentful.service';
   providedIn: 'root',
 })
 export class DataService {
-  course_id: any;
   constructor(private contentful: ContentfulService) {}
 
   async loadContent(mainHeading: string): Promise<any> {

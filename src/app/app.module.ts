@@ -18,8 +18,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContentfulService } from './services/contentful.service';
-import { StripeModule } from 'stripe-angular';
-
+import { StripeModule } from "stripe-angular"
+import { USE_EMULATOR } from '@angular/fire/functions';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -38,13 +38,14 @@ import { StripeModule } from 'stripe-angular';
     AngularFireModule,
     AngularFireAuthModule,
     ComponentsModule,
-    StripeModule.forRoot(''),
+    StripeModule.forRoot("")
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     FirebaseVideoService,
     AuthService,
     ContentfulService,
+    { provide: USE_EMULATOR, useValue:['localhost', 5001] },
   ],
   bootstrap: [AppComponent],
 })

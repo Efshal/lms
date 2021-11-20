@@ -5,7 +5,6 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    databaseURL:'https://scoolx-3cef4.firebaseio.com',
     apiKey: 'AIzaSyAryxlrVUeev6zrCx7vGMfY9yR7bN9aS4Q',
     authDomain: 'scoolx-3cef4.firebaseapp.com',
     projectId: 'scoolx-3cef4',
@@ -18,11 +17,9 @@ export const environment = {
     spaceId: 'u7opxkb285ma',
     token: '71qHFK6AYpVp6yxT6hKAqcuDuqp1yTw741VXDi1-AKo',
   },
-  stripe: {
-    key: 'pk_test_51JssCMSHoIau0eIW0F0Ojtsp4QJgEBIuFejhESLQ7nsGlAJkwLYZmkrL3fcN4weJgY5wndqvtdzDOCNmuqjZzeuZ007H2Mgvxv',
+  stripe:{
+    key:'pk_test_51JssCMSHoIau0eIW0F0Ojtsp4QJgEBIuFejhESLQ7nsGlAJkwLYZmkrL3fcN4weJgY5wndqvtdzDOCNmuqjZzeuZ007H2Mgvxv'
   },
-
-  emulator: true,
 };
 
 /*

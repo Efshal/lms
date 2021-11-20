@@ -6,28 +6,29 @@ import { RegistrationComponent } from 'src/app/shared/registration/registration.
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { environment } from '../../../environments/environment';
-import { StripeScriptTag } from 'stripe-angular';
+import { StripeScriptTag } from "stripe-angular"
 import { USE_EMULATOR } from '@angular/fire/functions';
 import { HttpClient } from '@angular/common/http';
 import { LoadingController } from '@ionic/angular';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-declare let Stripe: (arg0: string) => any;
-const stripe = Stripe(environment.stripe.key);
+declare var Stripe;
+var stripe = Stripe(environment.stripe.key)
 
-@Component({
+@Component( {
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-})
+} )
 export class HeaderComponent implements OnInit {
-  @ViewChild('productbtn', { read: ElementRef }) productbtn: ElementRef;
+  @ViewChild( 'productbtn', { read: ElementRef } ) productbtn: ElementRef;
 
   dropdown = false;
-  uid: any;
-  data: any;
-  stripeResult: any;
+  uid: any
+  data: any
+  stripeResult:any
+  user:any
   private loading: any;
+
   constructor(
     public popoverController: PopoverController,
     public modalController: ModalController,
@@ -37,23 +38,23 @@ export class HeaderComponent implements OnInit {
     private http: HttpClient,
     private loadingController: LoadingController
   ) {
+
     // if ( !this.stripeScriptTag.StripeInstance ) {
-    // eslint-disable-next-line max-len
     //   this.stripeScriptTag.setPublishableKey( 'pk_test_51JssCMSHoIau0eIW0F0Ojtsp4QJgEBIuFejhESLQ7nsGlAJkwLYZmkrL3fcN4weJgY5wndqvtdzDOCNmuqjZzeuZ007H2Mgvxv' );
     // }
   }
 
   async ngOnInit() {
     console.log( "oninint" )
-    const user = await this.authService.getInfo();
-    console.log( user )
-    if(user){
-    this.uid = user.uid
+    this.user = await this.authService.getInfo();
+    console.log( this.user )
+    if(this.user){
+    this.uid = this.user.uid
     console.log( "hello", this.uid )
-    };
+    }
   }
 
-  hideDropdown(event) {
+  hideDropdown( event ) {
     const xTouch = event.clientX;
     const yTouch = event.clientY;
 
@@ -72,14 +73,14 @@ export class HeaderComponent implements OnInit {
   }
   async settingsPopover() {
     const siteInfo = { id: 1, name: 'edupala' };
-    const popover = await this.popoverController.create({
+    const popover = await this.popoverController.create( {
       component: RegistrationComponent,
       cssClass: 'contact-popover',
       // componentProps: {
       //   site: siteInfo,
       // },
       // translucent: true,
-    });
+    } );
     // popover.onDidDismiss().then((result) => {
     //   console.log(result.data);
     // });
@@ -95,31 +96,11 @@ export class HeaderComponent implements OnInit {
     await loading.present();
     return loading;
   }
+
   async paymentPopover() {
     this.loading = await this.loaderPresent();
-    // this.http.get('url here').subscribe((res) => {
-    //   if (this.loading) {
-    //     this.loading.dismiss();
-    //   }
-    // });
-
-    // const popover = await this.popoverController.create({
-    //   component: PaymentComponent,
-    //   cssClass: 'contact-popover',
-    //   // componentProps: {
-    //   //   site: siteInfo,
-    //   // },
-    //   // translucent: true,
-    // });
-    // // popover.onDidDismiss().then((result) => {
-    // //   console.log(result.data);
-    // // });
-    // return await popover.present();
-    // /** Sync event from popover component */
-
-    const user = await this.authService.getInfo();
-    console.log(user);
-    this.uid = user.uid;
+    console.log(this.user);
+    this.uid = this.user.uid;
     console.log('hello', this.uid);
 
     console.log('checking out with item id: ' + this.uid);
@@ -170,5 +151,10 @@ export class HeaderComponent implements OnInit {
         }
       );
     console.log(this.stripeResult);
+      }
+
+  async logout(){
+    const res=await this.authService.logout();
+    console.log(res)
   }
 }

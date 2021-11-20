@@ -22,9 +22,11 @@ export class FirebaseVideoService {
 
   getCourse() {
     console.log('here');
-    // var lessons;
+    var lessons
     return this.firestore.collection('CourseX').snapshotChanges();
+    
   }
+
 
   setUrlFunc(url) {
     this.setUrl = url;
@@ -36,10 +38,10 @@ export class FirebaseVideoService {
   }
 
   async getLesson(url: string) {
-    console.log('here at get lesson', url);
+    console.log('here at get lesson');
     const lesson = await this.firestore
-      .collection('LessonX')
-      .ref.where('videoUrl', '==', url)
+      .collection('CourseX')
+      .ref.where('link', '==', url)
       .get();
     console.log('hello');
     const snapshot = lesson.docs[0];
@@ -47,19 +49,22 @@ export class FirebaseVideoService {
     console.log(data);
     return data;
   }
-  async getTagLesson(tag: string) {
-    const data = [];
+  async getTagLesson(tag:string){
+
+    const data= [];
     const lesson = await this.firestore
       .collection('CourseX')
-      .ref.where('tags', 'array-contains', tag)
+      .ref.where('tags', 'array-contains',tag)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          console.log(doc.id, ' => ', doc.data());
-          data.push(doc.data());
+            console.log(doc.id, ' => ', doc.data());
+            data.push(doc.data())
         });
-      });
-    console.log(data);
-    return data;
+    });
+    console.log(data)
+    return data
   }
+ 
+
 }
