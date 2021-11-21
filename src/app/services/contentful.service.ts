@@ -49,6 +49,42 @@ export class ContentfulService {
     });
     return check;
   }
+  async loadLesson(id) {
+    console.log(id);
+    let check: any;
+    const contentRaw = await this.getContent();
+    console.log(contentRaw);
+    contentRaw.forEach((content: any) => {
+      if (content.fields.id === id) {
+        console.log(content.fields);
+        check = content.fields;
+      }
+    });
+    return check;
+  }
+  async loadLessonPreviewbyTag(tag) {
+    console.log('tags: ', tag);
+    const check: Fields[] = [];
+    const contentRaw = await this.getContent();
+    let text = '#firebase #D3 #Pro';
+    let result = text.includes(tag);
+    console.log(result);
+    contentRaw.forEach((entry: any) => {
+      console.log(entry.fields.tags);
+      let text = entry.fields.tags;
+      console.log(text);
+      if (text == undefined) {
+        return check;
+      }
+      console.log(text.includes(tag));
+      if (text.includes(tag)) {
+        console.log('hereee');
+        console.log(entry.fields);
+        check.push(entry.fields);
+      }
+    });
+    return check;
+  }
   async loadLessonPreviewbyid(ID) {
     let options = {
       renderNode: {

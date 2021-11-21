@@ -79,7 +79,7 @@ import { FirebaseVideoService } from '../../services/firebase-video.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ContentfulService } from 'src/app/services/contentful.service';
 import { DataService } from 'src/app/services/data.service';
-import { ContentfulContent, Fields } from 'src/app/shared/contentful';
+import { ContentfulContent, Fields, Lesson } from 'src/app/shared/contentful';
 import { createClient } from 'contentful';
 import { environment } from 'src/environments/environment';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
@@ -99,10 +99,14 @@ export class CourseOverviewPage implements OnInit {
   lesson$: Observable<any>;
   alldata: any;
   link: string;
-  courseName: string;
+  courseID: string;
   routes: any = [];
   courses: any;
+  richtext: any;
   CID: any;
+  lessonname: string;
+  lessondescription: string;
+  tags: string;
   client = createClient({
     space: environment.contentful.spaceId,
     accessToken: environment.contentful.token,
@@ -133,28 +137,28 @@ export class CourseOverviewPage implements OnInit {
     // console.log(this.courselesson);
     this.route.paramMap.subscribe((params) => {
       // console.log(params);
-      this.courseName = params.get('courseName');
-      this.courseName = this.courseName.replace(/-/g, ' ');
-
-      console.log(this.courseName);
+      this.courseID = params.get('courseID');
+      console.log(this.courseID);
     });
-    // this.contentful.checkFun();
-    console.log('hello', this.inputUrl);
-    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.inputUrl);
-    console.log(this.url);
-    //this.lessonInfo = await this.videoServie.getLesson(this.courseName);
-    console.log('here1');
+
     this.getCourse();
-    console.log('here2');
   }
   async getCourse() {
-    this.CID = this.contentful.getcourseID();
-    console.log('HEHRE:', this.CID.id);
-    this.courses = await this.contentful.loadLessonPreviewbyid(this.CID.id);
+    // this.CID = this.contentful.getcourseID();
+
+    this.richtext = await this.contentful.loadLessonPreviewbyid(this.courseID);
     console.log(this.courses);
-    document.getElementById('rich-text-body').innerHTML = this.courses;
+    document.getElementById('rich-text-body').innerHTML = this.richtext;
+    console.log('HEHRE:', this.courseID);
+    this.courses = await this.contentful.loadLesson(this.courseID);
+    // this.courses.push(this.contentful.loadLesson(this.courseID));
+    // this.courses.push(this.contentful.loadLesson(this.courseID));
+    console.log('okaaay,', this.courses.lessonDescription);
+    this.lessonname = this.courses.lessonName;
+    this.lessondescription = this.courses.lessonDescription;
+    this.tags = this.courses.tags;
   }
-  redirect() {
-    this.router.navigate(['/']);
-  }
+  // redirect() {
+  //   this.router.navigate(['/']);
+  // }
 }

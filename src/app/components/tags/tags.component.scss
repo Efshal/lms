@@ -2,35 +2,27 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap");
 
 ion-grid {
-  --ion-grid-padding-sm: 20px;
-  --ion-grid-padding-md: 30px;
-  --ion-grid-padding-lg: 40px;
-  --ion-grid-padding-xl: 50px;
+  --ion-grid-padding-sm: 10px;
+  --ion-grid-padding-md: 20px;
+  --ion-grid-padding-lg: 30px;
+  --ion-grid-padding-xl: 40px;
 }
+
 .cardd {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  border-radius: 10px !important;
-  //margin-bottom: 100px;
+  cursor: pointer;
+  border-radius: 20px !important;
+  margin-bottom: 100px;
   margin-left: 30px;
   margin-right: 30px;
-}
-.cardd > .thumb {
-  display: inline-flex;
-  cursor: pointer;
-  width: 50%;
-  height: 100%;
+  width: 80%;
+  height: 600px;
 }
 .fontt {
   font-family: "TransRobotics";
   font-size: 50px;
-  padding-top: 10px;
 }
 
 .fonttCard {
-  display: flex;
-  justify-content: center;
   font-family: "TransRobotics";
   font-size: 25px;
 }

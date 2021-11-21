@@ -9,7 +9,7 @@ const routes: Routes = [
     component: CoursesPage,
   },
   {
-    path: 'course-overview/:courseName',
+    path: 'course-overview/:courseID',
     loadChildren: () =>
       import('./course-overview/course-overview.module').then(
         (m) => m.CourseOverviewPageModule
