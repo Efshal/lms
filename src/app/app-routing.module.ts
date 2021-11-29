@@ -33,7 +33,14 @@ const routes: Routes = [
   {
     path:'courses/tags',
     component:TagsComponent
-  }
+  },
+  {
+    path: 'courses/course-overview/:courseName',
+    loadChildren: () =>
+      import('../app/courses/course-overview/course-overview.module').then(
+        (m) => m.CourseOverviewPageModule
+      ),
+  },
 ];
 
 @NgModule({

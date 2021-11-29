@@ -158,7 +158,7 @@ export class CoursesPage implements OnInit {
     this.courses.forEach((element) => {
       this.routes.push(element.lessonName.replace(/\s+/g, '-'));
     });
-    console.log(this.courses);
+    console.log(this.courses); 
     console.log('here4');
     console.log(this.routes);
     console.log('here5');
@@ -192,7 +192,9 @@ export class CoursesPage implements OnInit {
   }
   async courseid(id) {
     let Course_id = id;
-    console.log('clicked:', Course_id);
+    console.log('clicked:', id['id']);
     this.contentful.setcourseID(Course_id);
+    this.router.navigate(['/courses/course-overview'], { queryParams: { id:id['id'] } });
   }
+
 }

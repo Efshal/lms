@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContentfulService } from './services/contentful.service';
 import { StripeModule } from "stripe-angular"
 import { USE_EMULATOR } from '@angular/fire/functions';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

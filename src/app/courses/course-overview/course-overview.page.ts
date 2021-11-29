@@ -99,7 +99,7 @@ export class CourseOverviewPage implements OnInit {
   lesson$: Observable<any>;
   alldata: any;
   link: string;
-  courseName: string;
+  courseName: any;
   routes: any = [];
   courses: any;
   CID: any;
@@ -116,7 +116,9 @@ export class CourseOverviewPage implements OnInit {
     private contentful: ContentfulService,
     private dataService: DataService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    
+  }
   async getContent() {
     const entries = await this.client.getEntries();
 
@@ -130,31 +132,42 @@ export class CourseOverviewPage implements OnInit {
     }));
   }
   async ngOnInit() {
-    // console.log(this.courselesson);
-    this.route.paramMap.subscribe((params) => {
+   
+     this.route.queryParams.subscribe((params) => {
       // console.log(params);
-      this.courseName = params.get('courseName');
-      this.courseName = this.courseName.replace(/-/g, ' ');
+      this.courseName = params.id;
+      // this.courseName = this.courseName.replace(/-/g, ' ');
 
-      console.log(this.courseName);
-    });
-    // this.contentful.checkFun();
-    console.log('hello', this.inputUrl);
-    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.inputUrl);
+      console.log("params",this.courseName);
+      
+    }); 
+    this.inputUrl="https://player.vimeo.com/video/85475176?h=2764778642"
+  
+
     console.log(this.url);
     //this.lessonInfo = await this.videoServie.getLesson(this.courseName);
     console.log('here1');
-    this.getCourse();
+    await this.getCourse();
+    let lesson=await this.videoServie.getCourse(this.courseName)
+    this.url=lesson
+    console.log(this.url)
     console.log('here2');
+    
   }
   async getCourse() {
-    this.CID = this.contentful.getcourseID();
-    console.log('HEHRE:', this.CID.id);
-    this.courses = await this.contentful.loadLessonPreviewbyid(this.CID.id);
+    console.log("COURSEEEEEEE")
+    this.CID = this.courseName;
+    console.log('HEHRE:', this.CID)
+    this.courses = await this.contentful.loadLessonPreviewbyid(this.CID);
     console.log(this.courses);
     document.getElementById('rich-text-body').innerHTML = this.courses;
   }
-  redirect() {
-    this.router.navigate(['/']);
-  }
+  // redirect() {
+  //   this.router.navigate(['/']);
+  // }
 }
+    // const lesson=await this.videoServie.getCourse(this.courseName)
+    // // this.contentful.checkFun();
+    // // console.log('hello', this.inputUrl);
+    // console.log(lesson,"checkUrl")
+    // this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.inputUrl);

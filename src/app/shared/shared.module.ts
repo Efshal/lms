@@ -4,9 +4,11 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { SafeUrlPipe } from './safe-url.pipe';
+
 
 @NgModule({
-  declarations: [RegistrationComponent, LoginComponent],
+  declarations: [RegistrationComponent, LoginComponent,SafeUrlPipe],
   imports: [
     CommonModule,
     FormsModule,
@@ -15,6 +17,6 @@ import { IonicModule } from '@ionic/angular';
     ReactiveFormsModule,
   ],
   //inorder to make other modules use components included in shared module, add those components in exports array
-  exports: [RegistrationComponent, LoginComponent],
+  exports: [RegistrationComponent, LoginComponent,SafeUrlPipe],
 })
 export class SharedModule {}

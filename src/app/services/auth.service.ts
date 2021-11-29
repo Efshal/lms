@@ -141,5 +141,13 @@ export class AuthService {
     });
   }
 
+  async getUserRole(){
+    let user=await this.getInfo()
+    let uid=user.uid
+    let data=this.firestore.collection('Users').doc(uid).get()
+    let snapshot=await data.toPromise()
+    let dataa=snapshot.data()
+    return dataa['pro']
+  }
 
 }
