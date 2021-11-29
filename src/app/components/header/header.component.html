@@ -4,11 +4,18 @@
       <ion-menu-button menu="myMenu"></ion-menu-button>
     </ion-buttons>
     <ion-title class="fontt ion-text-center textt">ScoolX</ion-title>
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon slot="icon-only" name="cart"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+
+    <img
+      src="https://img.icons8.com/dusk/64/000000/login-rounded-right.png"
+      style="width: 5%; height: 5%; cursor: pointer; margin-right: 15px"
+      (click)="settingsPopover()"
+    />
+
+    <img
+      src="./../../assets/images/stripee.jfif"
+      style="width: 5%; height: 5%; border-radius: 50%; cursor: pointer"
+      (click)="paymentPopover()"
+    />
   </ion-toolbar>
 </ion-header>
 
